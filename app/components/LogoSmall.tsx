@@ -1,16 +1,14 @@
 import { Box, Title } from "@mantine/core";
-import Image from "next/image";
-import hatIcon from "../../public/images/hat.webp";
 import React from "react";
 
 const LogoSmall = () => {
   return (
-    <Box className="logoContainerSmall">
-      <Title>
-        <span className="logoTitleSmall">Grade</span>
-        <span className="logoTitleSmall logoTitleBlue">Guard</span>
+    <Box className="logo-container-small">
+      <Title size={28}>
+        <span>Grade</span>
+        <span className="logo-title-blue">Guard</span>
       </Title>
-      <Image src={hatIcon} className="logoHatSmall" />
+      <img src="/images/hat.webp" className="logo-hat-small" />
     </Box>
   );
 };

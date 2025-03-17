@@ -2,6 +2,8 @@ import { usePathname } from "next/navigation";
 import {
   IconHome,
   IconBooks,
+  IconPencil,
+  IconAlignJustified,
   IconLogout,
   IconSwitchHorizontal,
 } from "@tabler/icons-react";
@@ -14,6 +16,8 @@ import Link from "next/link";
 const data = [
   { link: "/", label: "Dashboard", icon: IconHome },
   { link: "/courses", label: "Courses", icon: IconBooks },
+  { link: "/exams", label: "Exams", icon: IconPencil },
+  { link: "/assignments", label: "Assignments", icon: IconAlignJustified },
 ];
 
 const NavBar = () => {

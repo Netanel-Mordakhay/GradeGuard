@@ -19,13 +19,12 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
       padding="md"
     >
       <AppShell.Header>
-        <Group p={10} justify="center" align="center" className="layout-header">
+        <Header>
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-          <Header />
-        </Group>
+        </Header>
       </AppShell.Header>
 
-      <AppShell.Navbar>
+      <AppShell.Navbar className="deafult-navbar" bg="#ffffff00" bd={0}>
         <NavBar />
       </AppShell.Navbar>
 

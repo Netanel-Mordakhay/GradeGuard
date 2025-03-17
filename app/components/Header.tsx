@@ -1,14 +1,18 @@
 import React from "react";
 import ThemeToggle from "./ThemeToggle";
-import { Group, Text } from "@mantine/core";
+import { Grid, Group, Text } from "@mantine/core";
 import LogoSmall from "./LogoSmall";
 
-const Header = () => {
+const Header = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Group justify="center" align="center">
-      <LogoSmall />
-      <Text>GradeGuard</Text>
-      <ThemeToggle />
+    <Group h="100%" px="md" justify="space-between" dir="ltr">
+      <Group>
+        {children}
+        <LogoSmall />
+      </Group>
+      <Group>
+        <ThemeToggle />
+      </Group>
     </Group>
   );
 };

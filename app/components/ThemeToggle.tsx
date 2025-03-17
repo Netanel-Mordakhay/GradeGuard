@@ -9,8 +9,8 @@ const ThemeToggle = () => {
 
   return (
     <ActionIcon
-      variant="filled"
-      //color={isDark ? "yellow" : "blue"}
+      variant="transparent"
+      color="dark"
       onClick={() => setColorScheme(isDark ? "light" : "dark")}
       title="Toggle theme"
       size="lg"
