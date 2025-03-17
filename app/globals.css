@@ -1,0 +1,30 @@
+.layout-header {
+  height: 100%;
+}
+
+/* Logo Small */
+.logoContainerSmall {
+  height: 50px;
+  width: 150px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.logoTitleSmall {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.logoTitleBlueSmall {
+  color: var(--mantine-color-blue-6);
+}
+
+.logoHatSmall {
+  position: absolute;
+  width: 24px;
+  top: 0;
+  left: 0;
+  transform: translate(1px, 3px);
+}

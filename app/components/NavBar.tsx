@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { usePathname } from "next/navigation";
 import {
   IconHome,
@@ -6,7 +5,7 @@ import {
   IconLogout,
   IconSwitchHorizontal,
 } from "@tabler/icons-react";
-import classes from "./styles/NavBar.module.css";
+import classes from "../styles/NavBar.module.css";
 import Link from "next/link";
 
 {
