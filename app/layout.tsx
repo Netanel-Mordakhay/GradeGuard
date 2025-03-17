@@ -19,6 +19,7 @@ import {
   MantineProvider,
   mantineHtmlProps,
 } from "@mantine/core";
+import ClientLayout from "./ClientLayout";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -36,7 +37,9 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body>
-        <MantineProvider>{children}</MantineProvider>
+        <MantineProvider>
+          <ClientLayout>{children}</ClientLayout>
+        </MantineProvider>
       </body>
     </html>
   );
