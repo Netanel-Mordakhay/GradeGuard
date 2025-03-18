@@ -1,21 +1,27 @@
 "use client";
-import { Button, Input, InputWrapper, Stack } from "@mantine/core";
+import { Alert, Button, Input, InputWrapper, Stack, Text } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 
 interface CourseForm {
   title: string;
-  grade: number;
+  grade?: number;
 }
 
 const NewCourseForm = () => {
   const { register, handleSubmit } = useForm<CourseForm>();
+  const [error, setError] = useState("");
   return (
     <form
-      onSubmit={handleSubmit(
-        async (data) => await axios.post("/api/courses", data)
-      )}
+      onSubmit={handleSubmit(async (data) => {
+        try {
+          await axios.post("/api/courses", data);
+          setError("");
+        } catch (error) {
+          setError("Whoops, looks like somethings wrong.");
+        }
+      })}
     >
       <Stack>
         <InputWrapper label="Course title">
@@ -29,6 +35,11 @@ const NewCourseForm = () => {
           />
         </InputWrapper>
         <Button type="submit">Create course</Button>
+        {error && (
+          <Alert variant="light" color="red">
+            {error}
+          </Alert>
+        )}
       </Stack>
     </form>
   );
