@@ -11,8 +11,8 @@ const TwoColumns = ({ children }: Props) => {
     <Stack>
       <PageTitle />
       <Grid>
-        <GridCol span={8}>1</GridCol>
-        <GridCol span={4}>{children}</GridCol>
+        <GridCol span={{ base: 12, md: 8 }}>1</GridCol>
+        <GridCol span={{ base: 12, md: 4 }}>{children}</GridCol>
       </Grid>
     </Stack>
   );

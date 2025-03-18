@@ -28,7 +28,7 @@ const ClientLayout = ({ content }: { content: React.ReactNode }) => {
         <NavBar />
       </AppShell.Navbar>
 
-      <AppShell.Main>{content}</AppShell.Main>
+      <AppShell.Main className="student-background">{content}</AppShell.Main>
     </AppShell>
   );
 };

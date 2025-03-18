@@ -7,6 +7,13 @@
   backdrop-filter: blur(3px);
 }
 
+.student-background {
+  background-image: url("../public/images/student.webp");
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
 /* Pages */
 .page-title {
   background: rgb(255, 255, 255);
