@@ -1,12 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
 import prisma from "@/prisma/client";
-
-/* Validation object's schema */
-const createCourseSchema = z.object({
-  title: z.string().min(3).max(255),
-  grade: z.number().min(0).max(100).optional(),
-});
+import { createCourseSchema } from "../../validationSchemas";
 
 export async function POST(request: NextRequest) {
   // Parse the request body from JSON

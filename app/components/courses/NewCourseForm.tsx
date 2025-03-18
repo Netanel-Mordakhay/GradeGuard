@@ -2,15 +2,21 @@
 import { Alert, Button, Input, InputWrapper, Stack, Text } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import React, { useState } from "react";
+import { createCourseSchema } from "@/app/validationSchemas";
 
-interface CourseForm {
-  title: string;
-  grade?: number;
-}
+type CourseForm = z.infer<typeof createCourseSchema>;
 
 const NewCourseForm = () => {
-  const { register, handleSubmit } = useForm<CourseForm>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CourseForm>({
+    resolver: zodResolver(createCourseSchema),
+  });
   const [error, setError] = useState("");
   return (
     <form
@@ -26,6 +32,11 @@ const NewCourseForm = () => {
       <Stack>
         <InputWrapper label="Course title">
           <Input placeholder="title" {...register("title")} />
+          {errors.title && (
+            <Alert variant="light" color="red">
+              Title error
+            </Alert>
+          )}
         </InputWrapper>
         <InputWrapper label="Course grade" description="optional">
           <Input
@@ -33,6 +44,11 @@ const NewCourseForm = () => {
             type="number"
             {...register("grade", { valueAsNumber: true })}
           />
+          {errors.grade && (
+            <Alert variant="light" color="red">
+              Grade error
+            </Alert>
+          )}
         </InputWrapper>
         <Button type="submit">Create course</Button>
         {error && (
