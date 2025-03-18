@@ -14,15 +14,7 @@ datasource db {
 }
 
 model Course {
-  id       Int      @id @default(autoincrement())
-  title    String   @db.VarChar(255)
-  grade    Int?
-  year     Int
-  semester Semester
-}
-
-enum Semester {
-  A
-  B
-  C // Summer
+  id    Int    @id @default(autoincrement())
+  title String @db.VarChar(255)
+  grade Int?
 }
