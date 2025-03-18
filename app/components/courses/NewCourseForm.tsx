@@ -1,5 +1,13 @@
 "use client";
-import { Alert, Button, Input, InputWrapper, Stack, Text } from "@mantine/core";
+import {
+  Alert,
+  Button,
+  Input,
+  InputWrapper,
+  Loader,
+  Stack,
+  Text,
+} from "@mantine/core";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,26 +25,25 @@ const NewCourseForm = () => {
   } = useForm<CourseForm>({
     resolver: zodResolver(createCourseSchema),
   });
-  const [error, setError] = useState("");
+
+  const [isSubmitting, setSubmitting] = useState(false);
+
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      setSubmitting(true);
+      await axios.post("/api/courses", data);
+    } catch (error) {
+    } finally {
+      setSubmitting(false);
+    }
+  });
+
   return (
-    <form
-      onSubmit={handleSubmit(async (data) => {
-        try {
-          await axios.post("/api/courses", data);
-          setError("");
-        } catch (error) {
-          setError("Whoops, looks like somethings wrong.");
-        }
-      })}
-    >
+    <form onSubmit={onSubmit}>
       <Stack>
         <InputWrapper label="Course title">
           <Input placeholder="title" {...register("title")} />
-          {errors.title && (
-            <Alert variant="light" color="red">
-              Title error
-            </Alert>
-          )}
+          {errors.title && <Alert mt={10}>Title error</Alert>}
         </InputWrapper>
         <InputWrapper label="Course grade" description="optional">
           <Input
@@ -44,18 +51,12 @@ const NewCourseForm = () => {
             type="number"
             {...register("grade", { valueAsNumber: true })}
           />
-          {errors.grade && (
-            <Alert variant="light" color="red">
-              Grade error
-            </Alert>
-          )}
+          {errors.grade && <Alert mt={10}>Grade error</Alert>}
         </InputWrapper>
-        <Button type="submit">Create course</Button>
-        {error && (
-          <Alert variant="light" color="red">
-            {error}
-          </Alert>
-        )}
+        <Button type="submit" disabled={isSubmitting}>
+          Create course
+        </Button>
+        {isSubmitting && <Loader color="blue" type="dots" />}
       </Stack>
     </form>
   );
