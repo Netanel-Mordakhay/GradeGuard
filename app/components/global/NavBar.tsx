@@ -7,7 +7,7 @@ import {
   IconLogout,
   IconSwitchHorizontal,
 } from "@tabler/icons-react";
-import classes from "../styles/NavBar.module.css";
+import classes from "../../styles/NavBar.module.css";
 import Link from "next/link";
 
 {

@@ -2,10 +2,10 @@
 import { AppShell, Burger, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import React from "react";
-import NavBar from "./components/NavBar";
-import Header from "./components/Header";
+import NavBar from "./components/global/NavBar";
+import Header from "./components/global/Header";
 
-const ClientLayout = ({ children }: { children: React.ReactNode }) => {
+const ClientLayout = ({ content }: { content: React.ReactNode }) => {
   const [opened, { toggle }] = useDisclosure();
 
   return (
@@ -28,7 +28,7 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
         <NavBar />
       </AppShell.Navbar>
 
-      <AppShell.Main>{children}</AppShell.Main>
+      <AppShell.Main>{content}</AppShell.Main>
     </AppShell>
   );
 };

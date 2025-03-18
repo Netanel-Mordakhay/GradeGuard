@@ -7,6 +7,17 @@
   backdrop-filter: blur(3px);
 }
 
+/* Pages */
+.page-title {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    75deg,
+    var(--mantine-color-default) 0%,
+    var(--mantine-color-blue-filled) 200%
+  );
+  border-radius: var(--mantine-radius-md);
+}
+
 /* Logo Small */
 .logo-container-small {
   height: 50px;
