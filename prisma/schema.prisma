@@ -17,4 +17,5 @@ model Course {
   id    Int    @id @default(autoincrement())
   title String @db.VarChar(255)
   grade Int?
+  createdAt DateTime @default(now())
 }

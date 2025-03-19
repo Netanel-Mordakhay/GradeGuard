@@ -7,12 +7,14 @@ interface Props {
 }
 
 const TwoColumns = ({ children }: Props) => {
+  const [left, right] = React.Children.toArray(children);
+
   return (
     <Stack>
       <PageTitle />
       <Grid>
-        <GridCol span={{ base: 12, md: 8 }}>1</GridCol>
-        <GridCol span={{ base: 12, md: 4 }}>{children}</GridCol>
+        <GridCol span={{ base: 12, md: 8 }}>{left}</GridCol>
+        <GridCol span={{ base: 12, md: 4 }}>{right}</GridCol>
       </Grid>
     </Stack>
   );
