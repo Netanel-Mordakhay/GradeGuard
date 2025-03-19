@@ -2,6 +2,7 @@
 import {
   Alert,
   Button,
+  Center,
   Input,
   InputWrapper,
   Loader,
@@ -59,19 +60,21 @@ const NewCourseForm = () => {
             <Input
               placeholder="0-100"
               type="number"
-              //{...register("grade", { valueAsNumber: true })}
               {...register("grade", {
                 setValueAs: (value) =>
                   value === "" ? undefined : Number(value),
               })}
-              //{...register("grade")}
             />
             {errors.grade && <Alert mt={10}>{errors.grade.message}</Alert>}
           </InputWrapper>
           <Button type="submit" disabled={isSubmitting}>
             Create course
           </Button>
-          {isSubmitting && <Loader color="blue" type="dots" />}
+          {isSubmitting && (
+            <Center>
+              <Loader color="blue" type="dots" />
+            </Center>
+          )}
           {isSuccess && (
             <SuccessMessage>
               Course has been successfully created!

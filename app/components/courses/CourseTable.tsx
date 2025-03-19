@@ -41,7 +41,10 @@ const CoursesTable = ({ courses }: { courses: Course[] }) => {
                 {course.title}
                 <Box hiddenFrom="md">grade: {course.grade ?? "-"}</Box>
               </TableTd>
-              <TableTd visibleFrom="md">{course.grade ?? "-"}</TableTd>
+              <TableTd visibleFrom="md" ta="center">
+                {course.grade ?? "-"}
+              </TableTd>
+
               <TableTd>
                 {openCourseId === course.id ? (
                   <IconArrowDown size={20} opacity={0.5} />
