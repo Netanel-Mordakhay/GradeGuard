@@ -37,10 +37,6 @@ const NewCourseForm = () => {
     try {
       setSubmitting(true);
       setSuccess(false);
-      const payload = { ...data };
-      if (!payload.grade) {
-        delete payload.grade;
-      }
       await axios.post("/api/courses", data);
       setSuccess(true);
       reset();
@@ -56,13 +52,18 @@ const NewCourseForm = () => {
         <Stack>
           <InputWrapper label="Course title">
             <Input placeholder="title" {...register("title")} />
-            {errors.title && <Alert mt={10}>Title error</Alert>}
+            {errors.title && <Alert mt={10}>{errors.title.message}</Alert>}
           </InputWrapper>
           <InputWrapper label="Course grade" description="optional">
             <Input
               placeholder="0-100"
               type="number"
-              {...register("grade", { valueAsNumber: true })}
+              //{...register("grade", { valueAsNumber: true })}
+              {...register("grade", {
+                setValueAs: (value) =>
+                  value === "" ? undefined : Number(value),
+              })}
+              //{...register("grade")}
             />
             {errors.grade && <Alert mt={10}>{errors.grade.message}</Alert>}
           </InputWrapper>
