@@ -4,6 +4,7 @@ import { useDisclosure } from "@mantine/hooks";
 import React from "react";
 import NavBar from "./components/global/NavBar";
 import Header from "./components/global/Header";
+import Footer from "./components/global/Footer";
 
 const ClientLayout = ({ content }: { content: React.ReactNode }) => {
   const [opened, { toggle }] = useDisclosure();
@@ -16,9 +17,10 @@ const ClientLayout = ({ content }: { content: React.ReactNode }) => {
         breakpoint: "sm",
         collapsed: { mobile: !opened },
       }}
+      footer={{ height: 35 }}
       padding="md"
     >
-      <AppShell.Header>
+      <AppShell.Header className="layout-header">
         <Header>
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
         </Header>
@@ -29,6 +31,10 @@ const ClientLayout = ({ content }: { content: React.ReactNode }) => {
       </AppShell.Navbar>
 
       <AppShell.Main className="student-background">{content}</AppShell.Main>
+
+      <AppShell.Footer>
+        <Footer />
+      </AppShell.Footer>
     </AppShell>
   );
 };

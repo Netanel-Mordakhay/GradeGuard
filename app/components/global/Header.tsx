@@ -2,6 +2,7 @@ import React from "react";
 import ThemeToggle from "./ThemeToggle";
 import { Grid, Group, Text } from "@mantine/core";
 import LogoSmall from "./LogoSmall";
+import Link from "next/link";
 
 const Header = ({ children }: { children: React.ReactNode }) => {
   return (
