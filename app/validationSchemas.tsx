@@ -12,4 +12,5 @@ export const courseSchema = createCourseSchema.extend({
 });
 
 /* TypeScript Type */
+export type CourseForm = z.infer<typeof createCourseSchema>;
 export type Course = z.infer<typeof courseSchema>;

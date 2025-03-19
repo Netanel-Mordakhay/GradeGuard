@@ -16,8 +16,9 @@ import React, { useState } from "react";
 import { createCourseSchema } from "@/app/validationSchemas";
 import DefaultCard from "../global/DefaultCard";
 import SuccessMessage from "../global/SuccessMessage";
+import { CourseForm } from "@/app/validationSchemas";
 
-type CourseForm = z.infer<typeof createCourseSchema>;
+//type CourseForm = z.infer<typeof createCourseSchema>;
 
 const NewCourseForm = () => {
   const {
