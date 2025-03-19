@@ -1,10 +1,8 @@
-import { Stack, Grid, GridCol, Skeleton } from "@mantine/core";
 import React from "react";
-import PageTitle from "../components/global/PageTitle";
-import TwoColumnsSkeleton from "../components/layout/TwoColumnsSkeleton";
+import LoaderLayout from "../components/layout/LoaderLayout";
 
 const loading = () => {
-  return <TwoColumnsSkeleton />;
+  return <LoaderLayout />;
 };
 
 export default loading;
