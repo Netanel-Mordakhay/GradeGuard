@@ -15,6 +15,7 @@ import { z } from "zod";
 import React, { useState } from "react";
 import { createCourseSchema } from "@/app/validationSchemas";
 import DefaultCard from "../global/DefaultCard";
+import SuccessMessage from "../global/SuccessMessage";
 
 type CourseForm = z.infer<typeof createCourseSchema>;
 
@@ -23,16 +24,26 @@ const NewCourseForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<CourseForm>({
     resolver: zodResolver(createCourseSchema),
+    shouldUnregister: true,
   });
 
   const [isSubmitting, setSubmitting] = useState(false);
+  const [isSuccess, setSuccess] = useState(false);
 
   const onSubmit = handleSubmit(async (data) => {
     try {
       setSubmitting(true);
+      setSuccess(false);
+      const payload = { ...data };
+      if (!payload.grade) {
+        delete payload.grade;
+      }
       await axios.post("/api/courses", data);
+      setSuccess(true);
+      reset();
     } catch (error) {
     } finally {
       setSubmitting(false);
@@ -53,12 +64,17 @@ const NewCourseForm = () => {
               type="number"
               {...register("grade", { valueAsNumber: true })}
             />
-            {errors.grade && <Alert mt={10}>Grade error</Alert>}
+            {errors.grade && <Alert mt={10}>{errors.grade.message}</Alert>}
           </InputWrapper>
           <Button type="submit" disabled={isSubmitting}>
             Create course
           </Button>
           {isSubmitting && <Loader color="blue" type="dots" />}
+          {isSuccess && (
+            <SuccessMessage>
+              Course has been successfully created!
+            </SuccessMessage>
+          )}
         </Stack>
       </form>
     </DefaultCard>
