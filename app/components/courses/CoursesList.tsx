@@ -2,6 +2,7 @@ import prisma from "@/prisma/client";
 import React from "react";
 import DefaultCard from "../global/DefaultCard";
 import {
+  Box,
   Table,
   TableTbody,
   TableTd,
@@ -18,15 +19,18 @@ const CoursesList = async () => {
       <Table striped highlightOnHover>
         <TableThead>
           <TableTr>
-            <TableTh>Course title</TableTh>
-            <TableTh>Grade</TableTh>
+            <TableTh>Course</TableTh>
+            <TableTh visibleFrom="md">Grade</TableTh>
           </TableTr>
         </TableThead>
         <TableTbody>
           {courses.map((course) => (
             <TableTr key={course.id}>
-              <TableTd>{course.title}</TableTd>
-              <TableTd>{course.grade || "-"}</TableTd>
+              <TableTd>
+                {course.title}
+                <Box hiddenFrom="md">grade: {course.grade || "-"}</Box>
+              </TableTd>
+              <TableTd visibleFrom="md">{course.grade || "-"}</TableTd>
             </TableTr>
           ))}
         </TableTbody>
