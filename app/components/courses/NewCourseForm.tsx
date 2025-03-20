@@ -13,13 +13,18 @@ import {
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createCourseSchema } from "@/app/validationSchemas";
 import DefaultCard from "../global/DefaultCard";
 import SuccessMessage from "../global/SuccessMessage";
-import { CourseForm } from "@/app/validationSchemas";
+import { CourseForm, Course } from "@/app/validationSchemas";
 
-const NewCourseForm = () => {
+// Allows an input for a course in case we edit
+interface Props {
+  course?: Course;
+}
+
+const CourseFormComponent = ({ course }: Props) => {
   const {
     register,
     handleSubmit,
@@ -29,20 +34,39 @@ const NewCourseForm = () => {
   } = useForm<CourseForm>({
     resolver: zodResolver(createCourseSchema),
     shouldUnregister: true,
+    defaultValues: course || {}, // Deafult values if currently editing (PUT)
   });
 
   const [isSubmitting, setSubmitting] = useState(false);
   const [isSuccess, setSuccess] = useState(false);
-  const [isBinary, setIsBinary] = useState(false);
+  const [isBinary, setIsBinary] = useState(course?.isBinary || false);
+
+  useEffect(() => {
+    if (course) {
+      reset(course);
+    }
+  }, [course, reset]);
 
   const onSubmit = handleSubmit(async (data) => {
     try {
       setSubmitting(true);
       setSuccess(false);
-      await axios.post("/api/courses", data);
+
+      if (course?.id) {
+        // Edit
+        await axios.put(`/api/courses/${course.id}`, data);
+      } else {
+        // Create new
+        await axios.post("/api/courses", data);
+      }
+
       setSuccess(true);
       reset();
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (error) {
+      console.error("Error submitting course:", error);
     } finally {
       setSubmitting(false);
     }
@@ -64,7 +88,7 @@ const NewCourseForm = () => {
   ];
 
   return (
-    <DefaultCard title="Add a new course">
+    <DefaultCard title={course ? "Edit Course" : "Add a new course"}>
       <form onSubmit={onSubmit}>
         <Stack>
           {/* Title */}
@@ -73,7 +97,7 @@ const NewCourseForm = () => {
             {errors.title && <Alert mt={10}>{errors.title.message}</Alert>}
           </InputWrapper>
 
-          {/* Grade - Disabled if isBinary is checked */}
+          {/* Grade */}
           <InputWrapper label="Course grade">
             <Input
               placeholder="0-100"
@@ -144,7 +168,7 @@ const NewCourseForm = () => {
 
           {/* Submit */}
           <Button type="submit" disabled={isSubmitting}>
-            Create course
+            {course ? "Update Course" : "Create Course"}
           </Button>
           {isSubmitting && (
             <Center>
@@ -153,7 +177,9 @@ const NewCourseForm = () => {
           )}
           {isSuccess && (
             <SuccessMessage>
-              Course has been successfully created!
+              {course
+                ? "Course updated successfully!"
+                : "Course created successfully!"}
             </SuccessMessage>
           )}
         </Stack>
@@ -162,4 +188,4 @@ const NewCourseForm = () => {
   );
 };
 
-export default NewCourseForm;
+export default CourseFormComponent;

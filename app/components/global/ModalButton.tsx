@@ -8,6 +8,7 @@ interface Props {
 
 const ModalButton = ({ children }: Props) => {
   const [opened, { open, close }] = useDisclosure(false);
+
   const [child1, child2] = React.Children.toArray(children);
 
   return (
