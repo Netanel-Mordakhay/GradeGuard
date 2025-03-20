@@ -1,9 +1,8 @@
 "use client";
 import React from "react";
-import { Accordion, ActionIcon, Box, Group } from "@mantine/core";
+import { Accordion, ActionIcon, Box, Divider, Group } from "@mantine/core";
 import classes from "../../styles/CourseTable.module.css";
 import { Course } from "@/app/validationSchemas";
-import { IconTrash } from "@tabler/icons-react";
 import CourseInfo from "./CourseInfo";
 import GradeBadge from "../global/GradeBadge";
 

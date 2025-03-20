@@ -1,15 +1,7 @@
 import prisma from "@/prisma/client";
-import React, { useState } from "react";
+import React from "react";
 import DefaultCard from "../global/DefaultCard";
-import {
-  Box,
-  Table,
-  TableTbody,
-  TableTd,
-  TableTh,
-  TableThead,
-  TableTr,
-} from "@mantine/core";
+import {} from "@mantine/core";
 import CoursesTable from "./CourseTable";
 
 const CoursesList = async () => {
