@@ -7,6 +7,7 @@ import {
   Input,
   InputWrapper,
   Loader,
+  Select,
   Stack,
 } from "@mantine/core";
 import { useForm } from "react-hook-form";
@@ -47,6 +48,21 @@ const NewCourseForm = () => {
     }
   });
 
+  const YEAR_OPTIONS = [
+    { value: "FIRST", label: "Year 1" },
+    { value: "SECOND", label: "Year 2" },
+    { value: "THIRD", label: "Year 3" },
+    { value: "FOURTH", label: "Year 4" },
+    { value: "FIFTH", label: "Year 5" },
+    { value: "SIXTH", label: "Year 6" },
+  ];
+
+  const SEMESTER_OPTIONS = [
+    { value: "A", label: "Semester A" },
+    { value: "B", label: "Semester B" },
+    { value: "SUMMER", label: "Summer Semester" },
+  ];
+
   return (
     <DefaultCard title="Add a new course">
       <form onSubmit={onSubmit}>
@@ -58,7 +74,7 @@ const NewCourseForm = () => {
           </InputWrapper>
 
           {/* Grade - Disabled if isBinary is checked */}
-          <InputWrapper label="Course grade" description="optional">
+          <InputWrapper label="Course grade">
             <Input
               placeholder="0-100"
               type="number"
@@ -84,7 +100,7 @@ const NewCourseForm = () => {
           />
 
           {/* Credits */}
-          <InputWrapper label="Course credits" description="optional">
+          <InputWrapper label="Course credits">
             <Input
               placeholder="0-100"
               type="number"
@@ -95,6 +111,35 @@ const NewCourseForm = () => {
               })}
             />
             {errors.credits && <Alert mt={10}>{errors.credits.message}</Alert>}
+          </InputWrapper>
+
+          {/* Year Selection */}
+          <InputWrapper label="Year">
+            <Select
+              placeholder="Choose a year"
+              data={YEAR_OPTIONS}
+              {...register("year")}
+              onChange={(value) =>
+                setValue("year", value ? (value as CourseForm["year"]) : null)
+              }
+              clearable
+            />
+          </InputWrapper>
+
+          {/* Semester Selection */}
+          <InputWrapper label="Semester">
+            <Select
+              placeholder="Choose a semester"
+              data={SEMESTER_OPTIONS}
+              {...register("semester")}
+              onChange={(value) =>
+                setValue(
+                  "semester",
+                  value ? (value as CourseForm["semester"]) : null
+                )
+              }
+              clearable
+            />
           </InputWrapper>
 
           {/* Submit */}

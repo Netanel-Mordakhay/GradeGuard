@@ -6,11 +6,17 @@ export const createCourseSchema = z.object({
   grade: z.number().min(0).max(100).optional().nullable(),
   credits: z.number().min(0).max(100).multipleOf(0.1).optional().nullable(),
   isBinary: z.boolean().optional(),
-  year: z
-    .enum(["FIRST", "SECOND", "THIRD", "FOURTH", "FIFTH", "SIXTH"])
-    .nullable()
-    .optional(),
-  semester: z.enum(["A", "B", "SUMMER"]).optional().nullable(),
+  year: z.preprocess(
+    (val) => (val === "" ? null : val),
+    z
+      .enum(["FIRST", "SECOND", "THIRD", "FOURTH", "FIFTH", "SIXTH"])
+      .nullable()
+      .optional()
+  ),
+  semester: z.preprocess(
+    (val) => (val === "" ? null : val),
+    z.enum(["A", "B", "SUMMER"]).nullable().optional()
+  ),
 });
 
 /* Schema for fetching a course (includes `id`) */
