@@ -52,7 +52,7 @@ const NewCourseForm = () => {
       <form onSubmit={onSubmit}>
         <Stack>
           {/* Title */}
-          <InputWrapper label="Course title">
+          <InputWrapper label="Course title" withAsterisk>
             <Input placeholder="title" {...register("title")} />
             {errors.title && <Alert mt={10}>{errors.title.message}</Alert>}
           </InputWrapper>
@@ -88,6 +88,7 @@ const NewCourseForm = () => {
             <Input
               placeholder="0-100"
               type="number"
+              step={0.1}
               {...register("credits", {
                 setValueAs: (value) =>
                   value === "" ? undefined : Number(value),

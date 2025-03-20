@@ -53,3 +53,13 @@
 .logo-title-blue {
   color: var(--mantine-color-blue-filled);
 }
+
+/* Decoration */
+.overlay-gradient {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    75deg,
+    var(--mantine-color-default) 0%,
+    var(--mantine-color-blue-filled) 200%
+  );
+}

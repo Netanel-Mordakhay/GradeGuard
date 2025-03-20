@@ -4,7 +4,7 @@ import { z } from "zod";
 export const createCourseSchema = z.object({
   title: z.string().min(3).max(255),
   grade: z.number().min(0).max(100).optional().nullable(),
-  credits: z.number().min(0).max(100).optional().nullable(),
+  credits: z.number().min(0).max(100).multipleOf(0.1).optional().nullable(),
   isBinary: z.boolean().optional(),
   year: z
     .enum(["FIRST", "SECOND", "THIRD", "FOURTH", "FIFTH", "SIXTH"])

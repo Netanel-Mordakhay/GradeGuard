@@ -1,8 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import {
+  Accordion,
   Box,
   Collapse,
+  Group,
   Table,
   TableTbody,
   TableTd,
@@ -11,8 +13,9 @@ import {
   TableTr,
   Text,
 } from "@mantine/core";
-import { IconArrowDown, IconArrowRight } from "@tabler/icons-react";
+import classes from "../../styles/CourseTable.module.css";
 import { Course } from "@/app/validationSchemas";
+import CourseInfo from "./CourseInfo";
 
 const CoursesTable = ({ courses }: { courses: Course[] }) => {
   const [openCourseId, setOpenCourseId] = useState<number | null>(null);
@@ -22,50 +25,23 @@ const CoursesTable = ({ courses }: { courses: Course[] }) => {
   };
 
   return (
-    <Table striped highlightOnHover>
-      <TableThead>
-        <TableTr>
-          <TableTh>Course</TableTh>
-          <TableTh visibleFrom="md" w={50}>
-            Grade
-          </TableTh>
-          <TableTh w={30}></TableTh>
-        </TableTr>
-      </TableThead>
-      <TableTbody>
-        {courses.map((course) => (
-          <React.Fragment key={course.id}>
-            {/* Course Row */}
-            <TableTr onClick={() => toggleCollapse(course.id)}>
-              <TableTd>
-                {course.title}
-                <Box hiddenFrom="md">grade: {course.grade ?? "-"}</Box>
-              </TableTd>
-              <TableTd visibleFrom="md" ta="center">
-                {course.grade ?? "-"}
-              </TableTd>
-
-              <TableTd>
-                {openCourseId === course.id ? (
-                  <IconArrowDown size={20} opacity={0.5} />
-                ) : (
-                  <IconArrowRight size={20} opacity={0.5} />
-                )}
-              </TableTd>
-            </TableTr>
-
-            {/* Course Collapse */}
-            {/* NEED TO CHANGE IT - DIV CANT BE INSIDE TBODY */}
-            <Collapse in={openCourseId === course.id}>
-              <Box p="md">
-                <Text>Grade: {course.grade ?? "N/A"}</Text>
-                <Text>TO-BE-FILLED-LATER</Text>
+    <Accordion variant="separated" classNames={classes}>
+      {courses.map((course) => (
+        <Accordion.Item key={course.id} value={String(course.id)}>
+          <Accordion.Control>
+            <Group justify="space-between" mr={10}>
+              <Box>{course.title}</Box>
+              <Box w={20} ta="center" visibleFrom="sm">
+                {course.grade || "-"}
               </Box>
-            </Collapse>
-          </React.Fragment>
-        ))}
-      </TableTbody>
-    </Table>
+            </Group>
+          </Accordion.Control>
+          <Accordion.Panel>
+            <CourseInfo course={course} />
+          </Accordion.Panel>
+        </Accordion.Item>
+      ))}
+    </Accordion>
   );
 };
 
