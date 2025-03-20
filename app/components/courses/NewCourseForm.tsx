@@ -52,10 +52,13 @@ const NewCourseForm = () => {
     <DefaultCard title="Add a new course">
       <form onSubmit={onSubmit}>
         <Stack>
+          {/* Title */}
           <InputWrapper label="Course title">
             <Input placeholder="title" {...register("title")} />
             {errors.title && <Alert mt={10}>{errors.title.message}</Alert>}
           </InputWrapper>
+
+          {/* Grade */}
           <InputWrapper label="Course grade" description="optional">
             <Input
               placeholder="0-100"
@@ -67,6 +70,21 @@ const NewCourseForm = () => {
             />
             {errors.grade && <Alert mt={10}>{errors.grade.message}</Alert>}
           </InputWrapper>
+
+          {/* Credits */}
+          <InputWrapper label="Course credits" description="optional">
+            <Input
+              placeholder="0-100"
+              type="number"
+              {...register("credits", {
+                setValueAs: (value) =>
+                  value === "" ? undefined : Number(value),
+              })}
+            />
+            {errors.credits && <Alert mt={10}>{errors.credits.message}</Alert>}
+          </InputWrapper>
+
+          {/* Submit */}
           <Button type="submit" disabled={isSubmitting}>
             Create course
           </Button>

@@ -14,8 +14,27 @@ datasource db {
 }
 
 model Course {
-  id    Int    @id @default(autoincrement())
-  title String @db.VarChar(255)
-  grade Int?
-  createdAt DateTime @default(now())
+  id        Int        @id @default(autoincrement())
+  title     String     @db.VarChar(255)
+  grade     Int?
+  credits   Int?       @default(0)
+  isBinary  Boolean?    @default(false)
+  year      YearLevel?
+  semester  Semester?
+  createdAt DateTime   @default(now())
+}
+
+enum Semester {
+  A
+  B
+  Summer
+}
+
+enum YearLevel {
+  FIRST
+  SECOND
+  THIRD
+  FOURTH
+  FIFTH
+  SIXTH
 }

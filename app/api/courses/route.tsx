@@ -17,6 +17,10 @@ export async function POST(request: NextRequest) {
     data: {
       title: body.title,
       grade: body.grade,
+      credits: body.credits,
+      isBinary: body.isBinary,
+      year: body.year,
+      semester: body.semester,
     },
   });
 
