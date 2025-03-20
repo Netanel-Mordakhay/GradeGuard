@@ -3,27 +3,16 @@ import React, { useState } from "react";
 import {
   Accordion,
   Box,
-  Collapse,
   Group,
-  Table,
-  TableTbody,
-  TableTd,
-  TableTh,
-  TableThead,
-  TableTr,
+  SemiCircleProgress,
+  Stack,
   Text,
+  Title,
 } from "@mantine/core";
 import classes from "../../styles/CourseTable.module.css";
 import { Course } from "@/app/validationSchemas";
-import CourseInfo from "./CourseInfo";
 
 const CoursesTable = ({ courses }: { courses: Course[] }) => {
-  const [openCourseId, setOpenCourseId] = useState<number | null>(null);
-
-  const toggleCollapse = (courseId: number) => {
-    setOpenCourseId((prevId) => (prevId === courseId ? null : courseId));
-  };
-
   return (
     <Accordion variant="separated" classNames={classes}>
       {courses.map((course) => (
@@ -36,8 +25,21 @@ const CoursesTable = ({ courses }: { courses: Course[] }) => {
               </Box>
             </Group>
           </Accordion.Control>
-          <Accordion.Panel>
-            <CourseInfo course={course} />
+          <Accordion.Panel className="overlay-gradient">
+            <Group justify="space-between">
+              <Stack m={15}>
+                <Title size="xl">{course.title}</Title>
+                <Text>Grade: {course.grade}</Text>
+                <Text>Credits: {course.credits}</Text>
+              </Stack>
+              {course.grade && (
+                <SemiCircleProgress
+                  value={course.grade}
+                  transitionDuration={250}
+                  label={`${course.grade}%`}
+                />
+              )}
+            </Group>
           </Accordion.Panel>
         </Accordion.Item>
       ))}
