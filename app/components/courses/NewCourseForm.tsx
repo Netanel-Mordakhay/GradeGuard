@@ -3,23 +3,20 @@ import {
   Alert,
   Button,
   Center,
+  Checkbox,
   Input,
   InputWrapper,
   Loader,
   Stack,
-  Text,
 } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import React, { useState } from "react";
 import { createCourseSchema } from "@/app/validationSchemas";
 import DefaultCard from "../global/DefaultCard";
 import SuccessMessage from "../global/SuccessMessage";
 import { CourseForm } from "@/app/validationSchemas";
-
-//type CourseForm = z.infer<typeof createCourseSchema>;
 
 const NewCourseForm = () => {
   const {
@@ -27,6 +24,7 @@ const NewCourseForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm<CourseForm>({
     resolver: zodResolver(createCourseSchema),
     shouldUnregister: true,
@@ -34,6 +32,7 @@ const NewCourseForm = () => {
 
   const [isSubmitting, setSubmitting] = useState(false);
   const [isSuccess, setSuccess] = useState(false);
+  const [isBinary, setIsBinary] = useState(false);
 
   const onSubmit = handleSubmit(async (data) => {
     try {
@@ -58,11 +57,12 @@ const NewCourseForm = () => {
             {errors.title && <Alert mt={10}>{errors.title.message}</Alert>}
           </InputWrapper>
 
-          {/* Grade */}
+          {/* Grade - Disabled if isBinary is checked */}
           <InputWrapper label="Course grade" description="optional">
             <Input
               placeholder="0-100"
               type="number"
+              disabled={isBinary}
               {...register("grade", {
                 setValueAs: (value) =>
                   value === "" ? undefined : Number(value),
@@ -70,6 +70,18 @@ const NewCourseForm = () => {
             />
             {errors.grade && <Alert mt={10}>{errors.grade.message}</Alert>}
           </InputWrapper>
+
+          {/* Binary */}
+          <Checkbox
+            label="Binary grade"
+            checked={isBinary}
+            onChange={(event) => {
+              setIsBinary(event.currentTarget.checked);
+              if (event.currentTarget.checked) {
+                setValue("grade", undefined);
+              }
+            }}
+          />
 
           {/* Credits */}
           <InputWrapper label="Course credits" description="optional">
