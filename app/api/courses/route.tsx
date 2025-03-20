@@ -27,3 +27,23 @@ export async function POST(request: NextRequest) {
   // Return response 201 created
   return NextResponse.json(newCourse, { status: 201 }); // Object created
 }
+
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const body = await request.json();
+  const updatedCourse = await prisma.course.update({
+    where: { id: Number(params.id) },
+    data: {
+      title: body.title,
+      grade: body.grade,
+      credits: body.credits,
+      isBinary: body.isBinary,
+      year: body.year,
+      semester: body.semester,
+    },
+  });
+
+  return NextResponse.json(updatedCourse);
+}
