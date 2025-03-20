@@ -1,5 +1,5 @@
 "use client";
-import { AppShell, Burger, Group } from "@mantine/core";
+import { AppShell, Burger, Container, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import React from "react";
 import NavBar from "./components/global/NavBar";
@@ -30,7 +30,11 @@ const ClientLayout = ({ content }: { content: React.ReactNode }) => {
         <NavBar />
       </AppShell.Navbar>
 
-      <AppShell.Main className="student-background">{content}</AppShell.Main>
+      <AppShell.Main className="student-background">
+        <Container maw={1200} p={0}>
+          {content}
+        </Container>
+      </AppShell.Main>
 
       <AppShell.Footer>
         <Footer />
