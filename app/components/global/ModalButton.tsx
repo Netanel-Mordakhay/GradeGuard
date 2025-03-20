@@ -2,13 +2,12 @@ import { ActionIcon, Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import React, { ReactNode } from "react";
 
-interface ModalButtonProps {
+interface Props {
   children: ReactNode;
 }
 
-const ModalButton = ({ children }: ModalButtonProps) => {
+const ModalButton = ({ children }: Props) => {
   const [opened, { open, close }] = useDisclosure(false);
-
   const [child1, child2] = React.Children.toArray(children);
 
   return (

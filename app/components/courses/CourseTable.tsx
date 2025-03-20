@@ -16,25 +16,23 @@ const CoursesTable = ({ courses }: { courses: Course[] }) => {
           <Accordion.Control>
             <Group justify="space-between" mr={10}>
               <Box>{course.title}</Box>
-              <Group>
-                <Box w={40} ta="center" visibleFrom="sm">
-                  {(course.grade && <GradeBadge grade={course.grade} />) || "-"}
-                </Box>
-
-                <ModalButton>
-                  <div>1</div>
-                  <IconEdit size={16} />
-                </ModalButton>
-
-                <ModalButton>
-                  <div>1</div>
-                  <IconTrash size={16} />
-                </ModalButton>
-              </Group>
+              <Box w={40} ta="center" visibleFrom="sm">
+                {(course.grade && <GradeBadge grade={course.grade} />) || "-"}
+              </Box>
             </Group>
           </Accordion.Control>
           <Accordion.Panel className="overlay-gradient">
-            <CourseInfo course={course} />
+            <CourseInfo course={course}>
+              <ModalButton>
+                <div>1</div>
+                <IconEdit size={16} />
+              </ModalButton>
+
+              <ModalButton>
+                <div>1</div>
+                <IconTrash size={16} />
+              </ModalButton>
+            </CourseInfo>
           </Accordion.Panel>
         </Accordion.Item>
       ))}
