@@ -1,5 +1,5 @@
+import LoaderLayout from "@/app/components/layout/LoaderLayout";
 import React from "react";
-import LoaderLayout from "../components/layout/LoaderLayout";
 
 const loading = () => {
   return <LoaderLayout />;

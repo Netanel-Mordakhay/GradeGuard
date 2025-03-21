@@ -2,18 +2,23 @@
 import { AppShell, Burger, Container, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import React from "react";
-import NavBar from "./components/global/NavBar";
-import Header from "./components/global/Header";
-import Footer from "./components/global/Footer";
+import NavBar from "../components/global/NavBar";
+import Header from "../components/global/Header";
+import Footer from "../components/global/Footer";
 
-const ClientLayout = ({ content }: { content: React.ReactNode }) => {
+interface Props {
+  hideNav?: boolean;
+  content: React.ReactNode;
+}
+
+const ClientLayout = ({ content, hideNav }: Props) => {
   const [opened, { toggle }] = useDisclosure();
 
   return (
     <AppShell
       header={{ height: 60 }}
       navbar={{
-        width: 300,
+        width: hideNav ? 0 : 300,
         breakpoint: "sm",
         collapsed: { mobile: !opened },
       }}
@@ -26,9 +31,11 @@ const ClientLayout = ({ content }: { content: React.ReactNode }) => {
         </Header>
       </AppShell.Header>
 
-      <AppShell.Navbar className="deafult-navbar" bg="#ffffff00" bd={0}>
-        <NavBar />
-      </AppShell.Navbar>
+      {!hideNav && (
+        <AppShell.Navbar className="deafult-navbar" bg="#ffffff00" bd={0}>
+          <NavBar />
+        </AppShell.Navbar>
+      )}
 
       <AppShell.Main className="student-background">
         <Container maw={1200} p={0}>

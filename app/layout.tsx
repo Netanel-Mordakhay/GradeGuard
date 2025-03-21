@@ -8,7 +8,7 @@ import {
   MantineProvider,
   mantineHtmlProps,
 } from "@mantine/core";
-import ClientLayout from "./ClientLayout";
+import ClientLayout from "./(dashboard)/ClientLayout";
 import Content from "./Content";
 
 export const metadata: Metadata = {
@@ -27,9 +27,7 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body>
-        <MantineProvider>
-          <ClientLayout content={<Content>{children}</Content>} />
-        </MantineProvider>
+        <MantineProvider>{children}</MantineProvider>
       </body>
     </html>
   );

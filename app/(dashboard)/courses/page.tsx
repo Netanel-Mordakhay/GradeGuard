@@ -1,7 +1,7 @@
 import React from "react";
-import TwoColumns from "../components/layout/TwoColumns";
-import NewCourse from "../components/courses/CourseForm";
-import CoursesList from "../components/courses/CoursesList";
+import TwoColumns from "../../components/layout/TwoColumns";
+import NewCourse from "../../components/courses/CourseForm";
+import CoursesList from "../../components/courses/CoursesList";
 
 export const metadata = {
   title: "GradeGuard - Courses",
