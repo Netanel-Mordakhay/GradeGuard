@@ -5,6 +5,7 @@ import React from "react";
 import NavBar from "../components/global/NavBar";
 import Header from "../components/global/Header";
 import Footer from "../components/global/Footer";
+import { SessionProvider } from "next-auth/react";
 
 interface Props {
   hideNav?: boolean;
@@ -39,7 +40,7 @@ const ClientLayout = ({ content, hideNav }: Props) => {
 
       <AppShell.Main className="student-background">
         <Container maw={1200} p={0}>
-          {content}
+          <SessionProvider>{content}</SessionProvider>
         </Container>
       </AppShell.Main>
 

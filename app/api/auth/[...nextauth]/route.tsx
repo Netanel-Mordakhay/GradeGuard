@@ -39,9 +39,23 @@ export const authOptions = {
     strategy: "jwt" as SessionStrategy,
   },
   callbacks: {
+    async jwt({ token, user }: { token: any; user: any }) {
+      // Initial sign in
+      if (user) {
+        token.firstName = user.firstName;
+        token.lastName = user.lastName;
+      }
+      return token;
+    },
+
     async session({ session, token }: { session: any; token: any }) {
       if (token.sub && session.user) {
-        session.user = { ...session.user, id: token.sub };
+        session.user = {
+          ...session.user,
+          id: token.sub,
+          firstName: token.firstName || null,
+          lastName: token.lastName || null,
+        };
       }
       return session;
     },

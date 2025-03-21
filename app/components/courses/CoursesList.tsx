@@ -7,14 +7,14 @@ import CoursesTable from "./CourseTable";
 import { normalizeCourse } from "@/app/validationSchemas";
 
 const CoursesList = async () => {
-  // קבלת סשן המשתמש המחובר
+  // Get user's session
   const session = await getServerSession(authOptions);
 
   if (!session?.user?.id) {
     return <DefaultCard title="My Courses">Unauthorized</DefaultCard>;
   }
 
-  // שליפת קורסים של המשתמש המחובר בלבד
+  // Logged user courses
   const coursesFromDB = await prisma.course.findMany({
     where: { userId: session.user.id },
   });
