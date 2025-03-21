@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Accordion, Text, Box, Divider, Group } from "@mantine/core";
+import { Accordion, Text, Box, Group } from "@mantine/core";
 import classes from "../../styles/CourseTable.module.css";
 import { Course } from "@/app/validationSchemas";
 import CourseInfo from "./CourseInfo";
