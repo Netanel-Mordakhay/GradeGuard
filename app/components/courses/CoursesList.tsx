@@ -1,17 +1,27 @@
 import prisma from "@/prisma/client";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import React from "react";
 import DefaultCard from "../global/DefaultCard";
-import {} from "@mantine/core";
 import CoursesTable from "./CourseTable";
 import { normalizeCourse } from "@/app/validationSchemas";
 
 const CoursesList = async () => {
-  // Get courses from db and normalize
-  const coursesFromDB = await prisma.course.findMany();
+  // קבלת סשן המשתמש המחובר
+  const session = await getServerSession(authOptions);
+
+  if (!session?.user?.id) {
+    return <DefaultCard title="My Courses">Unauthorized</DefaultCard>;
+  }
+
+  // שליפת קורסים של המשתמש המחובר בלבד
+  const coursesFromDB = await prisma.course.findMany({
+    where: { userId: session.user.id },
+  });
+
   const courses = coursesFromDB.map(normalizeCourse);
 
   return (
-    // Card and sending courses to courses's table
     <DefaultCard title="My Courses">
       <CoursesTable courses={courses} />
     </DefaultCard>

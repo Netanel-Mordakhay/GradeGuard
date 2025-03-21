@@ -5,8 +5,8 @@ import {
   IconPencil,
   IconAlignJustified,
   IconLogout,
-  IconSwitchHorizontal,
 } from "@tabler/icons-react";
+import { signOut } from "next-auth/react";
 import classes from "../../styles/NavBar.module.css";
 import Link from "next/link";
 import ReportBug from "./ReportBug";
@@ -40,7 +40,10 @@ const NavBar = () => {
     <nav className={classes.navbar}>
       <div className={classes.navbarMain}>{links}</div>
       <ReportBug />
-      <div className={classes.footer}>
+      <div
+        className={classes.footer}
+        onClick={() => signOut({ callbackUrl: "/login" })}
+      >
         <a href="#" className={classes.link}>
           <IconLogout className={classes.linkIcon} stroke={1.5} />
           <span>Logout</span>

@@ -22,7 +22,21 @@ model Course {
   year      YearLevel?
   semester  Semester?
   createdAt DateTime   @default(now())
+  // User relationship
+  userId    String
+  user      User       @relation(fields: [userId], references: [id])
 }
+
+model User {
+  id         String    @id @default(cuid())
+  firstName  String
+  lastName   String
+  email      String    @unique
+  password   String
+  createdAt  DateTime  @default(now())
+  courses    Course[]
+}
+
 
 enum Semester {
   A

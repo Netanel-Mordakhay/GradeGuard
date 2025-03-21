@@ -1,19 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route"; // Import הגדרות האימות
 import prisma from "@/prisma/client";
 import { createCourseSchema } from "../../validationSchemas";
 
 export async function POST(request: NextRequest) {
   try {
-    // Parse the request body from JSON
+    // קבלת הסשן של המשתמש
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    // קבלת הנתונים מהבקשה
     const body = await request.json();
 
-    // Validate body
+    // אימות הנתונים
     const validation = createCourseSchema.safeParse(body);
     if (!validation.success) {
       return NextResponse.json(validation.error.format(), { status: 400 });
     }
 
-    // Create a new course in the DB if valid
+    // יצירת קורס חדש עם userId
     const newCourse = await prisma.course.create({
       data: {
         title: body.title,
@@ -22,12 +30,13 @@ export async function POST(request: NextRequest) {
         isBinary: body.isBinary,
         year: body.year,
         semester: body.semester,
+        userId: session.user.id, // קישור לקורס ליוזר המחובר
       },
     });
 
-    // Return response 201 created
-    return NextResponse.json(newCourse, { status: 201 }); // Object created
+    return NextResponse.json(newCourse, { status: 201 }); // קורס נוצר בהצלחה
   } catch (error) {
+    console.error("Error creating course:", error);
     return NextResponse.json(
       { error: "Internal server error while creating course" },
       { status: 500 }
