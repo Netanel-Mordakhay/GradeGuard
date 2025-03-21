@@ -15,7 +15,8 @@ import {
   Title,
   Alert,
 } from "@mantine/core";
-import LogoSmall from "@/app/components/global/LogoSmall";
+import { loginSchema, type LoginForm } from "@/app/validationSchemas";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -24,11 +25,8 @@ const LoginPage = () => {
     handleSubmit,
     setError,
     formState: { errors, isSubmitting },
-  } = useForm({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
+  } = useForm<LoginForm>({
+    resolver: zodResolver(loginSchema),
   });
 
   const onSubmit = async (data: { email: string; password: string }) => {

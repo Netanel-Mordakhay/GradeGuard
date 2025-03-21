@@ -4,8 +4,8 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/prisma/client";
 import { SessionStrategy } from "next-auth";
 import { compare } from "bcryptjs";
+import { loginSchema } from "../../../validationSchemas";
 
-// הגדרת Auth.js
 export const authOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
@@ -16,18 +16,22 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) return null;
+        try {
+          const validatedData = loginSchema.parse(credentials);
+          const { email, password } = validatedData;
 
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
-        });
+          const user = await prisma.user.findUnique({ where: { email } });
 
-        if (!user || !user.password) return null;
+          if (!user || !user.password) return null;
 
-        const isValid = await compare(credentials.password, user.password);
-        if (!isValid) return null;
+          const isValid = await compare(password, user.password);
+          if (!isValid) return null;
 
-        return user;
+          return user;
+        } catch (error) {
+          console.error("Login Validation Error:", error);
+          return null;
+        }
       },
     }),
   ],

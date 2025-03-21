@@ -6,22 +6,22 @@ import { createCourseSchema } from "../../validationSchemas";
 
 export async function POST(request: NextRequest) {
   try {
-    // קבלת הסשן של המשתמש
+    // Get current user's session
     const session = await getServerSession(authOptions);
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // קבלת הנתונים מהבקשה
+    // Get request's body
     const body = await request.json();
 
-    // אימות הנתונים
+    // validate
     const validation = createCourseSchema.safeParse(body);
     if (!validation.success) {
       return NextResponse.json(validation.error.format(), { status: 400 });
     }
 
-    // יצירת קורס חדש עם userId
+    // new user's course
     const newCourse = await prisma.course.create({
       data: {
         title: body.title,
@@ -30,11 +30,11 @@ export async function POST(request: NextRequest) {
         isBinary: body.isBinary,
         year: body.year,
         semester: body.semester,
-        userId: session.user.id, // קישור לקורס ליוזר המחובר
+        userId: session.user.id,
       },
     });
 
-    return NextResponse.json(newCourse, { status: 201 }); // קורס נוצר בהצלחה
+    return NextResponse.json(newCourse, { status: 201 });
   } catch (error) {
     console.error("Error creating course:", error);
     return NextResponse.json(
