@@ -7,10 +7,11 @@ import CourseInfo from "./CourseInfo";
 import { IconTrash, IconEdit } from "@tabler/icons-react";
 import GradeBadge from "../global/GradeBadge";
 import ModalButton from "../global/ModalButton";
-import NewCourseForm from "./NewCourseForm";
+import NewCourse from "./CourseForm";
 import DeleteCourse from "./DeleteCourse";
 
 const CoursesTable = ({ courses }: { courses: Course[] }) => {
+  // No courses
   if (courses.length === 0) {
     return (
       <Text ta="center">
@@ -19,8 +20,10 @@ const CoursesTable = ({ courses }: { courses: Course[] }) => {
     );
   }
 
+  // Courses
   return (
     <Accordion variant="separated" classNames={classes}>
+      {/* Map each course */}
       {courses.map((course) => (
         <Accordion.Item key={course.id} value={String(course.id)}>
           <Accordion.Control>
@@ -35,8 +38,9 @@ const CoursesTable = ({ courses }: { courses: Course[] }) => {
           </Accordion.Control>
           <Accordion.Panel className="overlay-gradient">
             <CourseInfo course={course}>
+              {/* Passed children, edit / delete modal buttons */}
               <ModalButton>
-                <NewCourseForm course={course} />
+                <NewCourse course={course} />
                 <IconEdit size={16} />
               </ModalButton>
 

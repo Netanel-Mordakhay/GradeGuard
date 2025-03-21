@@ -12,16 +12,19 @@ import { Course } from "@/app/validationSchemas";
 import { IconSchool } from "@tabler/icons-react";
 import React, { ReactNode } from "react";
 
+/* Props */
 interface Props {
   course: Course;
   children: ReactNode;
 }
 
 const CourseInfo = ({ course, children }: Props) => {
+  // Get children
   const [child1, child2] = React.Children.toArray(children);
 
   return (
     <Stack>
+      {/* Delete / Edit buttons */}
       <Group justify="flex-end" mt={10} mb={-30}>
         {child1}
         {child2}
@@ -40,6 +43,7 @@ const CourseInfo = ({ course, children }: Props) => {
           </Group>
         </GridCol>
 
+        {/* Grade semi circle */}
         <GridCol span={{ base: 12, lg: 3 }}>
           <Center>
             {course.grade && (
@@ -57,18 +61,3 @@ const CourseInfo = ({ course, children }: Props) => {
 };
 
 export default CourseInfo;
-
-/* 
-  <Stack m={15}>
-          <Title size="xl">{course.title}</Title>
-          <Text>Grade: {course.grade}</Text>
-          <Text>Credits: {course.credits}</Text>
-        </Stack>
-        {course.grade && (
-          <SemiCircleProgress
-            value={course.grade}
-            transitionDuration={250}
-            label={`${course.grade}%`}
-          />
-        )}
-  */

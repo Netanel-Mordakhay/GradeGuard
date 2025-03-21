@@ -1,6 +1,6 @@
 import React from "react";
 import TwoColumns from "../components/layout/TwoColumns";
-import NewCourseForm from "../components/courses/NewCourseForm";
+import NewCourse from "../components/courses/CourseForm";
 import CoursesList from "../components/courses/CoursesList";
 
 export const metadata = {
@@ -12,7 +12,7 @@ const CoursesPage = () => {
   return (
     <TwoColumns>
       <CoursesList />
-      <NewCourseForm />
+      <NewCourse />
     </TwoColumns>
   );
 };

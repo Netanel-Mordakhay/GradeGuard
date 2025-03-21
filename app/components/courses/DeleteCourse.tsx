@@ -3,16 +3,18 @@ import { Course } from "@/app/validationSchemas";
 import { Button, Stack, Text } from "@mantine/core";
 import axios from "axios";
 
+// Props
 interface Props {
   course?: Course;
 }
 
 const DeleteCourse = ({ course }: Props) => {
+  // API Call, DELETE course by course's id
   const handleDelete = async () => {
     try {
       await axios.delete(`/api/courses/${course?.id}`);
       alert("Course deleted successfully!");
-      window.location.reload();
+      window.location.reload(); // reload screen
     } catch (error) {
       alert("Failed to delete course.");
     }
