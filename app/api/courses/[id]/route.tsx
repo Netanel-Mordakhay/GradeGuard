@@ -9,11 +9,14 @@ export async function PUT(
   try {
     // Parse the request body from JSON
     const body = await request.json();
+
+    // Validate body
     const validation = createCourseSchema.safeParse(body);
     if (!validation.success) {
       return NextResponse.json(validation.error.format(), { status: 400 });
     }
 
+    // Gather updated course data
     const updatedCourse = await prisma.course.update({
       where: { id: Number(params.id) },
       data: {
@@ -26,7 +29,10 @@ export async function PUT(
       },
     });
 
+    // Return response
     return NextResponse.json(updatedCourse, { status: 200 });
+
+    // Return error
   } catch (error) {
     return NextResponse.json(
       { error: "Course not found or update failed" },
@@ -40,14 +46,18 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
+    // Request
     await prisma.course.delete({
       where: { id: Number(params.id) },
     });
 
+    // Response
     return NextResponse.json(
       { message: "Course deleted successfully" },
       { status: 200 }
     );
+
+    // Error
   } catch (error) {
     return NextResponse.json(
       { error: "Course not found or delete failed" },
