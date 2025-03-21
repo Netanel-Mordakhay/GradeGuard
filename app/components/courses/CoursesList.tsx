@@ -3,9 +3,11 @@ import React from "react";
 import DefaultCard from "../global/DefaultCard";
 import {} from "@mantine/core";
 import CoursesTable from "./CourseTable";
+import { normalizeCourse } from "@/app/validationSchemas";
 
 const CoursesList = async () => {
-  const courses = await prisma.course.findMany();
+  const coursesFromDB = await prisma.course.findMany();
+  const courses = coursesFromDB.map(normalizeCourse);
 
   return (
     <DefaultCard title="My Courses">

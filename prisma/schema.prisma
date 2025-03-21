@@ -27,7 +27,7 @@ model Course {
 enum Semester {
   A
   B
-  Summer
+  SUMMER
 }
 
 enum YearLevel {

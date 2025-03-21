@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { Prisma } from "@prisma/client";
 
 /* Validation object's schema */
 export const createCourseSchema = z.object({
@@ -27,3 +28,18 @@ export const courseSchema = createCourseSchema.extend({
 /* TypeScript Type */
 export type CourseForm = z.infer<typeof createCourseSchema>;
 export type Course = z.infer<typeof courseSchema>;
+
+/* Normalizing courses before using in in the UI - 
+TODO: this should be later fixed, but currently solves the issue,
+but I don't really like this implementation of its */
+export function normalizeCourse(dbCourse: Prisma.CourseGetPayload<{}>): Course {
+  return {
+    id: dbCourse.id,
+    title: dbCourse.title,
+    grade: dbCourse.grade ?? undefined,
+    credits: dbCourse.credits ?? undefined,
+    isBinary: dbCourse.isBinary ?? undefined,
+    year: dbCourse.year ?? undefined,
+    semester: dbCourse.semester ?? undefined,
+  };
+}
