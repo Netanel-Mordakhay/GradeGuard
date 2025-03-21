@@ -7,6 +7,7 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   try {
+    // Parse the request body from JSON
     const body = await request.json();
     const validation = createCourseSchema.safeParse(body);
     if (!validation.success) {

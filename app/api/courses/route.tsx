@@ -34,34 +34,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  try {
-    const body = await request.json();
-    const updatedCourse = await prisma.course.update({
-      where: { id: Number(params.id) },
-      data: {
-        title: body.title,
-        grade: body.grade,
-        credits: body.credits,
-        isBinary: body.isBinary,
-        year: body.year,
-        semester: body.semester,
-      },
-    });
-
-    return NextResponse.json(updatedCourse);
-  } catch (error: any) {
-    if (error.code === "P2025") {
-      return NextResponse.json({ error: "Course not found" }, { status: 404 });
-    }
-
-    return NextResponse.json(
-      { error: "Internal server error while updating course" },
-      { status: 500 }
-    );
-  }
-}
