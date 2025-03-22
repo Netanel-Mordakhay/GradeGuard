@@ -20,6 +20,11 @@
   background-size: auto;
 }
 
+/* Typography */
+.blue-filled {
+  color: var(--mantine-color-blue-filled);
+}
+
 /* Pages */
 .page-title {
   background: rgb(255, 255, 255);
@@ -50,8 +55,23 @@
   z-index: -10;
 }
 
-.logo-title-blue {
-  color: var(--mantine-color-blue-filled);
+/* Logo big */
+.logo-container-big {
+  height: 80px;
+  width: 300px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.logo-hat-big {
+  position: absolute;
+  width: 46px;
+  top: 0;
+  left: 0;
+  transform: translate(11px, -9px);
+  z-index: -10;
 }
 
 /* Decoration */

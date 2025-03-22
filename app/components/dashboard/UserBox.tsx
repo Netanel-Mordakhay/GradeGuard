@@ -3,12 +3,6 @@ import { Card, Avatar, Group, Button, Text, CardSection } from "@mantine/core";
 import { Session } from "next-auth";
 import React from "react";
 
-const stats = [
-  { value: "34K", label: "Followers" },
-  { value: "187", label: "Follows" },
-  { value: "1.6K", label: "Posts" },
-];
-
 interface UserBoxProps {
   session: Session;
 }
@@ -16,16 +10,6 @@ interface UserBoxProps {
 const UserBox = ({ session }: UserBoxProps) => {
   const { email, firstName, lastName } = session.user;
   const fullname = `${firstName} ${lastName}`;
-  const items = stats.map((stat) => (
-    <div key={stat.label}>
-      <Text ta="center" fz="lg" fw={500}>
-        {stat.value}
-      </Text>
-      <Text ta="center" fz="sm" c="dimmed" lh={1}>
-        {stat.label}
-      </Text>
-    </div>
-  ));
 
   return (
     <Card withBorder padding="xl" radius="md">
@@ -49,11 +33,8 @@ const UserBox = ({ session }: UserBoxProps) => {
       <Text ta="center" fz="sm" c="dimmed">
         {email}
       </Text>
-      <Group mt="md" justify="center" gap={30}>
-        {items}
-      </Group>
-      <Button fullWidth radius="md" mt="xl" size="md" variant="default">
-        Follow
+      <Button fullWidth radius="md" mt="xl" variant="default">
+        View Profile
       </Button>
     </Card>
   );

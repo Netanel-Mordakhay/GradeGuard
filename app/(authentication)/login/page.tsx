@@ -21,7 +21,7 @@ import {
 } from "@mantine/core";
 import { loginSchema, type LoginForm } from "@/app/validationSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import LogoSmall from "@/app/components/global/LogoSmall";
+import Logo from "@/app/components/global/Logo";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -53,7 +53,7 @@ const LoginPage = () => {
     <Group justify="center" h="80svh">
       <div>123</div>
       <Stack align="center">
-        <LogoSmall />
+        <Logo large={true} />
         <Paper withBorder shadow="md" p={30} radius="md" w={400}>
           <Title ta="center" mb="md" size="xl">
             Login

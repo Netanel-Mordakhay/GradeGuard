@@ -2,12 +2,12 @@ import { Button, Image, Group, Stack, Text, Title } from "@mantine/core";
 import React from "react";
 import Link from "next/link";
 import classes from "./styles/NotFoundPage.module.css";
-import LogoSmall from "./components/global/LogoSmall";
+import Logo from "./components/global/Logo";
 
 const NotFoundPage = () => {
   return (
     <Stack h="100svh" justify="center" align="center" ta="center" p={10}>
-      <LogoSmall />
+      <Logo large={true} />
       <Image src="/images/404.webp" w={300} radius="50%" />
       <div className={classes.label}>404 - Not Found</div>
       <Title className={classes.title}>

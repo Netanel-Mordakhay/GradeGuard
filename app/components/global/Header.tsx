@@ -1,7 +1,7 @@
 import React from "react";
 import ThemeToggle from "./ThemeToggle";
 import { Grid, Group, Text } from "@mantine/core";
-import LogoSmall from "./LogoSmall";
+import Logo from "./Logo";
 import Link from "next/link";
 
 const Header = ({ children }: { children: React.ReactNode }) => {
@@ -9,7 +9,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
     <Group h="100%" px="md" justify="space-between" dir="ltr">
       <Group>
         {children}
-        <LogoSmall />
+        <Logo />
       </Group>
       <Group>
         <ThemeToggle />
