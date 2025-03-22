@@ -17,18 +17,21 @@ const DashboardGrid = ({ children }: Props) => {
   const [child1, child2, child3, child4] = React.Children.toArray(children);
   return (
     <Grid>
+      {/* Left Column */}
       <GridCol span={{ base: 12, md: 6, xl: 3 }}>
         <Stack>
           {child1}
           {child}
         </Stack>
       </GridCol>
+      {/* Center Column */}
       <GridCol span={{ base: 12, md: 6, xl: 5 }}>
         <Stack>
-          {child}
           {child2}
+          {child}
         </Stack>
       </GridCol>
+      {/* Right Column */}
       <GridCol span={{ base: 12, md: 6, xl: 4 }}>
         <Stack>
           {child3}
