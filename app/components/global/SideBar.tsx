@@ -5,7 +5,7 @@ import SocialIcons from "./SocialIcons";
 
 const SideBar = () => {
   return (
-    <Stack>
+    <Stack visibleFrom="md">
       <SocialIcons />
       <TipsBox />
     </Stack>

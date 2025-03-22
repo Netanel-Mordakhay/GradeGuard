@@ -31,8 +31,8 @@ const DashboardGrid = ({ children }: Props) => {
       </GridCol>
       <GridCol span={{ base: 12, md: 6, xl: 4 }}>
         <Stack>
-          {child2}
           {child3}
+          {child4}
         </Stack>
       </GridCol>
     </Grid>

@@ -7,6 +7,7 @@ import { getUserCourses } from "@/lib/getUserCourses";
 import GradesBox from "../components/dashboard/GradesBox";
 import TipsBox from "../components/global/TipsBox";
 import SocialIcons from "../components/global/SocialIcons";
+import QuickActionsBox from "../components/dashboard/QuickActionsBox";
 
 export default async function Home() {
   // Get info
@@ -21,6 +22,7 @@ export default async function Home() {
     <DashboardGrid>
       <UserBox user={user} />
       <GradesBox courses={courses} />
+      <QuickActionsBox />
       <TipsBox />
     </DashboardGrid>
   );
