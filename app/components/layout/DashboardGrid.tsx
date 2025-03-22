@@ -20,13 +20,13 @@ const DashboardGrid = ({ children }: Props) => {
       <GridCol span={{ base: 12, md: 6, xl: 3 }}>
         <Stack>
           {child1}
-          {child2}
+          {child}
         </Stack>
       </GridCol>
       <GridCol span={{ base: 12, md: 6, xl: 5 }}>
         <Stack>
-          {child2}
           {child}
+          {child2}
         </Stack>
       </GridCol>
       <GridCol span={{ base: 12, md: 6, xl: 4 }}>

@@ -8,6 +8,8 @@ import GradesBox from "../components/dashboard/GradesBox";
 import TipsBox from "../components/global/TipsBox";
 import SocialIcons from "../components/global/SocialIcons";
 import QuickActionsBox from "../components/dashboard/QuickActionsBox";
+import { Stack } from "@mantine/core";
+import TopStatistics from "../components/dashboard/TopStatistics";
 
 export default async function Home() {
   // Get info
@@ -19,11 +21,14 @@ export default async function Home() {
   }
 
   return (
-    <DashboardGrid>
-      <UserBox user={user} />
-      <GradesBox courses={courses} />
-      <QuickActionsBox />
-      <TipsBox />
-    </DashboardGrid>
+    <Stack>
+      <TopStatistics />
+      <DashboardGrid>
+        <UserBox user={user} />
+        <GradesBox courses={courses} />
+        <QuickActionsBox />
+        <TipsBox />
+      </DashboardGrid>
+    </Stack>
   );
 }

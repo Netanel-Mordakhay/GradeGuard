@@ -28,11 +28,9 @@ const TipsBox = () => {
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.5 }}
       >
-        <Paper>
-          <Blockquote color="blue" cite={`– ${tip.author}`} icon={icon} m="md">
-            "{tip.text}"
-          </Blockquote>
-        </Paper>
+        <Blockquote color="blue" cite={`– ${tip.author}`} icon={icon} m="md">
+          "{tip.text}"
+        </Blockquote>
       </motion.div>
     </AnimatePresence>
   );

@@ -35,7 +35,7 @@ const UserBox = ({ user }: UserBoxProps) => {
         {email}
       </Text>
       <Link href="/profile" style={{ textDecoration: "none" }}>
-        <Button fullWidth radius="md" mt="xl" variant="default">
+        <Button fullWidth radius="md" mt="md" variant="default">
           View Profile
         </Button>
       </Link>
