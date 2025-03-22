@@ -6,6 +6,7 @@ import { getUserSession } from "@/lib/getUserSession";
 import { getUserCourses } from "@/lib/getUserCourses";
 import GradesBox from "../components/dashboard/GradesBox";
 import TipsBox from "../components/global/TipsBox";
+import SocialIcons from "../components/global/SocialIcons";
 
 export default async function Home() {
   // Get info
