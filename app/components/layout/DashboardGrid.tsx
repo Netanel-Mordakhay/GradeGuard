@@ -14,7 +14,8 @@ interface Props {
 }
 
 const DashboardGrid = ({ children }: Props) => {
-  const [child1, child2, child3, child4] = React.Children.toArray(children);
+  const [child1, child2, child3, child4, child5] =
+    React.Children.toArray(children);
   return (
     <Grid>
       {/* Left Column */}
@@ -28,7 +29,7 @@ const DashboardGrid = ({ children }: Props) => {
       <GridCol span={{ base: 12, md: 6, xl: 5 }}>
         <Stack>
           {child2}
-          {child}
+          {child5}
         </Stack>
       </GridCol>
       {/* Right Column */}

@@ -10,6 +10,7 @@ import SocialIcons from "../components/global/SocialIcons";
 import QuickActionsBox from "../components/dashboard/QuickActionsBox";
 import { Box, Stack } from "@mantine/core";
 import TopStatistics from "../components/dashboard/TopStatistics";
+import ChartBox from "../components/dashboard/ChartBox";
 
 export default async function Home() {
   // Get info
@@ -30,6 +31,7 @@ export default async function Home() {
         <GradesBox courses={courses} />
         <QuickActionsBox />
         <TipsBox />
+        <ChartBox />
       </DashboardGrid>
     </Stack>
   );
