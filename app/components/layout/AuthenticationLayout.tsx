@@ -1,25 +1,27 @@
 import React, { ReactNode } from "react";
-import { Anchor, Container, Paper, Text, Title } from "@mantine/core";
+import { Box, Grid, GridCol, Group, Stack } from "@mantine/core";
+import classes from "../../styles/Login.module.css";
 
 interface Props {
   children: ReactNode;
 }
 
 const AuthenticationLayout = ({ children }: Props) => {
-  return (
-    <Container size={420} my={40}>
-      <Title ta="center">Welcome back!</Title>
-      <Text c="dimmed" size="sm" ta="center" mt={5}>
-        Do not have an account yet?{" "}
-        <Anchor size="sm" component="button">
-          Create account
-        </Anchor>
-      </Text>
+  const [left, right] = React.Children.toArray(children);
 
-      <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-        {children}
-      </Paper>
-    </Container>
+  return (
+    <Group
+      mx="auto"
+      justify="center"
+      align="center"
+      wrap="nowrap"
+      maw={1000}
+      gap={50}
+      h="65svh"
+    >
+      {left}
+      <Box visibleFrom="lg">{right}</Box>
+    </Group>
   );
 };
 

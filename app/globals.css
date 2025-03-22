@@ -25,6 +25,16 @@
   color: var(--mantine-color-blue-filled);
 }
 
+/* Layouts */
+.auth-form-gradient-background {
+  background: var(--mantine-color-default);
+  background: radial-gradient(
+    circle,
+    var(--mantine-color-blue-filled) 0%,
+    var(--mantine-color-default) 70%
+  );
+}
+
 /* Pages */
 .page-title {
   background: rgb(255, 255, 255);

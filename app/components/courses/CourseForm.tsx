@@ -4,6 +4,7 @@ import {
   Button,
   Center,
   Checkbox,
+  Divider,
   Input,
   InputWrapper,
   Loader,
