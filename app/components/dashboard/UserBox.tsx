@@ -1,18 +1,18 @@
 "use client";
-import { Card, Avatar, Group, Button, Text, CardSection } from "@mantine/core";
-import { Session } from "next-auth";
+import { Card, Avatar, Button, Text, CardSection } from "@mantine/core";
+import type { User } from "next-auth";
 import React from "react";
 
 interface UserBoxProps {
-  session: Session;
+  user: User;
 }
 
-const UserBox = ({ session }: UserBoxProps) => {
-  const { email, firstName, lastName } = session.user;
+const UserBox = ({ user }: UserBoxProps) => {
+  const { email, firstName, lastName } = user;
   const fullname = `${firstName} ${lastName}`;
 
   return (
-    <Card withBorder padding="xl" radius="md">
+    <Card withBorder padding="md" radius="md">
       <CardSection
         h={140}
         style={{

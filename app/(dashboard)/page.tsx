@@ -2,18 +2,25 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import DashboardGrid from "../components/layout/DashboardGrid";
 import UserBox from "../components/dashboard/UserBox";
+import { getUserSession } from "@/lib/getUserSession";
+import { getUserCourses } from "@/lib/getUserCourses";
+import GradesBox from "../components/dashboard/GradesBox";
+import TipsBox from "../components/dashboard/TipsBox";
 
 export default async function Home() {
-  // Get session from server
-  const session = await getServerSession(authOptions);
+  // Get info
+  const user = await getUserSession();
+  const { courses } = await getUserCourses();
 
-  if (!session?.user) {
-    return <p>You must be logged in.</p>;
+  if (!user) {
+    return null;
   }
 
   return (
     <DashboardGrid>
-      <UserBox session={session} />
+      <UserBox user={user} />
+      <GradesBox courses={courses} />
+      <TipsBox />
     </DashboardGrid>
   );
 }
