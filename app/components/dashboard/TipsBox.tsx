@@ -1,5 +1,5 @@
 "use client";
-import { Blockquote } from "@mantine/core";
+import { Blockquote, Card, Paper } from "@mantine/core";
 import { IconInfoCircle } from "@tabler/icons-react";
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -28,9 +28,11 @@ const TipsBox = () => {
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.5 }}
       >
-        <Blockquote color="blue" cite={`– ${tip.author}`} icon={icon} m="md">
-          {tip.text}
-        </Blockquote>
+        <Paper>
+          <Blockquote color="blue" cite={`– ${tip.author}`} icon={icon} m="md">
+            {tip.text}
+          </Blockquote>
+        </Paper>
       </motion.div>
     </AnimatePresence>
   );

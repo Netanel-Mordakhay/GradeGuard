@@ -1,6 +1,7 @@
 "use client";
 import { Card, Avatar, Button, Text, CardSection } from "@mantine/core";
 import type { User } from "next-auth";
+import Link from "next/link";
 import React from "react";
 
 interface UserBoxProps {
@@ -33,9 +34,11 @@ const UserBox = ({ user }: UserBoxProps) => {
       <Text ta="center" fz="sm" c="dimmed">
         {email}
       </Text>
-      <Button fullWidth radius="md" mt="xl" variant="default">
-        View Profile
-      </Button>
+      <Link href="/profile" style={{ textDecoration: "none" }}>
+        <Button fullWidth radius="md" mt="xl" variant="default">
+          View Profile
+        </Button>
+      </Link>
     </Card>
   );
 };

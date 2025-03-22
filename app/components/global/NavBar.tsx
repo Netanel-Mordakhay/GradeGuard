@@ -4,6 +4,7 @@ import {
   IconBooks,
   IconPencil,
   IconAlignJustified,
+  IconUser,
   IconLogout,
 } from "@tabler/icons-react";
 import { signOut } from "next-auth/react";
@@ -40,14 +41,22 @@ const NavBar = () => {
     <nav className={classes.navbar}>
       <div className={classes.navbarMain}>{links}</div>
       <ReportBug />
-      <div
-        className={classes.footer}
-        onClick={() => signOut({ callbackUrl: "/login" })}
-      >
-        <a href="#" className={classes.link}>
-          <IconLogout className={classes.linkIcon} stroke={1.5} />
-          <span>Logout</span>
-        </a>
+
+      <div className={classes.footer}>
+        <Link
+          className={classes.link}
+          data-active={"/profile" === currentPath || undefined}
+          href="/profile"
+        >
+          <IconUser className={classes.linkIcon} stroke={1.5} />
+          <span>Account</span>
+        </Link>
+        <div onClick={() => signOut({ callbackUrl: "/login" })}>
+          <a href="#" className={classes.link}>
+            <IconLogout className={classes.linkIcon} stroke={1.5} />
+            <span>Logout</span>
+          </a>
+        </div>
       </div>
     </nav>
   );

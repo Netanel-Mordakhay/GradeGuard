@@ -6,6 +6,7 @@ import React from "react";
 const pathToTitle: Record<string, string> = {
   "/dashboard": "Dashboard",
   "/courses": "Courses",
+  "/profile": "User Profile",
 };
 
 const PageTitle = () => {
