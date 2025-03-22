@@ -65,11 +65,12 @@ const Features = () => {
   return (
     <div className={classes.wrapper}>
       <Title ta="center">
-        Why should I use Grade<span className="blue-filled">Guard</span>?
+        What's Grade<span className="blue-filled">Guard</span>?
       </Title>
       <Text c="dimmed" fz="sm" ta="center">
         GradeGuard is your personal academic assistant — track grades, manage
-        courses, and stay on top of your assignments, all in one place.
+        courses, and stay on top of your assignments, all in one place,{" "}
+        <span style={{ fontWeight: 500 }}>all completely free</span>.
       </Text>
       <SimpleGrid cols={{ base: 1, md: 2 }} spacing={30} mt={30}>
         {items}

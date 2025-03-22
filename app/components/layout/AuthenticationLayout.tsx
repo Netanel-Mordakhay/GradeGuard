@@ -13,6 +13,7 @@ const AuthenticationLayout = ({ children }: Props) => {
     <Group
       mx="auto"
       align="center"
+      justify="center"
       wrap="nowrap"
       maw={1000}
       gap={50}

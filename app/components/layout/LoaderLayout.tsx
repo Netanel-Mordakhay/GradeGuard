@@ -3,7 +3,7 @@ import React from "react";
 
 const LoaderLayout = () => {
   return (
-    <Center h="10svh">
+    <Center h="60svh">
       <Loader color="blue" size="lg" />
     </Center>
   );

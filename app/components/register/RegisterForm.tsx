@@ -1,26 +1,25 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import {
   Button,
-  Loader,
   Paper,
   Stack,
   Title,
+  Alert,
   Divider,
+  Loader,
   TextInput,
   PasswordInput,
-  Alert,
 } from "@mantine/core";
-import { loginSchema, type LoginForm } from "@/app/validationSchemas";
+import { useForm } from "react-hook-form";
+import { registerSchema, type RegisterForm } from "@/app/validationSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import Logo from "@/app/components/global/Logo";
 import Link from "next/link";
 import { useState } from "react";
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const router = useRouter();
   const [serverError, setServerError] = useState("");
 
@@ -29,24 +28,30 @@ const LoginForm = () => {
     handleSubmit,
     setError,
     formState: { errors, isSubmitting },
-  } = useForm<LoginForm>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<RegisterForm>({
+    resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = async (data: LoginForm) => {
+  const onSubmit = async (data: RegisterForm) => {
     setServerError("");
-    const res = await signIn("credentials", {
-      redirect: false,
-      email: data.email,
-      password: data.password,
+    const res = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
     });
 
-    if (res?.error) {
-      setError("email", { message: "Invalid credentials" });
+    const result = await res.json();
+
+    if (!res.ok) {
+      if (result.error?.includes("Email already exists")) {
+        setError("email", { message: result.error });
+      } else {
+        setServerError(result.error || "Registration failed");
+      }
       return;
     }
 
-    router.push("/");
+    router.push("/login");
   };
 
   return (
@@ -60,11 +65,29 @@ const LoginForm = () => {
         w={{ base: "100%", xs: 400 }}
       >
         <Title ta="center" mb="md" size="xl">
-          Login
+          Register
         </Title>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack>
+            {/* First Name */}
+            <TextInput
+              label="First Name"
+              placeholder="Enter your first name"
+              withAsterisk
+              {...register("firstName")}
+              error={errors.firstName?.message}
+            />
+
+            {/* Last Name */}
+            <TextInput
+              label="Last Name"
+              placeholder="Enter your last name"
+              withAsterisk
+              {...register("lastName")}
+              error={errors.lastName?.message}
+            />
+
             {/* Email */}
             <TextInput
               label="Email"
@@ -84,21 +107,21 @@ const LoginForm = () => {
               error={errors.password?.message}
             />
 
-            {/* Server error (e.g. invalid credentials) */}
+            {/* Server Error */}
             {serverError && <Alert color="red">{serverError}</Alert>}
 
             {/* Submit */}
             <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? <Loader size="sm" color="white" /> : "Login"}
+              {isSubmitting ? <Loader size="sm" color="white" /> : "Register"}
             </Button>
           </Stack>
         </form>
 
         <Divider my={20} />
 
-        <Link href="/register" style={{ textDecoration: "none" }}>
+        <Link href="/login" style={{ textDecoration: "none" }}>
           <Button fullWidth variant="outline">
-            Register
+            Already have an account? Login
           </Button>
         </Link>
       </Paper>
@@ -106,4 +129,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
