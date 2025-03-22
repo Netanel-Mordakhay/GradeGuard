@@ -1,7 +1,11 @@
 import AuthenticationLayout from "@/app/components/layout/AuthenticationLayout";
 import Features from "@/app/components/login/Features";
 import RegisterForm from "@/app/components/register/RegisterForm";
-import { Image, Stepper, StepperStep } from "@mantine/core";
+
+export const metadata = {
+  title: "GradeGuard - Registration",
+  description: "Manage your courses efficiently with GradeGuard",
+};
 
 const RegisterPage = () => {
   return (
