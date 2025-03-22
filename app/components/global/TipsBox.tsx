@@ -1,6 +1,6 @@
 "use client";
 import { Blockquote, Card, Paper } from "@mantine/core";
-import { IconInfoCircle } from "@tabler/icons-react";
+import { IconQuote } from "@tabler/icons-react";
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { tips } from "../../constants";
@@ -17,7 +17,7 @@ const TipsBox = () => {
   }, []);
 
   const tip = tips[tipIndex];
-  const icon = <IconInfoCircle />;
+  const icon = <IconQuote />;
 
   return (
     <AnimatePresence mode="wait">
@@ -30,7 +30,7 @@ const TipsBox = () => {
       >
         <Paper>
           <Blockquote color="blue" cite={`– ${tip.author}`} icon={icon} m="md">
-            {tip.text}
+            "{tip.text}"
           </Blockquote>
         </Paper>
       </motion.div>
