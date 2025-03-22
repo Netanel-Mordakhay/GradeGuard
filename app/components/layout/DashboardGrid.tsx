@@ -1,6 +1,5 @@
-import { Box, Grid, GridCol, Skeleton, Stack } from "@mantine/core";
+import { Grid, GridCol, Skeleton, Stack } from "@mantine/core";
 import React, { ReactNode } from "react";
-import WelcomeBar from "../dashboard/WelcomeBar";
 
 const child = <Skeleton height={220} radius="md" animate={false} />;
 
