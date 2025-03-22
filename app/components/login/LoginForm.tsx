@@ -46,7 +46,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Stack align="center">
+    <Stack align="center" w="100%">
       <Logo large={true} />
       <Paper
         withBorder

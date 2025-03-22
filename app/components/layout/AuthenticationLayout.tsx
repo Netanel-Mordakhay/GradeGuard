@@ -12,12 +12,11 @@ const AuthenticationLayout = ({ children }: Props) => {
   return (
     <Group
       mx="auto"
-      justify="center"
       align="center"
       wrap="nowrap"
       maw={1000}
       gap={50}
-      h="65svh"
+      h={{ base: "100%", lg: "70svh" }}
     >
       {left}
       <Box visibleFrom="lg">{right}</Box>
