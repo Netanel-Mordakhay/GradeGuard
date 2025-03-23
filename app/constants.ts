@@ -30,6 +30,14 @@ export const AVATAR_OPTIONS = [
   { id: "avatar14", src: "/images/avatars/avatar14.webp" },
   { id: "avatar15", src: "/images/avatars/avatar15.webp" },
   { id: "avatar16", src: "/images/avatars/avatar16.webp" },
+  { id: "avatar17", src: "/images/avatars/avatar17.webp" },
+  { id: "avatar18", src: "/images/avatars/avatar18.webp" },
+  { id: "avatar19", src: "/images/avatars/avatar19.webp" },
+  { id: "avatar20", src: "/images/avatars/avatar20.webp" },
+  { id: "avatar21", src: "/images/avatars/avatar21.webp" },
+  { id: "avatar22", src: "/images/avatars/avatar22.webp" },
+  { id: "avatar23", src: "/images/avatars/avatar23.webp" },
+  { id: "avatar24", src: "/images/avatars/avatar24.webp" },
 ];
 
 export const tips = [

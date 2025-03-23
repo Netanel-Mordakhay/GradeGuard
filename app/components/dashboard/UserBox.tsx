@@ -15,7 +15,7 @@ const UserBox = ({ user }: UserBoxProps) => {
   console.log(avatar);
 
   return (
-    <DefaultCard showCover={true} link="profile" linkText="View Profile">
+    <DefaultCard showCover={true} link="profile" linkText="Edit Profile">
       <Avatar
         src={`/images/avatars/${avatar || "avatar_1"}.webp`}
         size={120}
