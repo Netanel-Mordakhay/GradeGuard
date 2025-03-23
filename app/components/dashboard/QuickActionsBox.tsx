@@ -12,9 +12,6 @@ import {
   IconBrandFacebook,
 } from "@tabler/icons-react";
 import {
-  Anchor,
-  Card,
-  Group,
   SimpleGrid,
   Text,
   UnstyledButton,
@@ -22,6 +19,7 @@ import {
 } from "@mantine/core";
 import classes from "../../styles/QuickActions.module.css";
 import DefaultCard from "../global/DefaultCard";
+import { motion } from "framer-motion";
 
 const mockdata = [
   { title: "New course", icon: IconBookUpload, color: "violet" },
@@ -39,12 +37,16 @@ const QuickActionsBox = () => {
   const theme = useMantineTheme();
 
   const items = mockdata.map((item) => (
-    <UnstyledButton key={item.title} className={classes.item}>
-      <item.icon color={theme.colors[item.color][6]} size={32} />
-      <Text size="xs" mt={7}>
-        {item.title}
-      </Text>
-    </UnstyledButton>
+    <motion.div
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      className={classes.item}
+    >
+      <UnstyledButton key={item.title} ta="center">
+        <item.icon color={theme.colors[item.color][6]} size={32} />
+        <Text size="xs">{item.title}</Text>
+      </UnstyledButton>
+    </motion.div>
   ));
 
   return (

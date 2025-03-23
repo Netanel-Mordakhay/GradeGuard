@@ -20,10 +20,7 @@ const DashboardGrid = ({ children }: Props) => {
     <Grid>
       {/* Left Column */}
       <GridCol span={{ base: 12, md: 6, xl: 3 }}>
-        <Stack>
-          {child1}
-          {child}
-        </Stack>
+        <Stack>{child1}</Stack>
       </GridCol>
       {/* Center Column */}
       <GridCol span={{ base: 12, md: 6, xl: 5 }}>
