@@ -111,7 +111,7 @@ const CourseFormComponent = ({ course }: Props) => {
           />
 
           {/* Credits */}
-          <InputWrapper label="Course credits">
+          <InputWrapper label="Course credits" withAsterisk>
             <Input
               placeholder="0-100"
               type="number"

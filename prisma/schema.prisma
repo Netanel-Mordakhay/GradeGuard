@@ -17,7 +17,7 @@ model Course {
   id        Int        @id @default(autoincrement())
   title     String     @db.VarChar(255)
   grade     Int?
-  credits   Float?     @default(0)
+  credits   Float
   isBinary  Boolean?   @default(false)
   year      YearLevel?
   semester  Semester?

@@ -5,7 +5,7 @@ import { Prisma } from "@prisma/client";
 export const createCourseSchema = z.object({
   title: z.string().min(3).max(255),
   grade: z.number().min(0).max(100).optional().nullable(),
-  credits: z.number().min(0).max(100).multipleOf(0.1).optional().nullable(),
+  credits: z.number().min(0).max(100).multipleOf(0.1),
   isBinary: z.boolean().optional(),
   year: z.preprocess(
     (val) => (val === "" ? null : val),
@@ -87,7 +87,7 @@ export function normalizeCourse(dbCourse: Prisma.CourseGetPayload<{}>): Course {
     id: dbCourse.id,
     title: dbCourse.title,
     grade: dbCourse.grade ?? undefined,
-    credits: dbCourse.credits ?? undefined,
+    credits: dbCourse.credits,
     isBinary: dbCourse.isBinary ?? undefined,
     year: dbCourse.year ?? undefined,
     semester: dbCourse.semester ?? undefined,
