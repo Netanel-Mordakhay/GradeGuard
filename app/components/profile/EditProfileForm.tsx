@@ -3,16 +3,20 @@
 import {
   Button,
   Loader,
-  Paper,
+  Image,
   Stack,
   Title,
   TextInput,
   Alert,
+  Box,
+  Group,
 } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { updateUserSchema, type UpdateUserForm } from "@/app/validationSchemas";
+import { AVATAR_OPTIONS } from "../../constants";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 const EditProfileForm = ({
   defaultValues,
@@ -22,10 +26,14 @@ const EditProfileForm = ({
   const [serverError, setServerError] = useState("");
   const [success, setSuccess] = useState(false);
 
+  const { update } = useSession(); // ✅ כאן מותר להשתמש ב-hook
+
   const {
     register,
     handleSubmit,
     setError,
+    setValue,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<UpdateUserForm>({
     resolver: zodResolver(updateUserSchema),
@@ -54,6 +62,8 @@ const EditProfileForm = ({
     }
 
     setSuccess(true);
+    await update();
+    window.location.reload();
   };
 
   return (
@@ -64,6 +74,7 @@ const EditProfileForm = ({
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack>
+          {/* First name */}
           <TextInput
             label="First Name"
             placeholder="Enter your first name"
@@ -72,6 +83,7 @@ const EditProfileForm = ({
             withAsterisk
           />
 
+          {/* Last name */}
           <TextInput
             label="Last Name"
             placeholder="Enter your last name"
@@ -80,6 +92,7 @@ const EditProfileForm = ({
             withAsterisk
           />
 
+          {/* Email */}
           <TextInput
             label="Email"
             type="email"
@@ -88,6 +101,36 @@ const EditProfileForm = ({
             error={errors.email?.message}
             withAsterisk
           />
+
+          {/* Avatar */}
+          <Title order={5}>Choose your avatar</Title>
+          <Group justify="center">
+            {AVATAR_OPTIONS.map((avatar) => (
+              <Box
+                key={avatar.id}
+                style={{
+                  border:
+                    watch("avatar") === avatar.id
+                      ? "2px solid gray"
+                      : "2px solid transparent",
+                  borderRadius: "50%",
+                  cursor: "pointer",
+                  padding: 3,
+                }}
+                onClick={() => {
+                  setValue("avatar", avatar.id);
+                }}
+              >
+                <Image
+                  src={avatar.src}
+                  alt={avatar.id}
+                  width={60}
+                  height={60}
+                  radius="50%"
+                />
+              </Box>
+            ))}
+          </Group>
 
           {serverError && <Alert color="red">{serverError}</Alert>}
           {success && <Alert color="green">Profile updated successfully</Alert>}

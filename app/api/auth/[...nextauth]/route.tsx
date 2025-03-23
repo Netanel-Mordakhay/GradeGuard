@@ -39,13 +39,37 @@ export const authOptions = {
     strategy: "jwt" as SessionStrategy,
   },
   callbacks: {
-    async jwt({ token, user }: { token: any; user: any }) {
+    async jwt({
+      token,
+      user,
+      trigger,
+      session,
+    }: {
+      token: any;
+      user: any;
+      trigger?: "update" | "signIn" | "signUp";
+      session?: any;
+    }) {
       // Initial sign in
       if (user) {
         token.firstName = user.firstName;
         token.lastName = user.lastName;
         token.avatar = user.avatar;
       }
+
+      // Updating session
+      if (trigger === "update" && token.sub) {
+        const dbUser = await prisma.user.findUnique({
+          where: { id: token.sub },
+        });
+
+        if (dbUser) {
+          token.firstName = dbUser.firstName;
+          token.lastName = dbUser.lastName;
+          token.avatar = dbUser.avatar;
+        }
+      }
+
       return token;
     },
 

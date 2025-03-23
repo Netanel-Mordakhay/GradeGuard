@@ -19,7 +19,7 @@ export async function PUT(req: Request) {
       return NextResponse.json(validation.error.format(), { status: 400 });
     }
 
-    const { email, firstName, lastName } = validation.data;
+    const { email, firstName, lastName, avatar } = validation.data;
 
     // Check if email already exists for another user
     if (email) {
@@ -39,6 +39,7 @@ export async function PUT(req: Request) {
         email,
         firstName,
         lastName,
+        avatar,
       },
     });
 
@@ -51,6 +52,7 @@ export async function PUT(req: Request) {
           email: updatedUser.email,
           firstName: updatedUser.firstName,
           lastName: updatedUser.lastName,
+          avatar: updatedUser.avatar,
         },
       },
       { status: 200 }

@@ -7,13 +7,13 @@ interface Props {
 }
 
 const UserInformation = ({ user }: Props) => {
-  const { email, firstName, lastName } = user;
+  const { email, firstName, lastName, avatar } = user;
   const fullname = `${firstName} ${lastName}`;
 
   return (
     <Stack gap={0} ta="center" justify="center" align="center">
       <Image
-        src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-9.png"
+        src={`/images/avatars/${avatar || "avatar_1"}.webp`}
         radius="50%"
         w={150}
       />
