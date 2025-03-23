@@ -4,11 +4,11 @@ import Link from "next/link";
 import React, { ReactNode } from "react";
 
 interface Props {
-  title?: string;
-  children: ReactNode;
-  link?: string;
-  linkText?: string;
-  showCover?: boolean;
+  title?: string; // Card title - optional
+  children: ReactNode; // chilren
+  link?: string; // link - wouldn't show button without
+  linkText?: string; // custon text for link
+  showCover?: boolean; // show card cover image
 }
 
 const DefaultCard = ({ children, title, link, linkText, showCover }: Props) => {

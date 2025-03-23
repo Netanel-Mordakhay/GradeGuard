@@ -17,10 +17,10 @@ const UserBox = ({ user }: UserBoxProps) => {
     <DefaultCard showCover={true} link="profile" linkText="View Profile">
       <Avatar
         src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-9.png"
-        size={80}
-        radius={80}
+        size={120}
+        radius="50%"
         mx="auto"
-        mt={-60}
+        mt={-90}
       />
       <Stack gap={0}>
         <Text ta="center" fz="lg" fw={500}>

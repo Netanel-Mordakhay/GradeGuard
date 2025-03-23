@@ -11,21 +11,19 @@ const UserInformation = ({ user }: Props) => {
   const fullname = `${firstName} ${lastName}`;
 
   return (
-    <Group justify="center">
+    <Stack gap={0} ta="center" justify="center" align="center">
       <Image
         src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-9.png"
         radius="50%"
         w={150}
       />
-      <Stack gap={0}>
-        <Text fz="xl" fw={500}>
-          {fullname}
-        </Text>
-        <Text fz="md" c="dimmed">
-          {email}
-        </Text>
-      </Stack>
-    </Group>
+      <Text fz="xl" fw={500}>
+        {fullname}
+      </Text>
+      <Text fz="md" c="dimmed">
+        {email}
+      </Text>
+    </Stack>
   );
 };
 

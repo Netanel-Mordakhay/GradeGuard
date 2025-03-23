@@ -12,8 +12,8 @@ const ProfilePage = async () => {
   const user = await getUserSession();
   return (
     <TwoColumns>
-      <DefaultCard title={`${user.firstName}'s Profile`}>
-        <Stack>
+      <DefaultCard showCover={true}>
+        <Stack mt={-100}>
           <UserInformation user={user} />
           <Divider />
           <EditProfileForm defaultValues={user} />
