@@ -14,6 +14,7 @@ import {
   Title,
 } from "@mantine/core";
 import classes from "../../styles/Login.module.css";
+import FeaturesTypewriterTitle from "./FeaturesTypewriterTitle";
 
 const features = [
   {
@@ -64,9 +65,10 @@ const Features = () => {
 
   return (
     <div className={classes.wrapper}>
-      <Title ta="center">
+      {/* <Title ta="center">
         What's Grade<span className="blue-filled">Guard</span>?
-      </Title>
+      </Title> */}
+      <FeaturesTypewriterTitle />
       <Text c="dimmed" fz="sm" ta="center">
         GradeGuard is your personal academic assistant — track grades, manage
         courses, and stay on top of your assignments, all in one place,{" "}

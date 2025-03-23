@@ -13,12 +13,14 @@ import {
   TextInput,
   PasswordInput,
   Alert,
+  Text,
 } from "@mantine/core";
 import { loginSchema, type LoginForm } from "@/app/validationSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Logo from "@/app/components/global/Logo";
 import Link from "next/link";
 import { useState } from "react";
+import FeaturesTypewriterTitle from "./FeaturesTypewriterTitle";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -52,6 +54,14 @@ const LoginForm = () => {
   return (
     <Stack align="center" w="100%">
       <Logo large />
+      <Stack hiddenFrom="lg" maw={400} gap={0}>
+        <FeaturesTypewriterTitle small />
+        <Text c="dimmed" fz="sm" ta="center">
+          Track grades, manage courses, and stay on top of your assignments, all
+          in one place,{" "}
+          <span style={{ fontWeight: 500 }}>all completely free</span>.
+        </Text>
+      </Stack>
       <Paper
         withBorder
         shadow="md"

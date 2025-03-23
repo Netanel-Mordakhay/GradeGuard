@@ -41,8 +41,9 @@ const QuickActionsBox = () => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       className={classes.item}
+      key={item.title}
     >
-      <UnstyledButton key={item.title} ta="center">
+      <UnstyledButton ta="center">
         <item.icon color={theme.colors[item.color][6]} size={32} />
         <Text size="xs">{item.title}</Text>
       </UnstyledButton>
