@@ -1,4 +1,5 @@
-import { AreaChart, LineChart } from "@mantine/charts";
+import { LineChart } from "@mantine/charts";
+import { Text } from "@mantine/core";
 import React from "react";
 import DefaultCard from "../global/DefaultCard";
 
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const ChartBox = ({ chartData }: Props) => {
+  const dataExists = chartData.length === 0 ? false : true;
   const data = chartData.map((entry) => ({
     date: entry.semester,
     "Semester Average": entry.semesterAverage,
@@ -19,18 +21,22 @@ const ChartBox = ({ chartData }: Props) => {
 
   return (
     <DefaultCard title="My Progress">
-      <LineChart
-        h={220}
-        data={data}
-        dataKey="date"
-        yAxisLabel="Grade"
-        series={[
-          { name: "Semester Average", color: "teal.6" },
-          { name: "Overall Average", color: "indigo.6" },
-        ]}
-        curveType="linear"
-        withLegend
-      />
+      {dataExists ? (
+        <LineChart
+          h={220}
+          data={data}
+          dataKey="date"
+          yAxisLabel="Grade"
+          series={[
+            { name: "Semester Average", color: "teal.6" },
+            { name: "Overall Average", color: "indigo.6" },
+          ]}
+          curveType="linear"
+          withLegend
+        />
+      ) : (
+        <Text ta="center">No data yet.</Text>
+      )}
     </DefaultCard>
   );
 };
