@@ -41,7 +41,7 @@ const GradesBox = ({ courses }: { courses: Course[] }) => {
   ));
 
   return (
-    <DefaultCard title="My Grades">
+    <DefaultCard title="My Grades" link="courses">
       <div className={classes.inner}>
         <div>
           <div>
@@ -84,11 +84,6 @@ const GradesBox = ({ courses }: { courses: Course[] }) => {
           />
         </div>
       </div>
-      <Link href="/courses" style={{ textDecoration: "none" }}>
-        <Button fullWidth radius="md" mt="md" variant="default">
-          View All Courses
-        </Button>
-      </Link>
     </DefaultCard>
   );
 };

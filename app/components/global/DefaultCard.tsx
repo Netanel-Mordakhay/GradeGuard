@@ -1,13 +1,15 @@
-import { Card, CardSection, Group, Text } from "@mantine/core";
+import { Button, Card, CardSection, Group, Stack, Text } from "@mantine/core";
 import { IconArrowBadgeRight } from "@tabler/icons-react";
+import Link from "next/link";
 import React, { ReactNode } from "react";
 
 interface Props {
   title?: string;
   children: ReactNode;
+  link?: string;
 }
 
-const DefaultCard = ({ children, title }: Props) => {
+const DefaultCard = ({ children, title, link }: Props) => {
   return (
     <Card withBorder shadow="sm" radius="md">
       {title && (
@@ -18,8 +20,18 @@ const DefaultCard = ({ children, title }: Props) => {
           </Group>
         </CardSection>
       )}
-
-      <CardSection p="lg">{children}</CardSection>
+      <CardSection p="lg">
+        <Stack>
+          {children}
+          {link && (
+            <Link href={`/${link}`} style={{ textDecoration: "none" }}>
+              <Button fullWidth radius="md" mt="md" variant="default">
+                View All
+              </Button>
+            </Link>
+          )}
+        </Stack>
+      </CardSection>
     </Card>
   );
 };
