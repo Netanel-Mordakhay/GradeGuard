@@ -23,7 +23,6 @@ const FilterCourses = () => {
             { label: "4", value: "FOURTH" },
             { label: "5", value: "FIFTH" },
             { label: "6", value: "SIXTH" },
-            { label: "7", value: "SEVENTH" },
           ]}
         />
       </Group>
