@@ -1,5 +1,4 @@
 "use client";
-import { Course } from "@/app/validationSchemas";
 import React from "react";
 import {
   Button,
@@ -14,7 +13,12 @@ import DefaultCard from "../global/DefaultCard";
 import Link from "next/link";
 
 interface Props {
-  courses: Course[];
+  stats: {
+    totalCourses: number;
+    totalCredits: number;
+    averageGrade: number;
+    latestGrade: number | null;
+  };
 }
 
 const stats = [
@@ -22,23 +26,10 @@ const stats = [
   { value: 101, label: "Total credits" },
 ];
 
-const GradesBox = ({ courses }: { courses: Course[] }) => {
-  const gradedCourses = courses.filter((c) => typeof c.grade === "number");
-  const averageGrade =
-    gradedCourses.reduce((acc, c) => acc + (c.grade ?? 0), 0) /
-    (gradedCourses.length || 1);
-
+const GradesBox = ({ stats }: Props) => {
   const theme = useMantineTheme();
   const completed = 1887;
   const total = 2334;
-  const items = stats.map((stat) => (
-    <div key={stat.label}>
-      <Text className={classes.label}>{stat.value}</Text>
-      <Text size="xs" c="dimmed">
-        {stat.label}
-      </Text>
-    </div>
-  ));
 
   return (
     <DefaultCard title="My Grades" link="courses" linkText="View All Courses">
@@ -46,7 +37,7 @@ const GradesBox = ({ courses }: { courses: Course[] }) => {
         <div>
           <div>
             <Text className={classes.lead} mt="md">
-              81.3
+              {stats.averageGrade}
             </Text>
             <Text fz="xs" c="dimmed">
               Alltime average
@@ -54,13 +45,26 @@ const GradesBox = ({ courses }: { courses: Course[] }) => {
           </div>
           <div>
             <Text className={classes.lead} mt="md">
-              81.3
+              {stats.latestGrade || "0"}
             </Text>
             <Text fz="xs" c="dimmed">
               Latest course grade
             </Text>
           </div>
-          <Group mt="md">{items}</Group>
+          <Group mt="md">
+            <div>
+              <Text className={classes.label}>{stats.totalCourses}</Text>
+              <Text size="xs" c="dimmed">
+                Total courses
+              </Text>
+            </div>
+            <div>
+              <Text className={classes.label}>{stats.totalCredits}</Text>
+              <Text size="xs" c="dimmed">
+                Total credits
+              </Text>
+            </div>
+          </Group>
         </div>
 
         <div className={classes.ring}>
@@ -69,12 +73,12 @@ const GradesBox = ({ courses }: { courses: Course[] }) => {
             thickness={12}
             size={150}
             sections={[
-              { value: (completed / total) * 100, color: theme.primaryColor },
+              { value: stats.averageGrade, color: theme.primaryColor },
             ]}
             label={
               <div>
                 <Text ta="center" fz="lg" className={classes.label}>
-                  {((completed / total) * 100).toFixed(0)}
+                  {stats.averageGrade}
                 </Text>
                 <Text ta="center" fz="xs" c="dimmed">
                   /100
