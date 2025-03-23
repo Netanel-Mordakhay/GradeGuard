@@ -12,14 +12,16 @@ import { Box, Stack } from "@mantine/core";
 import TopStatistics from "../components/dashboard/TopStatistics";
 import ChartBox from "../components/dashboard/ChartBox";
 import { getUserStats } from "@/lib/getUserStats";
+import { getUserChartData } from "@/lib/getUserChartData";
 
 export default async function Home() {
   // Get info
   const user = await getUserSession();
   const { courses } = await getUserCourses();
   const stats = await getUserStats();
+  const chartData = await getUserChartData();
 
-  if (!user || !stats) {
+  if (!user || !stats || !chartData) {
     return null;
   }
 
@@ -33,7 +35,7 @@ export default async function Home() {
         <GradesBox stats={stats} />
         <QuickActionsBox />
         <TipsBox />
-        <ChartBox />
+        <ChartBox chartData={chartData} />
       </DashboardGrid>
     </Stack>
   );
