@@ -29,5 +29,5 @@ export async function middleware(req: NextRequest) {
 
 // חשוב מאוד — כדי לא לחסום קבצים סטטיים ו-assets של Next.js
 export const config = {
-  matcher: ["/((?!_next|favicon.ico|api/auth).*)"],
+  matcher: ["/((?!_next|favicon.ico|api/auth|images).*)"],
 };
