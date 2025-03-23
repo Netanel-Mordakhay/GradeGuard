@@ -5,9 +5,11 @@ import { getUserCourses } from "@/lib/getUserCourses";
 import FilterCourses from "./FilterCourses";
 import { Divider } from "@mantine/core";
 import ClientCoursesManager from "./ClientCourseManager";
+import { getLastCourse } from "@/lib/getLastCourse";
 
 const CoursesList = async () => {
   const { courses, error } = await getUserCourses();
+  const lastCourse = await getLastCourse();
 
   if (error) {
     return <DefaultCard title="My Courses">Unauthorized</DefaultCard>;
@@ -15,7 +17,7 @@ const CoursesList = async () => {
 
   return (
     <DefaultCard title="My Courses">
-      <ClientCoursesManager courses={courses} />
+      <ClientCoursesManager courses={courses} defaultFilters={lastCourse} />
     </DefaultCard>
   );
 };
