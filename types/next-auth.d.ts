@@ -9,6 +9,7 @@ declare module "next-auth" {
       image?: string | null;
       firstName?: string | null;
       lastName?: string | null;
+      avatar?: string | null;
     };
   }
 
@@ -19,5 +20,6 @@ declare module "next-auth" {
     image?: string | null;
     firstName?: string | null;
     lastName?: string | null;
+    avatar?: string | null;
   }
 }

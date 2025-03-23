@@ -10,13 +10,14 @@ interface UserBoxProps {
 }
 
 const UserBox = ({ user }: UserBoxProps) => {
-  const { email, firstName, lastName } = user;
+  const { email, firstName, lastName, avatar } = user;
   const fullname = `${firstName} ${lastName}`;
+  console.log(avatar);
 
   return (
     <DefaultCard showCover={true} link="profile" linkText="View Profile">
       <Avatar
-        src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-9.png"
+        src={`/images/avatars/${avatar || "avatar_1"}.webp`}
         size={120}
         radius="50%"
         mx="auto"

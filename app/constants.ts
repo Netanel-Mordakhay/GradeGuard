@@ -13,6 +13,25 @@ export const SEMESTER_OPTIONS = [
   { value: "SUMMER", label: "Summer Semester" },
 ] as const;
 
+export const AVATAR_OPTIONS = [
+  { id: "avatar1", src: "/images/avatars/avatar_1.webp" },
+  { id: "avatar2", src: "/images/avatars/avatar_2.webp" },
+  { id: "avatar3", src: "/images/avatars/avatar_3.webp" },
+  { id: "avatar4", src: "/images/avatars/avatar_4.webp" },
+  { id: "avatar5", src: "/images/avatars/avatar_5.webp" },
+  { id: "avatar6", src: "/images/avatars/avatar_6.webp" },
+  { id: "avatar7", src: "/images/avatars/avatar_7.webp" },
+  { id: "avatar8", src: "/images/avatars/avatar_8.webp" },
+  { id: "avatar9", src: "/images/avatars/avatar_9.webp" },
+  { id: "avatar10", src: "/images/avatars/avatar_10.webp" },
+  { id: "avatar11", src: "/images/avatars/avatar_11.webp" },
+  { id: "avatar12", src: "/images/avatars/avatar_12.webp" },
+  { id: "avatar13", src: "/images/avatars/avatar_13.webp" },
+  { id: "avatar14", src: "/images/avatars/avatar_14.webp" },
+  { id: "avatar15", src: "/images/avatars/avatar_15.webp" },
+  { id: "avatar16", src: "/images/avatars/avatar_16.webp" },
+];
+
 export const tips = [
   {
     text: "Life is like an npm install – you never know what you are going to get.",
