@@ -4,6 +4,7 @@ import CoursesTable from "./CourseTable";
 import { getUserCourses } from "@/lib/getUserCourses";
 import FilterCourses from "./FilterCourses";
 import { Divider } from "@mantine/core";
+import ClientCoursesManager from "./ClientCourseManager";
 
 const CoursesList = async () => {
   const { courses, error } = await getUserCourses();
@@ -14,9 +15,7 @@ const CoursesList = async () => {
 
   return (
     <DefaultCard title="My Courses">
-      <FilterCourses />
-      <Divider />
-      <CoursesTable courses={courses} />
+      <ClientCoursesManager courses={courses} />
     </DefaultCard>
   );
 };

@@ -1,36 +1,47 @@
 "use client";
 import React from "react";
-import { useState } from "react";
 import { Group, SegmentedControl, Stack, Text } from "@mantine/core";
 
-const FilterCourses = () => {
-  const [yearValue, setYearValue] = useState("ALL");
-  const [semesterValue, setSemesterValue] = useState("ALL");
+type Filters = {
+  year: string;
+  semester: string;
+};
 
+const FilterCourses = ({
+  filters,
+  setFilters,
+}: {
+  filters: Filters;
+  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+}) => {
   return (
     <Stack>
       <Group justify="space-between">
         <Text>Year:</Text>
         <SegmentedControl
-          value={yearValue}
-          onChange={setYearValue}
+          value={filters.year}
+          onChange={(val) =>
+            setFilters((prev: Filters) => ({ ...prev, year: val }))
+          }
           fullWidth
           data={[
             { label: "All", value: "ALL" },
-            { label: "1", value: "FIRST" },
-            { label: "2", value: "SECOND" },
-            { label: "3", value: "THIRD" },
-            { label: "4", value: "FOURTH" },
-            { label: "5", value: "FIFTH" },
-            { label: "6", value: "SIXTH" },
+            { label: "First", value: "FIRST" },
+            { label: "Second", value: "SECOND" },
+            { label: "Third", value: "THIRD" },
+            { label: "Fourth", value: "FOURTH" },
+            { label: "Fifth", value: "FIFTH" },
+            { label: "Sixth", value: "SIXTH" },
           ]}
         />
       </Group>
       <Group justify="space-between">
         <Text>Semester:</Text>
         <SegmentedControl
-          value={semesterValue}
-          onChange={setSemesterValue}
+          value={filters.semester}
+          onChange={(val) =>
+            setFilters((prev: Filters) => ({ ...prev, semester: val }))
+          }
           fullWidth
           data={[
             { label: "All", value: "ALL" },
