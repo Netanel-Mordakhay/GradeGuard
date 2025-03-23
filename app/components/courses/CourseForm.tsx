@@ -46,8 +46,14 @@ const CourseFormComponent = ({ course }: Props) => {
   useEffect(() => {
     if (course) {
       reset(course);
+      setIsBinary(course.isBinary || false);
+      setValue("isBinary", course.isBinary || false);
+
+      if (course.isBinary) {
+        setValue("grade", undefined);
+      }
     }
-  }, [course, reset]);
+  }, [course, reset, setValue]);
 
   const onSubmit = handleSubmit(async (data) => {
     try {
@@ -55,10 +61,8 @@ const CourseFormComponent = ({ course }: Props) => {
       setSuccess(false);
 
       if (course?.id) {
-        // Edit
         await axios.put(`/api/courses/${course.id}`, data);
       } else {
-        // Create new
         await axios.post("/api/courses", data);
       }
 
@@ -102,11 +106,11 @@ const CourseFormComponent = ({ course }: Props) => {
           <Checkbox
             label="Binary grade"
             checked={isBinary}
+            {...register("isBinary")}
             onChange={(event) => {
-              setIsBinary(event.currentTarget.checked);
-              if (event.currentTarget.checked) {
-                setValue("grade", undefined);
-              }
+              const checked = event.currentTarget.checked;
+              setIsBinary(checked);
+              setValue("isBinary", checked);
             }}
           />
 

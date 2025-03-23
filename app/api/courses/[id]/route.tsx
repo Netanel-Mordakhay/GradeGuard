@@ -21,7 +21,7 @@ export async function PUT(
       where: { id: Number(params.id) },
       data: {
         title: body.title,
-        grade: body.grade,
+        grade: body.isBinary ? null : body.grade,
         credits: body.credits,
         isBinary: body.isBinary,
         year: body.year,
