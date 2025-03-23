@@ -1,9 +1,6 @@
 import React from "react";
 import DefaultCard from "../global/DefaultCard";
-import CoursesTable from "./CourseTable";
 import { getUserCourses } from "@/lib/getUserCourses";
-import FilterCourses from "./FilterCourses";
-import { Divider } from "@mantine/core";
 import ClientCoursesManager from "./ClientCourseManager";
 import { getLastCourse } from "@/lib/getLastCourse";
 

@@ -26,12 +26,12 @@ const FilterCourses = ({
           fullWidth
           data={[
             { label: "All", value: "ALL" },
-            { label: "First", value: "FIRST" },
-            { label: "Second", value: "SECOND" },
-            { label: "Third", value: "THIRD" },
-            { label: "Fourth", value: "FOURTH" },
-            { label: "Fifth", value: "FIFTH" },
-            { label: "Sixth", value: "SIXTH" },
+            { label: "1", value: "FIRST" },
+            { label: "2", value: "SECOND" },
+            { label: "3", value: "THIRD" },
+            { label: "4", value: "FOURTH" },
+            { label: "5", value: "FIFTH" },
+            { label: "6", value: "SIXTH" },
           ]}
         />
       </Group>

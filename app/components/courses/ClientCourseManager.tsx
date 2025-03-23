@@ -5,21 +5,6 @@ import FilterCourses from "./FilterCourses";
 import CoursesTable from "./CourseTable";
 import { Course } from "@/app/validationSchemas";
 
-const yearOrder = {
-  FIRST: 1,
-  SECOND: 2,
-  THIRD: 3,
-  FOURTH: 4,
-  FIFTH: 5,
-  SIXTH: 6,
-};
-
-const semesterOrder = {
-  A: 1,
-  B: 2,
-  SUMMER: 3,
-};
-
 const ClientCoursesManager = ({
   courses,
   defaultFilters,

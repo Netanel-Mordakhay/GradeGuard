@@ -1,6 +1,8 @@
+"use client";
 import React from "react";
-import { IconBug } from "@tabler/icons-react";
+
 import { Card, Button, Text } from "@mantine/core";
+import Link from "next/link";
 
 const ReportBug = () => {
   return (
@@ -11,9 +13,11 @@ const ReportBug = () => {
         be!
       </Text>
 
-      <Button color="blue" fullWidth mt="md" radius="md">
-        REPORT A BUG
-      </Button>
+      <Link href="/contact-us" style={{ textDecoration: "none" }}>
+        <Button color="blue" fullWidth mt="md" radius="md">
+          REPORT A BUG
+        </Button>
+      </Link>
     </Card>
   );
 };
