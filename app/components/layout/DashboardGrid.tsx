@@ -14,16 +14,19 @@ interface Props {
 }
 
 const DashboardGrid = ({ children }: Props) => {
-  const [child1, child2, child3, child4, child5] =
+  const [child1, child2, child3, child4, child5, child6] =
     React.Children.toArray(children);
   return (
     <Grid>
       {/* Left Column */}
-      <GridCol span={{ base: 12, md: 6, xl: 3 }}>
-        <Stack>{child1}</Stack>
+      <GridCol span={{ base: 12, md: 6, xl: 4 }}>
+        <Stack>
+          {child1}
+          {child6}
+        </Stack>
       </GridCol>
       {/* Center Column */}
-      <GridCol span={{ base: 12, md: 6, xl: 5 }}>
+      <GridCol span={{ base: 12, md: 6, xl: 4 }}>
         <Stack>
           {child2}
           {child5}

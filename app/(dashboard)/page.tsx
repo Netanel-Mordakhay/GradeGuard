@@ -10,6 +10,8 @@ import TopStatistics from "../components/dashboard/TopStatistics";
 import ChartBox from "../components/dashboard/ChartBox";
 import { getUserStats } from "@/lib/getUserStats";
 import { getUserChartData } from "@/lib/getUserChartData";
+import TodosBox from "../components/dashboard/TodosBox";
+import { getUserTodos } from "@/lib/getUserTodos";
 
 export default async function Home() {
   // Get info
@@ -17,8 +19,9 @@ export default async function Home() {
   const { courses } = await getUserCourses();
   const stats = await getUserStats();
   const chartData = await getUserChartData();
+  const { todos } = await getUserTodos();
 
-  if (!user || !stats || !chartData) {
+  if (!user || !stats || !chartData || !todos) {
     return null;
   }
 
@@ -33,6 +36,7 @@ export default async function Home() {
         <QuickActionsBox />
         <TipsBox />
         <ChartBox chartData={chartData} />
+        <TodosBox todos={todos} />
       </DashboardGrid>
     </Stack>
   );
