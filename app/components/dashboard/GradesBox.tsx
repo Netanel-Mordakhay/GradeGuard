@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { Group, RingProgress, Text, useMantineTheme } from "@mantine/core";
 import DefaultCard from "../global/DefaultCard";
@@ -13,8 +12,6 @@ interface Props {
 }
 
 const GradesBox = ({ stats }: Props) => {
-  const theme = useMantineTheme();
-
   return (
     <DefaultCard title="My Grades" link="courses" linkText="View All Courses">
       <Group justify="space-between" wrap="nowrap">
@@ -53,7 +50,7 @@ const GradesBox = ({ stats }: Props) => {
           roundCaps
           thickness={12}
           size={150}
-          sections={[{ value: stats.averageGrade, color: theme.primaryColor }]}
+          sections={[{ value: stats.averageGrade, color: "blue" }]}
           label={
             <div>
               <Text ta="center" className="text-lead text-lead-lg">
