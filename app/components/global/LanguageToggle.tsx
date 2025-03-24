@@ -2,6 +2,7 @@ import { Menu, UnstyledButton, Group, Image } from "@mantine/core";
 import { IconChevronDown } from "@tabler/icons-react";
 import classes from "../../styles/LanguageToggle.module.css";
 import React, { useState } from "react";
+import { useMediaQuery } from "@mantine/hooks";
 
 const data = [
   { label: "English", image: "/language/usflag.webp" },
@@ -9,6 +10,7 @@ const data = [
 ];
 
 const LanguageToggle = () => {
+  const isMobile = useMediaQuery("(max-width: 768px)");
   const [opened, setOpened] = useState(false);
   const [selected, setSelected] = useState(data[0]);
   const items = data.map((item) => (
@@ -34,9 +36,11 @@ const LanguageToggle = () => {
           className={classes.control}
           data-expanded={opened || undefined}
         >
-          <Group gap="xs">
+          <Group gap="xs" mr={5}>
             <Image src={selected.image} width={14} height={14} />
-            <span className={classes.label}>{selected.label}</span>
+            {!isMobile && (
+              <span className={classes.label}>{selected.label}</span>
+            )}
           </Group>
           <IconChevronDown size={14} className={classes.icon} stroke={1.5} />
         </UnstyledButton>
