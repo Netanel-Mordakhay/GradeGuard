@@ -18,6 +18,7 @@ const AuthenticationLayout = ({ children }: Props) => {
       maw={1000}
       gap={50}
       h={{ base: "100%", lg: "70svh" }}
+      className="overlay-gradient"
     >
       {left}
       <Box visibleFrom="lg">{right}</Box>

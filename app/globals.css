@@ -86,10 +86,10 @@
 
 /* Decoration */
 .overlay-gradient {
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    75deg,
-    var(--mantine-color-default) 0%,
-    var(--mantine-color-blue-filled) 200%
+  background: rgb(35, 0, 255);
+  background: radial-gradient(
+    circle,
+    rgba(35, 0, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0) 50%
   );
 }
