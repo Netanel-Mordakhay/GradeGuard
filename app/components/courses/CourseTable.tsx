@@ -41,7 +41,7 @@ const CoursesTable = ({ courses }: { courses: Course[] }) => {
                 </Group>
               </Group>
             </Accordion.Control>
-            <Accordion.Panel className="overlay-gradient">
+            <Accordion.Panel className="course-background">
               <CourseInfo course={course}>
                 {/* Passed children, edit / delete modal buttons */}
                 <ModalButton>

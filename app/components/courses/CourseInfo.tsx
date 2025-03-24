@@ -1,13 +1,4 @@
-import {
-  Group,
-  Stack,
-  Title,
-  SemiCircleProgress,
-  Text,
-  Grid,
-  GridCol,
-  Center,
-} from "@mantine/core";
+import { Group, Stack, Text, RingProgress } from "@mantine/core";
 import { Course } from "@/app/validationSchemas";
 import { IconSchool } from "@tabler/icons-react";
 import React, { ReactNode } from "react";
@@ -25,37 +16,61 @@ const CourseInfo = ({ course, children }: Props) => {
   return (
     <Stack>
       {/* Delete / Edit buttons */}
-      <Group justify="flex-end" mt={10} mb={-30}>
+      <Group justify="flex-end" mt={10} mb={-25}>
         {child1}
         {child2}
       </Group>
-      <Grid w="100%" justify="space-between" align="center" grow my={10}>
-        <GridCol span={{ base: 12, lg: 2 }} visibleFrom="xl" ta="center">
-          <IconSchool size="80%" opacity={0.1} />
-        </GridCol>
-        <GridCol span={{ base: 12, lg: 6 }}>
-          <Title size="xl">{course.title}</Title>
-          <Group mt={10} opacity={0.8}>
-            <Text>Grade: {course.grade || "Binary"}</Text>
-            <Text>Credits: {course.credits || "-"}</Text>
-            <Text>Year: {course.year || "-"}</Text>
-            <Text>Semester: {course.semester || "-"}</Text>
+      <Group justify="space-between" wrap="nowrap">
+        <div>
+          <div>
+            <Text className="text-lead text-lead-xl" mt="md">
+              {course.grade || "Binary"}
+            </Text>
+            <Text className="text-label-xs">Course grade</Text>
+          </div>
+          <div>
+            <Text className="text-lead text-lead-xl" mt="md">
+              {course.credits}
+            </Text>
+            <Text fz="xs" c="dimmed">
+              Credits
+            </Text>
+          </div>
+          <Group mt="md">
+            <div>
+              <Text className="text-lead text-lead-md">
+                {course.year || "-"}
+              </Text>
+              <Text className="text-label-xs">Year</Text>
+            </div>
+            <div>
+              <Text className="text-lead text-lead-md">
+                {course.semester || "-"}
+              </Text>
+              <Text className="text-label-xs">Semester</Text>
+            </div>
           </Group>
-        </GridCol>
+        </div>
 
-        {/* Grade semi circle */}
-        <GridCol span={{ base: 12, lg: 3 }}>
-          <Center>
-            {course.grade && (
-              <SemiCircleProgress
-                value={course.grade}
-                transitionDuration={250}
-                label={`${course.grade}/100`}
-              />
-            )}
-          </Center>
-        </GridCol>
-      </Grid>
+        {course.grade && (
+          <RingProgress
+            roundCaps
+            thickness={12}
+            size={150}
+            sections={[{ value: course.grade, color: "blue" }]}
+            label={
+              <div>
+                <Text ta="center" className="text-lead text-lead-lg">
+                  {course.grade}
+                </Text>
+                <Text ta="center" className="text-label-xs">
+                  /100
+                </Text>
+              </div>
+            }
+          />
+        )}
+      </Group>
     </Stack>
   );
 };

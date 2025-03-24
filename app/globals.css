@@ -51,14 +51,6 @@
 
 /* Layouts */
 /* ------- */
-.auth-form-gradient-background {
-  background: var(--mantine-color-default);
-  background: radial-gradient(
-    circle,
-    var(--mantine-color-blue-filled) 0%,
-    var(--mantine-color-default) 70%
-  );
-}
 
 /* Pages */
 /* ----- */
@@ -119,4 +111,20 @@
     rgba(35, 0, 255, 0.06) 0%,
     rgba(255, 255, 255, 0) 50%
   );
+}
+
+.overlay-gradient-linear {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    75deg,
+    var(--mantine-color-default) 0%,
+    var(--mantine-color-blue-filled) 200%
+  );
+}
+
+.course-background {
+  background-image: url("/images/course-background.webp");
+  background-size: cover;
+  background-position: left;
+  background-repeat: no-repeat;
 }

@@ -1,6 +1,3 @@
-.root {
-}
-
 .item {
   background-color: light-dark(
     var(--mantine-color-gray-0),
