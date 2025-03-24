@@ -12,7 +12,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
         {children}
         <Logo />
       </Group>
-      <Group>
+      <Group gap={0}>
         <LanguageToggle />
         <ThemeToggle />
       </Group>

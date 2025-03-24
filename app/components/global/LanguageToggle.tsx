@@ -19,7 +19,7 @@ const LanguageToggle = () => {
       onClick={() => setSelected(item)}
       key={item.label}
     >
-      {item.label}
+      {!isMobile && item.label}
     </Menu.Item>
   ));
 
@@ -42,7 +42,6 @@ const LanguageToggle = () => {
               <span className={classes.label}>{selected.label}</span>
             )}
           </Group>
-          <IconChevronDown size={14} className={classes.icon} stroke={1.5} />
         </UnstyledButton>
       </Menu.Target>
       <Menu.Dropdown>{items}</Menu.Dropdown>
