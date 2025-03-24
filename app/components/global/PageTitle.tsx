@@ -10,6 +10,7 @@ const pathToTitle: Record<string, string> = {
   "/profile": "User Profile",
   "/contact-us": "Contact Us",
   "/todos": "Assignments & Exams",
+  "/study-session": "Study Session",
 };
 
 const PageTitle = () => {

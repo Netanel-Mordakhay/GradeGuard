@@ -1,24 +1,24 @@
 "use client";
 import React from "react";
-
-import { Card, Button, Text } from "@mantine/core";
+import { IconBug } from "@tabler/icons-react";
+import { Button, Box } from "@mantine/core";
 import Link from "next/link";
 
 const ReportBug = () => {
   return (
-    <Card shadow="sm" padding="lg" radius="md" c="white" bg="white" w="100%">
-      <Text size="sm" c="dimmed" ta="center">
-        Found a bug? let me know, so I'll be able to make{" "}
-        <span style={{ fontWeight: 600 }}>GradeGuard</span> the best it could
-        be!
-      </Text>
-
+    <Box w={200} mx="auto">
       <Link href="/contact-us" style={{ textDecoration: "none" }}>
-        <Button color="blue" fullWidth mt="md" radius="md">
+        <Button
+          variant="outline"
+          fullWidth
+          radius="md"
+          size="xs"
+          leftSection={<IconBug size={18} />}
+        >
           REPORT A BUG
         </Button>
       </Link>
-    </Card>
+    </Box>
   );
 };
 

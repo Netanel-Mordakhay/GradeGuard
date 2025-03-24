@@ -2,7 +2,7 @@ import { usePathname } from "next/navigation";
 import {
   IconHome,
   IconBooks,
-  IconPencil,
+  IconClock,
   IconAlignJustified,
   IconUser,
   IconLogout,
@@ -19,6 +19,7 @@ const data = [
   { link: "/", label: "Dashboard", icon: IconHome },
   { link: "/courses", label: "Courses", icon: IconBooks },
   { link: "/todos", label: "Assignments & Exams", icon: IconAlignJustified },
+  { link: "/study-session", label: "Study Session", icon: IconClock },
 ];
 
 interface Props {
