@@ -20,10 +20,10 @@ const ChartBox = ({ chartData }: Props) => {
   }));
 
   return (
-    <DefaultCard title="My Progress">
+    <DefaultCard title="My Progress" link="courses" linkText="View Full Graph">
       {dataExists ? (
         <LineChart
-          h={220}
+          h={240}
           data={data}
           dataKey="date"
           yAxisLabel="Grade"

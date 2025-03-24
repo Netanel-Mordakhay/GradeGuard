@@ -19,14 +19,14 @@ const DashboardGrid = ({ children }: Props) => {
   return (
     <Grid>
       {/* Left Column */}
-      <GridCol span={{ base: 12, md: 6, xl: 4 }}>
+      <GridCol span={{ base: 12, md: 6, xl: 3.5 }}>
         <Stack>
           {child1}
           {child6}
         </Stack>
       </GridCol>
       {/* Center Column */}
-      <GridCol span={{ base: 12, md: 6, xl: 4 }}>
+      <GridCol span={{ base: 12, md: 6, xl: 4.5 }}>
         <Stack>
           {child2}
           {child5}

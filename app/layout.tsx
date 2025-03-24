@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { rubik } from "./styles/fonts";
 import "@mantine/core/styles.css";
 import "@mantine/charts/styles.css";
+import "@mantine/dates/styles.css";
 import "@/app/globals.css";
 import {
   ColorSchemeScript,

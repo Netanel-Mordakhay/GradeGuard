@@ -1,34 +1,35 @@
-import React from "react";
-import DefaultCard from "../global/DefaultCard";
+"use client";
+import { Calendar } from "@mantine/dates";
 import { TodoWithCourse } from "@/app/validationSchemas";
-import { Divider, Group, Text } from "@mantine/core";
+import { Badge } from "@mantine/core";
+import { isSameDay } from "date-fns";
+import DefaultCard from "../global/DefaultCard";
 
 interface Props {
   todos: TodoWithCourse[];
 }
 
-const TodosBox = ({ todos }: Props) => {
-  const latestTodos = todos.slice(0, 5);
+const TodoCalendar = ({ todos }: Props) => {
+  const dueDates = todos
+    .filter((todo) => todo.dueDate)
+    .map((todo) => new Date(todo.dueDate!));
 
   return (
     <DefaultCard
-      title="My Assignments"
+      title="Assignments Calendar"
       link="todos"
       linkText="View All Assignments"
     >
-      {latestTodos.map((todo) => (
-        <React.Fragment key={todo.id}>
-          <Group justify="space-between">
-            <Text className="text-secondary text-lead-md">{todo.title}</Text>
-            <Text className="text-label-xs">
-              {todo.dueDate ? new Date(todo.dueDate).toLocaleDateString() : "-"}
-            </Text>
-          </Group>
-          <Divider />
-        </React.Fragment>
-      ))}
+      <Calendar
+        highlightToday
+        onChange={(date) => console.log("Selected date:", date)}
+        getDayProps={(date) => {
+          const hasTodo = dueDates.some((d) => isSameDay(d, date));
+          return hasTodo ? { selected: true } : {};
+        }}
+      />
     </DefaultCard>
   );
 };
 
-export default TodosBox;
+export default TodoCalendar;
