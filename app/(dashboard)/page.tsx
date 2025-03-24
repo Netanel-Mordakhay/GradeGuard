@@ -12,6 +12,7 @@ import { getUserStats } from "@/lib/getUserStats";
 import { getUserChartData } from "@/lib/getUserChartData";
 import TodosBox from "../components/dashboard/TodosBox";
 import { getUserTodos } from "@/lib/getUserTodos";
+import SocialIcons from "../components/global/SocialIcons";
 
 export default async function Home() {
   // Get info
@@ -37,6 +38,7 @@ export default async function Home() {
         <TipsBox />
         <ChartBox chartData={chartData} />
         <TodosBox todos={todos} />
+        <SocialIcons />
       </DashboardGrid>
     </Stack>
   );
