@@ -7,8 +7,8 @@ import {
   IconClock,
   IconBed,
   IconStar,
-  IconDownload,
-  IconMoodEdit,
+  IconBookDownload,
+  IconFileDownload,
   IconBrandFacebook,
 } from "@tabler/icons-react";
 import {
@@ -31,11 +31,11 @@ const mockdata = [
   { title: "Anticipate my grade", icon: IconStar, color: "cyan" },
   {
     title: "Export courses",
-    icon: IconDownload,
+    icon: IconBookDownload,
     color: "pink",
     onClick: handleExportGrades,
   },
-  { title: "Edit profile", icon: IconMoodEdit, color: "red" },
+  { title: "Export assignments", icon: IconFileDownload, color: "red" },
   { title: "Follow on Facebook", icon: IconBrandFacebook, color: "blue" },
 ];
 
