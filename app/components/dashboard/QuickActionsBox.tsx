@@ -19,6 +19,7 @@ import {
 } from "@mantine/core";
 import classes from "../../styles/QuickActions.module.css";
 import DefaultCard from "../global/DefaultCard";
+import { handleExportGrades } from "@/lib/quickActions";
 import { motion } from "framer-motion";
 
 const mockdata = [
@@ -28,7 +29,12 @@ const mockdata = [
   { title: "Study session", icon: IconClock, color: "green" },
   { title: "Let me rest a bit", icon: IconBed, color: "teal" },
   { title: "Anticipate my grade", icon: IconStar, color: "cyan" },
-  { title: "Export my grades", icon: IconDownload, color: "pink" },
+  {
+    title: "Export courses",
+    icon: IconDownload,
+    color: "pink",
+    onClick: handleExportGrades,
+  },
   { title: "Edit profile", icon: IconMoodEdit, color: "red" },
   { title: "Follow on Facebook", icon: IconBrandFacebook, color: "blue" },
 ];
@@ -43,7 +49,7 @@ const QuickActionsBox = () => {
       className={classes.item}
       key={item.title}
     >
-      <UnstyledButton ta="center">
+      <UnstyledButton ta="center" onClick={item.onClick}>
         <item.icon color={theme.colors[item.color][6]} size={32} />
         <Text size="xs">{item.title}</Text>
       </UnstyledButton>

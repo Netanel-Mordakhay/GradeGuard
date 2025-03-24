@@ -135,3 +135,16 @@ export function normalizeCourse(dbCourse: Prisma.CourseGetPayload<{}>): Course {
     semester: dbCourse.semester ?? undefined,
   };
 }
+
+export function normalizeCourseForExport(
+  dbCourse: Prisma.CourseGetPayload<{}>
+): z.infer<typeof createCourseSchema> {
+  return {
+    title: dbCourse.title,
+    grade: dbCourse.grade ?? undefined,
+    credits: dbCourse.credits,
+    isBinary: dbCourse.isBinary ?? undefined,
+    year: dbCourse.year ?? undefined,
+    semester: dbCourse.semester ?? undefined,
+  };
+}
