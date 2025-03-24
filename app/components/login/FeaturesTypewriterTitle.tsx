@@ -1,6 +1,7 @@
 "use client";
 import { Title } from "@mantine/core";
 import { Typewriter } from "react-simple-typewriter";
+import { rubik } from "../../styles/fonts";
 import React from "react";
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 
 const FeaturesTypewriterTitle = ({ small }: Props) => {
   return (
-    <Title ta="center" fz={small ? "h3" : "h1"}>
+    <Title ta="center" className={rubik.className} fz={small ? "h3" : "h1"}>
       <Typewriter
         words={[
           "What's Grade",
