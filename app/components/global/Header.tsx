@@ -3,6 +3,7 @@ import ThemeToggle from "./ThemeToggle";
 import { Grid, Group, Text } from "@mantine/core";
 import Logo from "./Logo";
 import Link from "next/link";
+import LanguageToggle from "./LanguageToggle";
 
 const Header = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -12,6 +13,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
         <Logo />
       </Group>
       <Group>
+        <LanguageToggle />
         <ThemeToggle />
       </Group>
     </Group>

@@ -37,7 +37,7 @@ const TodoCalendar = ({ todos }: Props) => {
       link="todos"
       linkText="View All Assignments"
     >
-      <Center>
+      <Center dir="ltr">
         <Calendar
           size="sm"
           highlightToday
