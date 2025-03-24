@@ -9,10 +9,11 @@ const ReportBug = () => {
     <Box w={200} mx="auto">
       <Link href="/contact-us" style={{ textDecoration: "none" }}>
         <Button
-          variant="outline"
+          variant="light"
           fullWidth
           radius="md"
           size="xs"
+          color="var(--mantine-color-body)"
           leftSection={<IconBug size={18} />}
         >
           REPORT A BUG
