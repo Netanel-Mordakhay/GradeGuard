@@ -13,6 +13,21 @@ export const SEMESTER_OPTIONS = [
   { value: "SUMMER", label: "Summer Semester" },
 ] as const;
 
+export const CATEGORY_OPTIONS = [
+  { label: "General", value: "GENERAL" },
+  { label: "Homework", value: "HOMEWORK" },
+  { label: "Test", value: "TEST" },
+] as const;
+
+export const COLOR_OPTIONS = [
+  { label: "Red", value: "RED" },
+  { label: "Blue", value: "BLUE" },
+  { label: "Green", value: "GREEN" },
+  { label: "Yellow", value: "YELLOW" },
+  { label: "Purple", value: "PURPLE" },
+  { label: "Orange", value: "ORANGE" },
+] as const;
+
 export const AVATAR_OPTIONS = [
   { id: "avatar1", src: "/images/avatars/avatar1.webp" },
   { id: "avatar2", src: "/images/avatars/avatar2.webp" },

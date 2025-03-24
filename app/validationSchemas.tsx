@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { Prisma } from "@prisma/client";
 
-/* Validation object's schema */
+/* Create course object's schema */
 export const createCourseSchema = z.object({
   title: z.string().min(3).max(255),
   grade: z.number().min(0).max(100).optional().nullable(),
@@ -73,12 +73,48 @@ export const updateUserSchema = z.object({
     .optional(),
 });
 
+/* TODO Validation */
+export const createTodoSchema = z.object({
+  title: z.string().min(1).max(255),
+  description: z.string().max(1000).optional(),
+  dueDate: z.preprocess(
+    (val) => (val === "" ? null : val),
+    z.union([z.string().datetime(), z.date()]).optional().nullable()
+  ),
+  category: z
+    .enum(["GENERAL", "HOMEWORK", "TEST"])
+    .optional()
+    .default("GENERAL"),
+  importance: z.number().int().min(1).max(5).optional().nullable(),
+  color: z
+    .enum(["RED", "BLUE", "GREEN", "YELLOW", "PURPLE", "ORANGE"])
+    .optional()
+    .nullable(),
+  courseId: z.number().optional().nullable(),
+});
+
+/* For fetch - fetches with id */
+export const todoSchema = createTodoSchema.extend({
+  id: z.number(),
+});
+
+/* COMMENT Schema */
+export const createTodoCommentSchema = z.object({
+  text: z.string().min(1).max(255),
+  todoId: z.number(),
+});
+
 /* TypeScript Type */
 export type CourseForm = z.infer<typeof createCourseSchema>;
 export type Course = z.infer<typeof courseSchema>;
+
 export type RegisterForm = z.infer<typeof registerSchema>;
 export type LoginForm = z.infer<typeof loginSchema>;
 export type UpdateUserForm = z.infer<typeof updateUserSchema>;
+
+export type CreateTodoForm = z.infer<typeof createTodoSchema>;
+export type Todo = z.infer<typeof todoSchema>;
+export type CreateTodoCommentForm = z.infer<typeof createTodoCommentSchema>;
 
 /* Normalizing courses before using in in the UI - 
 TODO: this should be later fixed, but currently solves the issue,
