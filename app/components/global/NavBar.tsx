@@ -18,7 +18,7 @@ import ReportBug from "./ReportBug";
 const data = [
   { link: "/", label: "Dashboard", icon: IconHome },
   { link: "/courses", label: "Courses", icon: IconBooks },
-  { link: "/todos", label: "Assignments", icon: IconAlignJustified },
+  { link: "/todos", label: "Assignments & Exams", icon: IconAlignJustified },
 ];
 
 interface Props {

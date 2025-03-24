@@ -1,7 +1,19 @@
+import { getUserTodos } from "@/lib/getUserTodos";
 import React from "react";
+import DefaultCard from "../global/DefaultCard";
+import ClientTodosManager from "./ClientTodosManager";
 
-const TodosList = () => {
-  return <div>TodosList</div>;
+const TodosList = async () => {
+  const { todos, error } = await getUserTodos();
+
+  if (error) {
+    return <DefaultCard title="My Courses">Unauthorized</DefaultCard>;
+  }
+  return (
+    <DefaultCard title="My Courses">
+      <ClientTodosManager todos={todos} />
+    </DefaultCard>
+  );
 };
 
 export default TodosList;

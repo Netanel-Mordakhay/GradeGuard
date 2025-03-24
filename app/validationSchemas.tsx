@@ -75,8 +75,8 @@ export const updateUserSchema = z.object({
 
 /* TODO Validation */
 export const createTodoSchema = z.object({
-  title: z.string().min(1).max(255),
-  description: z.string().max(1000).optional(),
+  title: z.string().min(3).max(255),
+  description: z.string().max(255).optional(),
   dueDate: z.preprocess(
     (val) => (val === "" ? null : val),
     z.union([z.string().datetime(), z.date()]).optional().nullable()
@@ -115,10 +115,15 @@ export type UpdateUserForm = z.infer<typeof updateUserSchema>;
 export type CreateTodoForm = z.infer<typeof createTodoSchema>;
 export type Todo = z.infer<typeof todoSchema>;
 export type CreateTodoCommentForm = z.infer<typeof createTodoCommentSchema>;
+export type TodoWithCourse = Prisma.TodoGetPayload<{
+  include: { course: true };
+}>;
+
+/* At the beginning only god and I knew why these works - now, only god and GPT do. */
 
 /* Normalizing courses before using in in the UI - 
 TODO: this should be later fixed, but currently solves the issue,
-but I don't really like this implementation of its */
+but I don't really like this implementation of its because it's not-so-very-smart */
 export function normalizeCourse(dbCourse: Prisma.CourseGetPayload<{}>): Course {
   return {
     id: dbCourse.id,
