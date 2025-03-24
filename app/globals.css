@@ -102,6 +102,17 @@
   z-index: -10;
 }
 
+/* Cards */
+/* ----------- */
+.card-header {
+  background-color: light-dark(
+    var(--mantine-color-gray-0),
+    var(--mantine-color-dark-7)
+  );
+  padding-top: var(--mantine-spacing-xs);
+  padding-bottom: var(--mantine-spacing-xs);
+}
+
 /* Decorations */
 /* ----------- */
 .overlay-gradient {

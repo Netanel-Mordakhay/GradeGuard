@@ -24,7 +24,12 @@ const DefaultCard = ({ children, title, link, linkText, showCover }: Props) => {
         />
       )}
       {title && (
-        <CardSection withBorder inheritPadding py="xs">
+        <CardSection
+          withBorder
+          inheritPadding
+          //py="xs"
+          className="card-header"
+        >
           <Group gap={5}>
             <IconArrowBadgeRight />
             <Text fw={500}>{title}</Text>
