@@ -8,6 +8,7 @@ const pathToTitle: Record<string, string> = {
   "/dashboard": "Dashboard",
   "/courses": "Courses",
   "/profile": "User Profile",
+  "/contact-us": "Contact Us",
 };
 
 const PageTitle = () => {

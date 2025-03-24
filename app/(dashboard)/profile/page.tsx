@@ -8,6 +8,11 @@ import { getUserSession } from "@/lib/getUserSession";
 import { Divider, Stack, VisuallyHidden } from "@mantine/core";
 import EditProfileForm from "@/app/components/profile/EditProfileForm";
 
+export const metadata = {
+  title: "GradeGuard - Edit Profile",
+  description: "Manage your courses efficiently with GradeGuard",
+};
+
 const ProfilePage = async () => {
   const user = await getUserSession();
   return (
