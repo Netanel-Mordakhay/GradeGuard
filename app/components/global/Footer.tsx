@@ -4,22 +4,20 @@ import {
   IconBrandLinkedin,
   IconBrandGithub,
 } from "@tabler/icons-react";
+import { motion } from "framer-motion";
 import React from "react";
+import PersonalLinks from "./PersonalLinks";
 
 const Footer = () => {
   return (
     <Group justify="space-between" align="center" px={20} h="100%" c="dimmed">
       <Box display="flex">
-        <Text size="md">GradeGuard.app ©</Text>
-        <Text size="md" ml={4} visibleFrom="xs">
+        <Text className="text-label-xs">GradeGuard.app ©</Text>
+        <Text ml={2} visibleFrom="xs" className="text-label-xs">
           by Netanel Mordakhay
         </Text>
       </Box>
-      <Group>
-        <IconWorldWww size={24} />
-        <IconBrandLinkedin size={24} />
-        <IconBrandGithub size={24} />
-      </Group>
+      <PersonalLinks />
     </Group>
   );
 };

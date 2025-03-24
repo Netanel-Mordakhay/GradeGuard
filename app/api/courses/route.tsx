@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route"; // Import הגדרות האימות
+import { authOptions } from "../auth/[...nextauth]/route";
 import prisma from "@/prisma/client";
 import { createCourseSchema } from "../../validationSchemas";
 

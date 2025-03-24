@@ -13,7 +13,11 @@ interface Props {
 }
 
 const ClientLayout = ({ content, hideNav }: Props) => {
-  const [opened, { toggle }] = useDisclosure();
+  const [opened, { toggle, close }] = useDisclosure();
+
+  const handleLinkClick = () => {
+    close();
+  };
 
   return (
     <AppShell
@@ -28,13 +32,20 @@ const ClientLayout = ({ content, hideNav }: Props) => {
     >
       <AppShell.Header className="layout-header">
         <Header>
-          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+          {!hideNav && (
+            <Burger
+              opened={opened}
+              onClick={toggle}
+              hiddenFrom="sm"
+              size="sm"
+            />
+          )}
         </Header>
       </AppShell.Header>
 
       {!hideNav && (
         <AppShell.Navbar className="deafult-navbar" bg="#ffffff00" bd={0}>
-          <NavBar />
+          <NavBar onLinkClick={handleLinkClick} />
         </AppShell.Navbar>
       )}
 

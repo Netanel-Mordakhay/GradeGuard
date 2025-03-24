@@ -22,7 +22,11 @@ const data = [
   { link: "/todos", label: "To do", icon: IconAlignJustified },
 ];
 
-const NavBar = () => {
+interface Props {
+  onLinkClick?: () => void;
+}
+
+const NavBar = ({ onLinkClick }: Props) => {
   const currentPath = usePathname();
 
   const links = data.map((item) => (
@@ -31,6 +35,7 @@ const NavBar = () => {
       data-active={item.link === currentPath || undefined}
       href={item.link}
       key={item.label}
+      onClick={onLinkClick}
     >
       <item.icon className={classes.linkIcon} stroke={1.5} />
       <span>{item.label}</span>
@@ -47,6 +52,7 @@ const NavBar = () => {
           className={classes.link}
           data-active={"/profile" === currentPath || undefined}
           href="/profile"
+          onClick={onLinkClick}
         >
           <IconUser className={classes.linkIcon} stroke={1.5} />
           <span>Account</span>
