@@ -1,4 +1,5 @@
 /* App Shell */
+/* -------- */
 .layout-header {
   height: 100%;
   background: rgb(255, 255, 255);
@@ -21,11 +22,35 @@
 }
 
 /* Typography */
+/* ---------- */
 .blue-filled {
   color: var(--mantine-color-blue-filled);
 }
 
+/* 'text-...' to only be used for UI's <Text> component */
+.text-lead {
+  font-weight: 700 !important;
+  line-height: 1 !important;
+}
+.text-lead-xl {
+  font-size: 24px !important;
+}
+
+.text-lead-lg {
+  font-size: var(--mantine-font-size-lg) !important;
+}
+
+.text-lead-md {
+  font-size: var(--mantine-font-size-md) !important;
+}
+
+.text-label-xs {
+  font-size: var(--mantine-font-size-xs) !important;
+  color: var(--mantine-color-dimmed) !important;
+}
+
 /* Layouts */
+/* ------- */
 .auth-form-gradient-background {
   background: var(--mantine-color-default);
   background: radial-gradient(
@@ -36,6 +61,7 @@
 }
 
 /* Pages */
+/* ----- */
 .page-title {
   background: rgb(255, 255, 255);
   background: linear-gradient(
@@ -84,7 +110,8 @@
   z-index: -10;
 }
 
-/* Decoration */
+/* Decorations */
+/* ----------- */
 .overlay-gradient {
   background: rgb(35, 0, 255);
   background: radial-gradient(

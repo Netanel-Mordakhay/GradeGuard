@@ -69,9 +69,9 @@ const LoginForm = () => {
         radius="md"
         w={{ base: "100%", xs: 400 }}
       >
-        <Title ta="center" mb="md" size="xl">
+        <Text ta="center" mb="md" size="xl" fw={500}>
           Login
-        </Title>
+        </Text>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack>

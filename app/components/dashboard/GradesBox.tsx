@@ -1,16 +1,7 @@
 "use client";
 import React from "react";
-import {
-  Button,
-  Card,
-  Group,
-  RingProgress,
-  Text,
-  useMantineTheme,
-} from "@mantine/core";
-import classes from "../../styles/GradeBox.module.css";
+import { Group, RingProgress, Text, useMantineTheme } from "@mantine/core";
 import DefaultCard from "../global/DefaultCard";
-import Link from "next/link";
 
 interface Props {
   stats: {
@@ -21,30 +12,21 @@ interface Props {
   };
 }
 
-const stats = [
-  { value: 31, label: "Total courses" },
-  { value: 101, label: "Total credits" },
-];
-
 const GradesBox = ({ stats }: Props) => {
   const theme = useMantineTheme();
-  const completed = 1887;
-  const total = 2334;
 
   return (
     <DefaultCard title="My Grades" link="courses" linkText="View All Courses">
-      <div className={classes.inner}>
+      <Group justify="space-between" wrap="nowrap">
         <div>
           <div>
-            <Text className={classes.lead} mt="md">
+            <Text className="text-lead text-lead-xl" mt="md">
               {stats.averageGrade}
             </Text>
-            <Text fz="xs" c="dimmed">
-              Alltime average
-            </Text>
+            <Text className="text-label-xs">Alltime average</Text>
           </div>
           <div>
-            <Text className={classes.lead} mt="md">
+            <Text className="text-lead text-lead-xl" mt="md">
               {stats.latestGrade || "0"}
             </Text>
             <Text fz="xs" c="dimmed">
@@ -53,41 +35,37 @@ const GradesBox = ({ stats }: Props) => {
           </div>
           <Group mt="md">
             <div>
-              <Text className={classes.label}>{stats.totalCourses}</Text>
-              <Text size="xs" c="dimmed">
-                Total courses
+              <Text className="text-lead text-lead-md">
+                {stats.totalCourses}
               </Text>
+              <Text className="text-label-xs">Total courses</Text>
             </div>
             <div>
-              <Text className={classes.label}>{stats.totalCredits}</Text>
-              <Text size="xs" c="dimmed">
-                Total credits
+              <Text className="text-lead text-lead-md">
+                {stats.totalCredits}
               </Text>
+              <Text className="text-label-xs">Total credits</Text>
             </div>
           </Group>
         </div>
 
-        <div className={classes.ring}>
-          <RingProgress
-            roundCaps
-            thickness={12}
-            size={150}
-            sections={[
-              { value: stats.averageGrade, color: theme.primaryColor },
-            ]}
-            label={
-              <div>
-                <Text ta="center" fz="lg" className={classes.label}>
-                  {stats.averageGrade}
-                </Text>
-                <Text ta="center" fz="xs" c="dimmed">
-                  /100
-                </Text>
-              </div>
-            }
-          />
-        </div>
-      </div>
+        <RingProgress
+          roundCaps
+          thickness={12}
+          size={150}
+          sections={[{ value: stats.averageGrade, color: theme.primaryColor }]}
+          label={
+            <div>
+              <Text ta="center" className="text-lead text-lead-lg">
+                {stats.averageGrade}
+              </Text>
+              <Text ta="center" className="text-label-xs">
+                /100
+              </Text>
+            </div>
+          }
+        />
+      </Group>
     </DefaultCard>
   );
 };

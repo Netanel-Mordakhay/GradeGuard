@@ -4,7 +4,7 @@ import {
   Button,
   Paper,
   Stack,
-  Title,
+  Text,
   Alert,
   Divider,
   Loader,
@@ -64,9 +64,9 @@ const RegisterForm = () => {
         radius="md"
         w={{ base: "100%", xs: 400 }}
       >
-        <Title ta="center" mb="md" size="xl">
+        <Text ta="center" mb="md" size="xl" fw={500}>
           Register
-        </Title>
+        </Text>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack>
