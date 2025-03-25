@@ -1,9 +1,15 @@
 import React from "react";
-import { TodoWithCourse } from "@/app/validationSchemas";
+import { Course, TodoWithCourse } from "@/app/validationSchemas";
 import TodosTable from "./TodosTable";
 
-const ClientTodosManager = ({ todos }: { todos: TodoWithCourse[] }) => {
-  return <TodosTable todos={todos} />;
+const ClientTodosManager = ({
+  todos,
+  courses,
+}: {
+  todos: TodoWithCourse[];
+  courses: Course[];
+}) => {
+  return <TodosTable todos={todos} courses={courses} />;
 };
 
 export default ClientTodosManager;

@@ -148,3 +148,15 @@ export function normalizeCourseForExport(
     semester: dbCourse.semester ?? undefined,
   };
 }
+
+export function normalizeTodoForForm(todo: TodoWithCourse): CreateTodoForm {
+  return {
+    title: todo.title,
+    description: todo.description ?? undefined,
+    dueDate: todo.dueDate ? new Date(todo.dueDate) : undefined,
+    category: todo.category,
+    importance: todo.importance ?? undefined,
+    color: todo.color ?? undefined,
+    courseId: todo.courseId ?? undefined,
+  };
+}

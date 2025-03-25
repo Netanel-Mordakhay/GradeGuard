@@ -13,7 +13,7 @@ const AssignmentsPage = async () => {
   const { courses } = await getUserCourses();
   return (
     <TwoColumns>
-      <TodosList />
+      <TodosList courses={courses} />
       <TodoForm courses={courses} />
     </TwoColumns>
   );

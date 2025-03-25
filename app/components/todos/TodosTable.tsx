@@ -9,14 +9,21 @@ import {
   Badge,
   Stack,
 } from "@mantine/core";
-import { TodoWithCourse } from "@/app/validationSchemas";
+import { Course, TodoWithCourse } from "@/app/validationSchemas";
 import { IconTrash } from "@tabler/icons-react";
 import classes from "../../styles/CourseTable.module.css";
 import TodoInfo from "./TodoInfo";
 import DeleteTodo from "./DeleteTodo";
 import ModalButton from "../global/ModalButton";
+import TodoForm from "./TodoForm";
 
-const TodosTable = ({ todos }: { todos: TodoWithCourse[] }) => {
+const TodosTable = ({
+  todos,
+  courses,
+}: {
+  todos: TodoWithCourse[];
+  courses: Course[];
+}) => {
   const [visibleCount, setVisibleCount] = useState(5);
   const visibleTodos = todos.slice(0, visibleCount);
 
@@ -59,7 +66,10 @@ const TodosTable = ({ todos }: { todos: TodoWithCourse[] }) => {
             <Accordion.Panel className="code-background">
               {/* TodoInfo card - Edit/Delete modals as children */}
               <TodoInfo todo={todo}>
-                <div>1</div>
+                <ModalButton>
+                  <TodoForm todo={todo} courses={courses} />
+                  <IconTrash size={16} />
+                </ModalButton>
                 <ModalButton>
                   <DeleteTodo todo={todo} />
                   <IconTrash size={16} />

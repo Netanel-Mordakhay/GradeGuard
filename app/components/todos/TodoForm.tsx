@@ -18,16 +18,19 @@ import {
   createTodoSchema,
   CreateTodoForm,
   Course,
+  TodoWithCourse,
 } from "@/app/validationSchemas";
 import DefaultCard from "../global/DefaultCard";
 import SuccessMessage from "../global/SuccessMessage";
+import { normalizeTodoForForm } from "@/app/validationSchemas";
 import { CATEGORY_OPTIONS, COLOR_OPTIONS } from "@/app/constants";
 
 interface Props {
   courses: Course[];
+  todo?: TodoWithCourse;
 }
 
-const TodoForm = ({ courses }: Props) => {
+const TodoForm = ({ courses, todo }: Props) => {
   const {
     register,
     handleSubmit,
@@ -37,6 +40,7 @@ const TodoForm = ({ courses }: Props) => {
   } = useForm<CreateTodoForm>({
     resolver: zodResolver(createTodoSchema),
     shouldUnregister: true,
+    defaultValues: todo ? normalizeTodoForForm(todo) : {},
   });
 
   const [isSubmitting, setSubmitting] = useState(false);
@@ -47,7 +51,11 @@ const TodoForm = ({ courses }: Props) => {
       setSubmitting(true);
       setSuccess(false);
 
-      await axios.post("/api/todos", data);
+      if (todo?.id) {
+        await axios.put(`/api/todos/${todo.id}`, data);
+      } else {
+        await axios.post("/api/todos", data);
+      }
 
       setSuccess(true);
       reset();
@@ -55,7 +63,7 @@ const TodoForm = ({ courses }: Props) => {
         window.location.reload();
       }, 1000);
     } catch (error) {
-      console.error("Error creating todo:", error);
+      console.error("Error submitting todo:", error);
     } finally {
       setSubmitting(false);
     }
@@ -152,7 +160,7 @@ const TodoForm = ({ courses }: Props) => {
           </InputWrapper>
 
           <Button type="submit" disabled={isSubmitting}>
-            Create Assignment
+            {todo ? "Update Assignment" : "Create Assignment"}
           </Button>
           {isSubmitting && (
             <Center>
