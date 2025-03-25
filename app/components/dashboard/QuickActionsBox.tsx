@@ -21,26 +21,37 @@ import classes from "../../styles/QuickActions.module.css";
 import DefaultCard from "../global/DefaultCard";
 import { handleExportGrades } from "@/lib/quickActions";
 import { motion } from "framer-motion";
-
-const mockdata = [
-  { title: "New course", icon: IconBookUpload, color: "violet" },
-  { title: "New to-do", icon: IconCubePlus, color: "indigo" },
-  { title: "New exam", icon: IconFileTextSpark, color: "orange" },
-  { title: "Study session", icon: IconClock, color: "green" },
-  { title: "Let me rest a bit", icon: IconBed, color: "teal" },
-  { title: "Anticipate my grade", icon: IconStar, color: "cyan" },
-  {
-    title: "Export courses",
-    icon: IconBookDownload,
-    color: "pink",
-    onClick: handleExportGrades,
-  },
-  { title: "Export assignments", icon: IconFileDownload, color: "red" },
-  { title: "AI Assistant", icon: IconMessageChatbot, color: "blue" },
-];
+import AnticipateGradeModal from "./anticipate-grade/AnticipateGradeModal";
+import { useDisclosure } from "@mantine/hooks";
 
 const QuickActionsBox = () => {
   const theme = useMantineTheme();
+  const [
+    openedAnticipated,
+    { open: openAnticipated, close: closeAnticipated },
+  ] = useDisclosure(false);
+
+  const mockdata = [
+    { title: "New course", icon: IconBookUpload, color: "violet" },
+    { title: "New to-do", icon: IconCubePlus, color: "indigo" },
+    { title: "New exam", icon: IconFileTextSpark, color: "orange" },
+    { title: "Study session", icon: IconClock, color: "green" },
+    { title: "Let me rest a bit", icon: IconBed, color: "teal" },
+    {
+      title: "Anticipate my grade",
+      icon: IconStar,
+      color: "cyan",
+      onClick: openAnticipated,
+    },
+    {
+      title: "Export courses",
+      icon: IconBookDownload,
+      color: "pink",
+      onClick: handleExportGrades,
+    },
+    { title: "Export assignments", icon: IconFileDownload, color: "red" },
+    { title: "AI Assistant", icon: IconMessageChatbot, color: "blue" },
+  ];
 
   const items = mockdata.map((item) => (
     <motion.div
@@ -57,9 +68,16 @@ const QuickActionsBox = () => {
   ));
 
   return (
-    <DefaultCard title="Quick Actions">
-      <SimpleGrid cols={3}>{items}</SimpleGrid>
-    </DefaultCard>
+    <>
+      <DefaultCard title="Quick Actions">
+        <SimpleGrid cols={3}>{items}</SimpleGrid>
+      </DefaultCard>
+
+      <AnticipateGradeModal
+        opened={openedAnticipated}
+        onClose={closeAnticipated}
+      />
+    </>
   );
 };
 
