@@ -1,6 +1,7 @@
 import { Group, Select, Stack, Text } from "@mantine/core";
 import { Course } from "@/app/validationSchemas";
 import React from "react";
+import { CATEGORY_OPTIONS, IMPORTANCE_LEVEL } from "@/app/constants";
 
 interface Props {
   filters: {
@@ -25,12 +26,7 @@ const FilterTodos = ({ filters, setFilters, courses }: Props) => {
       <Group justify="space-between">
         <Text>Category:</Text>
         <Select
-          data={[
-            { value: "ALL", label: "All" },
-            { value: "GENERAL", label: "General" },
-            { value: "HOMEWORK", label: "Homework" },
-            { value: "TEST", label: "Test" },
-          ]}
+          data={[{ value: "ALL", label: "All" }, ...CATEGORY_OPTIONS]}
           value={filters.category}
           onChange={(value) =>
             setFilters((prev) => ({ ...prev, category: value! }))
@@ -42,14 +38,7 @@ const FilterTodos = ({ filters, setFilters, courses }: Props) => {
       <Group justify="space-between">
         <Text>Importance:</Text>
         <Select
-          data={[
-            { value: "ALL", label: "All" },
-            { value: "5", label: "5 - Very High" },
-            { value: "4", label: "4 - High" },
-            { value: "3", label: "3 - Medium" },
-            { value: "2", label: "2 - Low" },
-            { value: "1", label: "1 - Very Low" },
-          ]}
+          data={IMPORTANCE_LEVEL}
           value={filters.importance}
           onChange={(value) =>
             setFilters((prev) => ({ ...prev, importance: value! }))

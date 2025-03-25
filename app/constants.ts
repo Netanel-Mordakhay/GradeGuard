@@ -28,6 +28,15 @@ export const COLOR_OPTIONS = [
   { label: "Orange", value: "ORANGE" },
 ] as const;
 
+export const IMPORTANCE_LEVEL = [
+  { value: "ALL", label: "All" },
+  { value: "5", label: "5 - Very High" },
+  { value: "4", label: "4 - High" },
+  { value: "3", label: "3 - Medium" },
+  { value: "2", label: "2 - Low" },
+  { value: "1", label: "1 - Very Low" },
+] as const;
+
 export const AVATAR_OPTIONS = [
   { id: "avatar1", src: "/images/avatars/avatar1.webp" },
   { id: "avatar2", src: "/images/avatars/avatar2.webp" },
