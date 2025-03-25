@@ -45,7 +45,7 @@ const AnticipateGradeModal = ({ opened, onClose }: Props) => {
     >
       <Text size="lg">
         {grade !== null
-          ? `Your anticipated grade is: ${grade}`
+          ? `Your anticipated grade is: ${grade.toFixed()}`
           : "No grade found."}
       </Text>
     </Modal>
