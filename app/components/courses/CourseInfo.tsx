@@ -1,6 +1,5 @@
 import { Group, Stack, Text, RingProgress } from "@mantine/core";
 import { Course } from "@/app/validationSchemas";
-import { IconSchool } from "@tabler/icons-react";
 import React, { ReactNode } from "react";
 
 /* Props */
