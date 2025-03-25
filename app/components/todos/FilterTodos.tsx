@@ -61,6 +61,7 @@ const FilterTodos = ({ filters, setFilters, courses }: Props) => {
       <Group justify="space-between">
         <Text>Course:</Text>
         <Select
+          searchable
           data={[
             { value: "ALL", label: "All" },
             ...courses.map((c) => ({
