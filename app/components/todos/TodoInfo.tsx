@@ -16,7 +16,7 @@ const TodoInfo = ({ todo, children }: Props) => {
       {/* Delete / Edit buttons */}
       <Group justify="flex-end" mt={10} mb={-25}>
         <div>1</div>
-        <div>2</div>
+        {child2}
       </Group>
       <Stack>
         {/* Left side */}

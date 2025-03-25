@@ -10,9 +10,11 @@ import {
   Stack,
 } from "@mantine/core";
 import { TodoWithCourse } from "@/app/validationSchemas";
-import { IconCalendar, IconBook } from "@tabler/icons-react";
+import { IconTrash } from "@tabler/icons-react";
 import classes from "../../styles/CourseTable.module.css";
 import TodoInfo from "./TodoInfo";
+import DeleteTodo from "./DeleteTodo";
+import ModalButton from "../global/ModalButton";
 
 const TodosTable = ({ todos }: { todos: TodoWithCourse[] }) => {
   const [visibleCount, setVisibleCount] = useState(5);
@@ -58,7 +60,10 @@ const TodosTable = ({ todos }: { todos: TodoWithCourse[] }) => {
               {/* TodoInfo card - Edit/Delete modals as children */}
               <TodoInfo todo={todo}>
                 <div>1</div>
-                <div>1</div>
+                <ModalButton>
+                  <DeleteTodo todo={todo} />
+                  <IconTrash size={16} />
+                </ModalButton>
               </TodoInfo>
             </Accordion.Panel>
           </Accordion.Item>

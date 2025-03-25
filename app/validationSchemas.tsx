@@ -112,12 +112,12 @@ export type RegisterForm = z.infer<typeof registerSchema>;
 export type LoginForm = z.infer<typeof loginSchema>;
 export type UpdateUserForm = z.infer<typeof updateUserSchema>;
 
-export type CreateTodoForm = z.infer<typeof createTodoSchema>;
-export type Todo = z.infer<typeof todoSchema>;
+export type CreateTodoForm = z.infer<typeof createTodoSchema>; // Todo without id
+export type Todo = z.infer<typeof todoSchema>; // Todo with id
 export type CreateTodoCommentForm = z.infer<typeof createTodoCommentSchema>;
 export type TodoWithCourse = Prisma.TodoGetPayload<{
   include: { course: true };
-}>;
+}>; // Todo with related course if exists
 
 /* At the beginning only god and I knew why these works - now, only god and GPT do. */
 
