@@ -12,35 +12,40 @@ const ClientTodosManager = ({
   todos: TodoWithCourse[];
   courses: Course[];
 }) => {
-  const [category, setCategory] = useState("ALL");
-  const [importance, setImportance] = useState("ALL");
-  const [courseId, setCourseId] = useState<number | "ALL">("ALL");
+  // Filtering stats
+  const [filters, setFilters] = useState<{
+    category: string;
+    importance: string;
+    courseId: number | "ALL";
+  }>({
+    category: "ALL",
+    importance: "ALL",
+    courseId: "ALL",
+  });
 
   // Filter todos
   const filteredTodos = useMemo(() => {
     return todos.filter((todo) => {
-      const matchCategory = category === "ALL" || todo.category === category;
-
+      const matchCategory =
+        filters.category === "ALL" || todo.category === filters.category;
       const matchImportance =
-        importance === "ALL" || String(todo.importance) === importance;
-
-      const matchCourse = courseId === "ALL" || todo.courseId === courseId;
+        filters.importance === "ALL" ||
+        String(todo.importance) === filters.importance;
+      const matchCourse =
+        filters.courseId === "ALL" || todo.courseId === filters.courseId;
 
       return matchCategory && matchImportance && matchCourse;
     });
-  }, [todos, category, importance, courseId]);
+  }, [todos, filters]);
 
   return (
     <Stack>
       <FilterTodos
-        category={category}
-        setCategory={setCategory}
-        importance={importance}
-        setImportance={setImportance}
-        courseId={courseId}
-        setCourseId={setCourseId}
+        filters={filters}
+        setFilters={setFilters}
         courses={courses}
       />
+
       <Divider my="md" />
       <TodosTable todos={filteredTodos} courses={courses} />
     </Stack>

@@ -3,24 +3,22 @@ import { Course } from "@/app/validationSchemas";
 import React from "react";
 
 interface Props {
-  category: string;
-  setCategory: (value: string) => void;
-  importance: string;
-  setImportance: (value: string) => void;
-  courseId: number | "ALL";
-  setCourseId: (value: number | "ALL") => void;
+  filters: {
+    category: string;
+    importance: string;
+    courseId: number | "ALL";
+  };
+  setFilters: React.Dispatch<
+    React.SetStateAction<{
+      category: string;
+      importance: string;
+      courseId: number | "ALL";
+    }>
+  >;
   courses: Course[];
 }
 
-const FilterTodos = ({
-  category,
-  setCategory,
-  importance,
-  setImportance,
-  courseId,
-  setCourseId,
-  courses,
-}: Props) => {
+const FilterTodos = ({ filters, setFilters, courses }: Props) => {
   return (
     <Stack>
       {/* Category */}
@@ -33,8 +31,10 @@ const FilterTodos = ({
             { value: "HOMEWORK", label: "Homework" },
             { value: "TEST", label: "Test" },
           ]}
-          value={category}
-          onChange={(value) => setCategory(value!)}
+          value={filters.category}
+          onChange={(value) =>
+            setFilters((prev) => ({ ...prev, category: value! }))
+          }
         />
       </Group>
 
@@ -50,8 +50,10 @@ const FilterTodos = ({
             { value: "2", label: "2 - Low" },
             { value: "1", label: "1 - Very Low" },
           ]}
-          value={importance}
-          onChange={(value) => setImportance(value!)}
+          value={filters.importance}
+          onChange={(value) =>
+            setFilters((prev) => ({ ...prev, importance: value! }))
+          }
         />
       </Group>
 
@@ -66,9 +68,12 @@ const FilterTodos = ({
               label: c.title,
             })),
           ]}
-          value={courseId.toString()}
+          value={filters.courseId.toString()}
           onChange={(value) =>
-            setCourseId(value === "ALL" ? "ALL" : parseInt(value!))
+            setFilters((prev) => ({
+              ...prev,
+              courseId: value === "ALL" ? "ALL" : parseInt(value!),
+            }))
           }
         />
       </Group>
