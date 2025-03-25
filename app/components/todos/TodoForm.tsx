@@ -1,6 +1,7 @@
 "use client";
 import {
   Alert,
+  Autocomplete,
   Button,
   Center,
   Input,
@@ -13,12 +14,20 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
-import { createTodoSchema, CreateTodoForm } from "@/app/validationSchemas";
+import {
+  createTodoSchema,
+  CreateTodoForm,
+  Course,
+} from "@/app/validationSchemas";
 import DefaultCard from "../global/DefaultCard";
 import SuccessMessage from "../global/SuccessMessage";
 import { CATEGORY_OPTIONS, COLOR_OPTIONS } from "@/app/constants";
 
-const TodoForm = () => {
+interface Props {
+  courses: Course[];
+}
+
+const TodoForm = ({ courses }: Props) => {
   const {
     register,
     handleSubmit,
@@ -94,14 +103,36 @@ const TodoForm = () => {
             />
           </InputWrapper>
 
+          {/* Course selection */}
+          <InputWrapper label="Course">
+            <Autocomplete
+              data={courses.map((course) => ({
+                label: course.title,
+                value: String(course.id),
+              }))}
+              placeholder="Choose course"
+              onChange={(value) =>
+                setValue("courseId", value ? parseInt(value) : null)
+              }
+              clearable
+            />
+          </InputWrapper>
+
           {/* Importance */}
           <InputWrapper label="Importance (1-5)">
-            <Input
-              type="number"
-              placeholder="1-5"
-              {...register("importance", {
-                setValueAs: (value) => (value === "" ? null : Number(value)),
-              })}
+            <Select
+              placeholder="Choose importance"
+              data={[
+                { value: "5", label: "5 - Very High" },
+                { value: "4", label: "4 - High" },
+                { value: "3", label: "3 - Medium" },
+                { value: "2", label: "2 - Low" },
+                { value: "1", label: "1 - Very Low" },
+              ]}
+              onChange={(value) =>
+                setValue("importance", value ? parseInt(value) : null)
+              }
+              clearable
             />
             {errors.importance && (
               <Alert mt={10}>{errors.importance.message}</Alert>

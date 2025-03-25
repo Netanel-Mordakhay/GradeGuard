@@ -10,7 +10,7 @@ const TodosList = async () => {
     return <DefaultCard title="My Courses">Unauthorized</DefaultCard>;
   }
   return (
-    <DefaultCard title="My Courses">
+    <DefaultCard title="My Assignments & Exams">
       <ClientTodosManager todos={todos} />
     </DefaultCard>
   );

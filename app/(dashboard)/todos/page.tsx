@@ -1,6 +1,7 @@
 import TwoColumns from "@/app/components/layout/TwoColumns";
 import TodoForm from "@/app/components/todos/TodoForm";
 import TodosList from "@/app/components/todos/TodosList";
+import { getUserCourses } from "@/lib/getUserCourses";
 import React from "react";
 
 export const metadata = {
@@ -8,11 +9,12 @@ export const metadata = {
   description: "Manage your assignments efficiently with GradeGuard",
 };
 
-const AssignmentsPage = () => {
+const AssignmentsPage = async () => {
+  const { courses } = await getUserCourses();
   return (
     <TwoColumns>
       <TodosList />
-      <TodoForm />
+      <TodoForm courses={courses} />
     </TwoColumns>
   );
 };
