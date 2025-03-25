@@ -1,6 +1,8 @@
 import React from "react";
 import { Course, TodoWithCourse } from "@/app/validationSchemas";
 import TodosTable from "./TodosTable";
+import { Divider, Stack } from "@mantine/core";
+import FilterTodos from "./FilterTodos";
 
 const ClientTodosManager = ({
   todos,
@@ -9,7 +11,13 @@ const ClientTodosManager = ({
   todos: TodoWithCourse[];
   courses: Course[];
 }) => {
-  return <TodosTable todos={todos} courses={courses} />;
+  return (
+    <Stack>
+      <FilterTodos />
+      <Divider my="md" />
+      <TodosTable todos={todos} courses={courses} />
+    </Stack>
+  );
 };
 
 export default ClientTodosManager;

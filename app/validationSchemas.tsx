@@ -122,8 +122,7 @@ export type TodoWithCourse = Prisma.TodoGetPayload<{
 /* At the beginning only god and I knew why these works - now, only god and GPT do. */
 
 /* Normalizing courses before using in in the UI - 
-TODO: this should be later fixed, but currently solves the issue,
-but I don't really like this implementation of its because it's not-so-very-smart */
+TODO: this should be later fixed, it's stupid, but currently solves the issue. */
 export function normalizeCourse(dbCourse: Prisma.CourseGetPayload<{}>): Course {
   return {
     id: dbCourse.id,
