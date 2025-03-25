@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useMemo, useState } from "react";
 import { Course, TodoWithCourse } from "@/app/validationSchemas";
 import TodosTable from "./TodosTable";
 import { Divider, Stack } from "@mantine/core";
@@ -11,11 +12,37 @@ const ClientTodosManager = ({
   todos: TodoWithCourse[];
   courses: Course[];
 }) => {
+  const [category, setCategory] = useState("ALL");
+  const [importance, setImportance] = useState("ALL");
+  const [courseId, setCourseId] = useState<number | "ALL">("ALL");
+
+  // Filter todos
+  const filteredTodos = useMemo(() => {
+    return todos.filter((todo) => {
+      const matchCategory = category === "ALL" || todo.category === category;
+
+      const matchImportance =
+        importance === "ALL" || String(todo.importance) === importance;
+
+      const matchCourse = courseId === "ALL" || todo.courseId === courseId;
+
+      return matchCategory && matchImportance && matchCourse;
+    });
+  }, [todos, category, importance, courseId]);
+
   return (
     <Stack>
-      <FilterTodos />
+      <FilterTodos
+        category={category}
+        setCategory={setCategory}
+        importance={importance}
+        setImportance={setImportance}
+        courseId={courseId}
+        setCourseId={setCourseId}
+        courses={courses}
+      />
       <Divider my="md" />
-      <TodosTable todos={todos} courses={courses} />
+      <TodosTable todos={filteredTodos} courses={courses} />
     </Stack>
   );
 };
