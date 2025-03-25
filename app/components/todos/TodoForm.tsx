@@ -9,6 +9,7 @@ import {
   Loader,
   Select,
   Stack,
+  Textarea,
 } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -81,7 +82,11 @@ const TodoForm = ({ courses, todo }: Props) => {
 
           {/* Description */}
           <InputWrapper label="Description">
-            <Input placeholder="Description" {...register("description")} />
+            <Textarea
+              placeholder="Description"
+              resize="vertical"
+              {...register("description")}
+            />
             {errors.description && (
               <Alert mt={10}>{errors.description.message}</Alert>
             )}
@@ -113,7 +118,8 @@ const TodoForm = ({ courses, todo }: Props) => {
 
           {/* Course selection */}
           <InputWrapper label="Course">
-            <Autocomplete
+            <Select
+              searchable
               data={courses.map((course) => ({
                 label: course.title,
                 value: String(course.id),
