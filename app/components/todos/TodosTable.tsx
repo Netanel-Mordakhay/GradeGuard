@@ -52,14 +52,21 @@ const TodosTable = ({
                   visibleFrom="sm"
                   align="center"
                   gap={5}
+                  opacity={0.8}
                 >
-                  <Badge>
+                  <Badge color={todo.color || ""} size="sm">
                     {todo.dueDate
                       ? new Date(todo.dueDate).toLocaleDateString("he-IL")
                       : "-"}
                   </Badge>
-                  <Badge>Importance: {todo.importance || "-"}</Badge>
-                  {todo.course && <Badge>{todo.course?.title}</Badge>}
+                  <Badge color={todo.color || ""} size="sm">
+                    Importance: {todo.importance || "-"}
+                  </Badge>
+                  {todo.course && (
+                    <Badge color={todo.color || ""} size="sm">
+                      {todo.course?.title}
+                    </Badge>
+                  )}
                 </Stack>
               </Group>
             </Accordion.Control>

@@ -23,7 +23,7 @@ const FilterTodos = ({ filters, setFilters, courses }: Props) => {
   return (
     <Stack>
       {/* Category */}
-      <Group justify="space-between">
+      <Group justify="space-between" wrap="nowrap">
         <Text>Category:</Text>
         <Select
           data={[{ value: "ALL", label: "All" }, ...CATEGORY_OPTIONS]}
@@ -35,7 +35,7 @@ const FilterTodos = ({ filters, setFilters, courses }: Props) => {
       </Group>
 
       {/* Importance */}
-      <Group justify="space-between">
+      <Group justify="space-between" wrap="nowrap">
         <Text>Importance:</Text>
         <Select
           data={IMPORTANCE_LEVEL}
@@ -47,7 +47,7 @@ const FilterTodos = ({ filters, setFilters, courses }: Props) => {
       </Group>
 
       {/* Course */}
-      <Group justify="space-between">
+      <Group justify="space-between" wrap="nowrap">
         <Text>Course:</Text>
         <Select
           searchable

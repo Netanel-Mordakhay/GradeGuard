@@ -9,7 +9,7 @@ import {
   IconStar,
   IconBookDownload,
   IconFileDownload,
-  IconBrandFacebook,
+  IconMessageChatbot,
 } from "@tabler/icons-react";
 import {
   SimpleGrid,
@@ -36,7 +36,7 @@ const mockdata = [
     onClick: handleExportGrades,
   },
   { title: "Export assignments", icon: IconFileDownload, color: "red" },
-  { title: "Follow on Facebook", icon: IconBrandFacebook, color: "blue" },
+  { title: "AI Assistant", icon: IconMessageChatbot, color: "blue" },
 ];
 
 const QuickActionsBox = () => {
