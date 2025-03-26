@@ -27,7 +27,6 @@ export async function middleware(req: NextRequest) {
   return NextResponse.next();
 }
 
-// חשוב מאוד — כדי לא לחסום קבצים סטטיים ו-assets של Next.js
 export const config = {
-  matcher: ["/((?!_next|favicon.ico|api/auth|images).*)"],
+  matcher: ["/((?!_next|favicon.ico|api/auth|images|language).*)"],
 };
