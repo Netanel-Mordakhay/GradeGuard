@@ -1,11 +1,13 @@
 "use client";
 import { Calendar } from "@mantine/dates";
 import { TodoWithCourse } from "@/app/validationSchemas";
-import { Center, Modal, Text, Stack } from "@mantine/core";
+import { Center, Modal, Text, Stack, Divider, Button } from "@mantine/core";
 import { isSameDay } from "date-fns";
 import DefaultCard from "../global/DefaultCard";
 import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
+import TodoInfo from "../todos/TodoInfo";
+import Link from "next/link";
 
 interface Props {
   todos: TodoWithCourse[];
@@ -62,11 +64,17 @@ const TodoCalendar = ({ todos }: Props) => {
         <Stack>
           {todosForSelected.length > 0 ? (
             todosForSelected.map((todo) => (
-              <Text key={todo.id}>• {todo.title}</Text>
+              <Stack key={todo.id}>
+                <TodoInfo todo={todo} />
+                <Divider />
+              </Stack>
             ))
           ) : (
-            <Text c="dimmed">None</Text>
+            <Text c="dimmed">No assignments.</Text>
           )}
+          <Link href="/todos" style={{ textDecoration: "none" }}>
+            <Button fullWidth>View all</Button>
+          </Link>
         </Stack>
       </Modal>
     </DefaultCard>

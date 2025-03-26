@@ -5,7 +5,7 @@ import React, { ReactNode } from "react";
 /* Props */
 interface Props {
   todo: TodoWithCourse;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const TodoInfo = ({ todo, children }: Props) => {
