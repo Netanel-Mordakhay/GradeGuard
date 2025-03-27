@@ -5,7 +5,6 @@ import {
   Image,
   useDirection,
 } from "@mantine/core";
-import { IconChevronDown } from "@tabler/icons-react";
 import classes from "../../styles/LanguageToggle.module.css";
 import React, { useState } from "react";
 import { useMediaQuery } from "@mantine/hooks";
