@@ -1,4 +1,10 @@
-import { Menu, UnstyledButton, Group, Image } from "@mantine/core";
+import {
+  Menu,
+  UnstyledButton,
+  Group,
+  Image,
+  useDirection,
+} from "@mantine/core";
 import { IconChevronDown } from "@tabler/icons-react";
 import classes from "../../styles/LanguageToggle.module.css";
 import React, { useState } from "react";
@@ -13,10 +19,17 @@ const LanguageToggle = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const [opened, setOpened] = useState(false);
   const [selected, setSelected] = useState(data[0]);
+  const { setDirection, dir } = useDirection();
+
   const items = data.map((item) => (
     <Menu.Item
       leftSection={<Image src={item.image} width={14} height={14} />}
-      onClick={() => setSelected(item)}
+      onClick={() => {
+        setSelected(item);
+        {
+          item.label === "Hebrew" ? setDirection("rtl") : setDirection("ltr");
+        }
+      }}
       key={item.label}
     >
       {!isMobile && item.label}

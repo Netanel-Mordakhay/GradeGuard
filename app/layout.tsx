@@ -7,6 +7,7 @@ import "@mantine/dates/styles.css";
 import "@/app/globals.css";
 import {
   ColorSchemeScript,
+  DirectionProvider,
   MantineProvider,
   mantineHtmlProps,
 } from "@mantine/core";
@@ -27,7 +28,11 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body className={rubik.className}>
-        <MantineProvider>{children}</MantineProvider>
+        <DirectionProvider>
+          <MantineProvider>
+            <MantineProvider>{children}</MantineProvider>
+          </MantineProvider>
+        </DirectionProvider>
       </body>
     </html>
   );
