@@ -1,5 +1,7 @@
 import { Loader, Modal, Text } from "@mantine/core";
 import React, { useEffect, useState } from "react";
+import AnticipateLoader from "./AnticipateLoader";
+import ResultGrade from "./ResultGrade";
 
 interface Props {
   opened: boolean;
@@ -23,7 +25,7 @@ const AnticipateGradeModal = ({ opened, onClose }: Props) => {
           setGrade(data.anticipatedGrade);
           setTimeout(() => {
             setShowGrade(true);
-          }, 5000);
+          }, 10000);
         } catch (err) {
           console.error("Error fetching grade", err);
         } finally {
@@ -43,15 +45,13 @@ const AnticipateGradeModal = ({ opened, onClose }: Props) => {
       }}
       title="Anticipate my Grade!"
     >
-      <Text size="lg">
-        {loading || !showGrade ? (
-          <Loader />
-        ) : grade && !loading && showGrade ? (
-          `Your anticipated grade is: ${grade.toFixed()}`
-        ) : (
-          "No grade found."
-        )}
-      </Text>
+      {loading || !showGrade ? (
+        <AnticipateLoader />
+      ) : grade && !loading && showGrade ? (
+        <ResultGrade grade={grade.toFixed()} />
+      ) : (
+        "No grade found."
+      )}
     </Modal>
   );
 };
