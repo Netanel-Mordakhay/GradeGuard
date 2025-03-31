@@ -5,17 +5,11 @@ import {
   IconListDetails,
   IconAlarm,
   IconTrophy,
-  IconUser,
 } from "@tabler/icons-react";
 import classes from "../../styles/TopStatistics.module.css";
 import { TodoWithCourse } from "@/app/validationSchemas";
 
-const icons = {
-  exam: IconSquareCheckFilled,
-  assignment: IconListDetails,
-  clock: IconAlarm,
-  trivia: IconTrophy,
-};
+const icons = [IconSquareCheckFilled, IconListDetails, IconAlarm, IconTrophy];
 
 interface Props {
   upcomingExam?: TodoWithCourse | null;
@@ -26,16 +20,13 @@ const TopStatistics = ({ upcomingExam, upcomingTodo }: Props) => {
   const data = [
     {
       title: "My next exam",
-      icon: "exam",
       value: upcomingExam?.course ? upcomingExam?.course?.title : "-",
-      //desc: upcomingExam?.course?.title,
       desc: upcomingExam?.dueDate
         ? new Date(upcomingExam.dueDate).toLocaleDateString()
         : "No date",
     },
     {
       title: "My Next Assignment",
-      icon: "assignment",
       value: upcomingTodo?.course ? upcomingTodo?.course?.title : "-",
       desc: upcomingTodo?.dueDate
         ? new Date(upcomingTodo.dueDate).toLocaleDateString()
@@ -43,19 +34,17 @@ const TopStatistics = ({ upcomingExam, upcomingTodo }: Props) => {
     },
     {
       title: "Study Clock Record",
-      icon: "clock",
       value: "N/A",
       desc: "not yet implemented",
     },
     {
       title: "My Trivia",
-      icon: "trivia",
       value: "N/A",
       desc: "not yet implemented",
     },
   ];
-  const stats = data.map((stat) => {
-    const Icon = icons[stat.icon];
+  const stats = data.map((stat, index) => {
+    const Icon = icons[index];
 
     return (
       <Paper
