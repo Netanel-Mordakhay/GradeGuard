@@ -1,3 +1,5 @@
+![GradeGuard dashboard](https://i.ibb.co/WpxPHx48/GG.jpg)
+
 # GradeGuard 🎓
 
 **GradeGuard** is a full-stack student management system designed to help students keep track of their academic progress. It allows users to manage their courses, grades, assignments, and more — all in one intuitive and responsive platform.
