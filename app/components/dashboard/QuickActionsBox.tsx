@@ -55,7 +55,7 @@ const QuickActionsBox = ({ courses }: Props) => {
     {
       title: "New to-do",
       icon: IconCubePlus,
-      color: "indigo",
+      color: "orange",
       onClick: openNewTodo,
     },
 

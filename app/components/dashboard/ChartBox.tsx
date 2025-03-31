@@ -20,7 +20,7 @@ const ChartBox = ({ chartData }: Props) => {
   }));
 
   return (
-    <DefaultCard title="My Progress" link="courses" linkText="View Full Graph">
+    <DefaultCard title="My Progress">
       {dataExists ? (
         <LineChart
           h={280}

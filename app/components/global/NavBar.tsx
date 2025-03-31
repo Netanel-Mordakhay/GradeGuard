@@ -3,6 +3,7 @@ import {
   IconHome,
   IconBooks,
   IconClock,
+  IconCopyCheck,
   IconAlignJustified,
   IconUser,
   IconLogout,
@@ -19,7 +20,8 @@ const data = [
   { link: "/", label: "Dashboard", icon: IconHome },
   { link: "/courses", label: "Courses", icon: IconBooks },
   { link: "/todos", label: "Assignments & Exams", icon: IconAlignJustified },
-  { link: "/study-session", label: "Study Session", icon: IconClock },
+  { link: "#", label: "Study Session", icon: IconClock },
+  { link: "#", label: "My Quizs", icon: IconCopyCheck },
 ];
 
 interface Props {
