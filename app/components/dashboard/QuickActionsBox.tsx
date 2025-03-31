@@ -1,11 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   IconBookUpload,
   IconCubePlus,
-  IconFileTextSpark,
-  IconClock,
-  IconBed,
   IconStar,
   IconBookDownload,
   IconFileDownload,
@@ -20,13 +17,12 @@ import {
 } from "@mantine/core";
 import classes from "../../styles/QuickActions.module.css";
 import DefaultCard from "../global/DefaultCard";
-import { handleExportGrades } from "@/lib/quickActions";
+import { handleExportGrades, handleExportTodos } from "@/lib/quickActions";
 import { motion } from "framer-motion";
 import AnticipateGradeModal from "./anticipate-grade/AnticipateGradeModal";
 import { useDisclosure } from "@mantine/hooks";
 import CourseFormComponent from "../courses/CourseForm";
 import TodoForm from "../todos/TodoForm";
-import { getUserCourses } from "@/lib/getUserCourses";
 import { Course } from "@/app/validationSchemas";
 
 interface Props {
@@ -60,9 +56,7 @@ const QuickActionsBox = ({ courses }: Props) => {
       color: "indigo",
       onClick: openNewTodo,
     },
-    { title: "New exam", icon: IconFileTextSpark, color: "orange" },
-    { title: "Study session", icon: IconClock, color: "green" },
-    { title: "Let me rest a bit", icon: IconBed, color: "teal" },
+
     {
       title: "Anticipate my grade",
       icon: IconStar,
@@ -75,7 +69,12 @@ const QuickActionsBox = ({ courses }: Props) => {
       color: "pink",
       onClick: handleExportGrades,
     },
-    { title: "Export assignments", icon: IconFileDownload, color: "red" },
+    {
+      title: "Export assignments",
+      icon: IconFileDownload,
+      color: "red",
+      onClick: handleExportTodos,
+    },
     { title: "AI Assistant", icon: IconMessageChatbot, color: "blue" },
   ];
 
