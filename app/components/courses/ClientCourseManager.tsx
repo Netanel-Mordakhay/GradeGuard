@@ -4,6 +4,7 @@ import { Divider } from "@mantine/core";
 import FilterCourses from "./FilterCourses";
 import CoursesTable from "./CourseTable";
 import { Course } from "@/app/validationSchemas";
+import FilteredStats from "./FilteredStats";
 
 const ClientCoursesManager = ({
   courses,
@@ -30,6 +31,7 @@ const ClientCoursesManager = ({
   return (
     <>
       <FilterCourses filters={filters} setFilters={setFilters} />
+      <FilteredStats courses={filteredCourses} />
       <Divider my="md" />
       <CoursesTable courses={filteredCourses} />
     </>

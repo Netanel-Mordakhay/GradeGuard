@@ -12,6 +12,7 @@ import {
   IconMessageChatbot,
 } from "@tabler/icons-react";
 import {
+  Modal,
   SimpleGrid,
   Text,
   UnstyledButton,
@@ -23,6 +24,9 @@ import { handleExportGrades } from "@/lib/quickActions";
 import { motion } from "framer-motion";
 import AnticipateGradeModal from "./anticipate-grade/AnticipateGradeModal";
 import { useDisclosure } from "@mantine/hooks";
+import CourseFormComponent from "../courses/CourseForm";
+import TodoForm from "../todos/TodoForm";
+import { getUserCourses } from "@/lib/getUserCourses";
 
 const QuickActionsBox = () => {
   const theme = useMantineTheme();
@@ -30,9 +34,16 @@ const QuickActionsBox = () => {
     openedAnticipated,
     { open: openAnticipated, close: closeAnticipated },
   ] = useDisclosure(false);
+  const [openedNewCourse, { open: openNewCourse, close: closeNewCourse }] =
+    useDisclosure(false);
 
   const mockdata = [
-    { title: "New course", icon: IconBookUpload, color: "violet" },
+    {
+      title: "New course",
+      icon: IconBookUpload,
+      color: "violet",
+      onClick: openNewCourse,
+    },
     { title: "New to-do", icon: IconCubePlus, color: "indigo" },
     { title: "New exam", icon: IconFileTextSpark, color: "orange" },
     { title: "Study session", icon: IconClock, color: "green" },
@@ -77,6 +88,10 @@ const QuickActionsBox = () => {
         opened={openedAnticipated}
         onClose={closeAnticipated}
       />
+
+      <Modal opened={openedNewCourse} onClose={closeNewCourse}>
+        <CourseFormComponent />
+      </Modal>
     </>
   );
 };
