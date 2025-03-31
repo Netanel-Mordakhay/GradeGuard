@@ -23,16 +23,17 @@ const ChartBox = ({ chartData }: Props) => {
     <DefaultCard title="My Progress" link="courses" linkText="View Full Graph">
       {dataExists ? (
         <LineChart
-          h={240}
+          h={280}
           data={data}
           dataKey="date"
           yAxisLabel="Grade"
+          withXAxis={false}
+          curveType="linear"
+          withLegend
           series={[
             { name: "Semester Average", color: "teal.6" },
             { name: "Overall Average", color: "indigo.6" },
           ]}
-          curveType="linear"
-          withLegend
         />
       ) : (
         <Text ta="center">No data yet.</Text>

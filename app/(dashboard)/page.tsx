@@ -34,7 +34,7 @@ export default async function Home() {
       <DashboardGrid>
         <UserBox user={user} />
         <GradesBox stats={stats} />
-        <QuickActionsBox />
+        <QuickActionsBox courses={courses} />
         <TipsBox />
         <ChartBox chartData={chartData} />
         <TodosBox todos={todos} />

@@ -29,7 +29,11 @@ import TodoForm from "../todos/TodoForm";
 import { getUserCourses } from "@/lib/getUserCourses";
 import { Course } from "@/app/validationSchemas";
 
-const QuickActionsBox = () => {
+interface Props {
+  courses: Course[];
+}
+
+const QuickActionsBox = ({ courses }: Props) => {
   const theme = useMantineTheme();
   // Anticipated grade
   const [
@@ -105,7 +109,7 @@ const QuickActionsBox = () => {
       </Modal>
 
       <Modal opened={openedNewTodo} onClose={closeNewTodo}>
-        added later
+        <TodoForm courses={courses} />
       </Modal>
     </>
   );
