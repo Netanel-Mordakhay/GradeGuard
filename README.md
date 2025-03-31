@@ -48,6 +48,8 @@
 
 ## Planned Features
 
+- Global state managment
+- React Query for efficiency
 - Advanced analytics (GPA predictions, progress tracking)
 - OAuth login options (Google, GitHub)
 - Full localization support (Hebrew first)
