@@ -42,6 +42,8 @@ const QuickActionsBox = ({ courses }: Props) => {
   // New Todo
   const [openedNewTodo, { open: openNewTodo, close: closeNewTodo }] =
     useDisclosure(false);
+  // AI Assistant
+  const [openedAI, { open: openAI, close: closeAI }] = useDisclosure(false);
 
   const mockdata = [
     {
@@ -75,7 +77,12 @@ const QuickActionsBox = ({ courses }: Props) => {
       color: "red",
       onClick: handleExportTodos,
     },
-    { title: "AI Assistant", icon: IconMessageChatbot, color: "blue" },
+    {
+      title: "AI Assistant",
+      icon: IconMessageChatbot,
+      color: "blue",
+      onClick: openAI,
+    },
   ];
 
   const items = mockdata.map((item) => (
@@ -106,9 +113,13 @@ const QuickActionsBox = ({ courses }: Props) => {
       <Modal opened={openedNewCourse} onClose={closeNewCourse}>
         <CourseFormComponent />
       </Modal>
-
+      {/* New Todo */}
       <Modal opened={openedNewTodo} onClose={closeNewTodo}>
         <TodoForm courses={courses} />
+      </Modal>
+      {/* AI Assistant */}
+      <Modal opened={openedAI} onClose={closeAI}>
+        <Text>Give me some time, it's on the way!</Text>
       </Modal>
     </>
   );
