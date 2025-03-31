@@ -20,7 +20,7 @@ export default async function Home() {
   const { courses } = await getUserCourses();
   const stats = await getUserStats();
   const chartData = await getUserChartData();
-  const { todos } = await getUserTodos();
+  const { todos, upcomingExam, upcomingTodo } = await getUserTodos();
 
   if (!user || !stats || !chartData || !todos) {
     return null;
@@ -29,7 +29,10 @@ export default async function Home() {
   return (
     <Stack>
       <Box visibleFrom="md">
-        <TopStatistics />
+        <TopStatistics
+          upcomingExam={upcomingExam}
+          upcomingTodo={upcomingTodo}
+        />
       </Box>
       <DashboardGrid>
         <UserBox user={user} />

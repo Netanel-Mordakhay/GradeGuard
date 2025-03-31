@@ -17,5 +17,33 @@ export async function getUserTodos() {
     },
   });
 
-  return { todos, userId: session.user.id };
+  const upcomingExam = await prisma.todo.findFirst({
+    where: {
+      userId: session.user.id,
+      dueDate: { gt: new Date() },
+      category: "TEST",
+    },
+    include: {
+      course: true, // Return the course if exists - TODO: check the list's info
+    },
+    orderBy: {
+      dueDate: "asc",
+    },
+  });
+
+  const upcomingTodo = await prisma.todo.findFirst({
+    where: {
+      userId: session.user.id,
+      dueDate: { gt: new Date() },
+      category: { not: "TEST" },
+    },
+    include: {
+      course: true, // Return the course if exists - TODO: check the list's info
+    },
+    orderBy: {
+      dueDate: "asc",
+    },
+  });
+
+  return { todos, upcomingExam, upcomingTodo, userId: session.user.id };
 }
