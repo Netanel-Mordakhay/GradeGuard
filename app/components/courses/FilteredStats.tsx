@@ -28,7 +28,7 @@ const FilteredStats = ({ courses }: Props) => {
   return (
     <Group justify="space-between">
       <Text>Filtered average:</Text>
-      <Text>{average.toFixed(2) || "-"}</Text>
+      <Text>{average.toFixed(2)}</Text>
     </Group>
   );
 };
