@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GradeGuard 🎓
 
-## Getting Started
+**GradeGuard** is a full-stack student management system designed to help students keep track of their academic progress. It allows users to manage their courses, grades, assignments, and more — all in one intuitive and responsive platform.
 
-First, run the development server:
+> 🚧 This is an **ongoing project** and still under active development.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Frontend & UI
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **React**
+- **Next.js**
+- **Mantine UI** (`@mantine/core`, `@mantine/dates`, `@mantine/charts`)
+- **Framer Motion** – for smooth UI animations
+- **tabler icons-react** – icons
+- **react-hook-form**
+- **Zod** – schema validation and form validation
 
-## Learn More
+### Backend
 
-To learn more about Next.js, take a look at the following resources:
+- **NextAuth** – authentication system (credentials-based for now, OAuth planned)
+- **Prisma ORM**
+- **MySQL** – primary database
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Utilities
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Axios** – HTTP requests
+- **bcryptjs** – password hashing
+- **date-fns** / **dayjs** – date utilities
+- **json2csv** – for CSV export functionality
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ✅ Completed Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Dashboard overview with academic insights
+- User authentication (email + password) with secure hashing
+- Profile editing (name, email, avatar)
+- Course management system (add, edit, delete)
+- Grade calculation & visualization per semester + total average
+- Todo task manager with due dates
+- CSV export for user data
+- Friendly UI with RTL support planned
+
+---
+
+## Planned Features
+
+- Advanced analytics (GPA predictions, progress tracking)
+- OAuth login options (Google, GitHub)
+- Full localization support (Hebrew first)
+- Notification system (e.g. for upcoming deadlines)
+- Unit & integration tests
+- Assignments sharing
+- Public user profiles
+- AI assistant bot
+- Email validation
+- Study session clock system for moniroting learning progress
+- User created quizes to help learn
+
+---
+
+## Project Status
+
+Core features are being actively built and tested. Contributions, ideas, and suggestions are welcome as the project continues to evolve :).
+
+---
