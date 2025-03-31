@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   IconBookUpload,
   IconCubePlus,
@@ -27,14 +27,20 @@ import { useDisclosure } from "@mantine/hooks";
 import CourseFormComponent from "../courses/CourseForm";
 import TodoForm from "../todos/TodoForm";
 import { getUserCourses } from "@/lib/getUserCourses";
+import { Course } from "@/app/validationSchemas";
 
 const QuickActionsBox = () => {
   const theme = useMantineTheme();
+  // Anticipated grade
   const [
     openedAnticipated,
     { open: openAnticipated, close: closeAnticipated },
   ] = useDisclosure(false);
+  // New Course
   const [openedNewCourse, { open: openNewCourse, close: closeNewCourse }] =
+    useDisclosure(false);
+  // New Todo
+  const [openedNewTodo, { open: openNewTodo, close: closeNewTodo }] =
     useDisclosure(false);
 
   const mockdata = [
@@ -44,7 +50,12 @@ const QuickActionsBox = () => {
       color: "violet",
       onClick: openNewCourse,
     },
-    { title: "New to-do", icon: IconCubePlus, color: "indigo" },
+    {
+      title: "New to-do",
+      icon: IconCubePlus,
+      color: "indigo",
+      onClick: openNewTodo,
+    },
     { title: "New exam", icon: IconFileTextSpark, color: "orange" },
     { title: "Study session", icon: IconClock, color: "green" },
     { title: "Let me rest a bit", icon: IconBed, color: "teal" },
@@ -83,14 +94,18 @@ const QuickActionsBox = () => {
       <DefaultCard title="Quick Actions">
         <SimpleGrid cols={3}>{items}</SimpleGrid>
       </DefaultCard>
-
+      {/* Anticipate grade */}
       <AnticipateGradeModal
         opened={openedAnticipated}
         onClose={closeAnticipated}
       />
-
+      {/* New course */}
       <Modal opened={openedNewCourse} onClose={closeNewCourse}>
         <CourseFormComponent />
+      </Modal>
+
+      <Modal opened={openedNewTodo} onClose={closeNewTodo}>
+        added later
       </Modal>
     </>
   );
