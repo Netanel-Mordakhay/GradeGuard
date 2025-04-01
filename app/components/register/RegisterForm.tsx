@@ -1,5 +1,5 @@
 "use client";
-
+import ReCAPTCHA from "react-google-recaptcha";
 import {
   Button,
   Paper,
@@ -22,6 +22,7 @@ import { useState } from "react";
 const RegisterForm = () => {
   const router = useRouter();
   const [serverError, setServerError] = useState("");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const {
     register,
@@ -34,10 +35,16 @@ const RegisterForm = () => {
 
   const onSubmit = async (data: RegisterForm) => {
     setServerError("");
+
+    if (!captchaToken) {
+      setServerError("Please verify that you're not a robot");
+      return;
+    }
+
     const res = await fetch("/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ ...data, captchaToken }),
     });
 
     const result = await res.json();
@@ -111,6 +118,10 @@ const RegisterForm = () => {
             {serverError && <Alert color="red">{serverError}</Alert>}
 
             {/* Submit */}
+            <ReCAPTCHA
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+              onChange={setCaptchaToken}
+            />
             <Button type="submit" disabled={isSubmitting}>
               {isSubmitting ? <Loader size="sm" color="white" /> : "Register"}
             </Button>
