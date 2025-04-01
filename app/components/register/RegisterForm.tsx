@@ -63,7 +63,7 @@ const RegisterForm = () => {
 
   return (
     <Stack align="center" w="100%">
-      <Logo large />
+      {/* <Logo large /> */}
       <Paper
         withBorder
         shadow="md"
@@ -118,7 +118,16 @@ const RegisterForm = () => {
             {serverError && <Alert color="red">{serverError}</Alert>}
 
             {/* Submit */}
-            <div style={{ margin: "auto", minHeight: 80 }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                minHeight: 80,
+                width: "100%",
+                transform: "scale(0.90)",
+                transformOrigin: "top center",
+              }}
+            >
               <ReCAPTCHA
                 sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
                 onChange={setCaptchaToken}
