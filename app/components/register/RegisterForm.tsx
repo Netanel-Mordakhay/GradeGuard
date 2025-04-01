@@ -118,10 +118,12 @@ const RegisterForm = () => {
             {serverError && <Alert color="red">{serverError}</Alert>}
 
             {/* Submit */}
-            <ReCAPTCHA
-              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-              onChange={setCaptchaToken}
-            />
+            <div style={{ margin: "auto", minHeight: 80 }}>
+              <ReCAPTCHA
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                onChange={setCaptchaToken}
+              />
+            </div>
             <Button type="submit" disabled={isSubmitting}>
               {isSubmitting ? <Loader size="sm" color="white" /> : "Register"}
             </Button>
