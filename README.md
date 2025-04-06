@@ -1,4 +1,4 @@
-[![GradeGuard dashboard](https://i.ibb.co/WpxPHx48/GG.jpg)](https://www.youtube.com/watch?v=1NSycNVX8z0)
+[![Watch the demo](https://img.youtube.com/vi/1NSycNVX8z0/0.jpg)](https://www.youtube.com/watch?v=1NSycNVX8z0)
 
 # GradeGuard 🎓
 
