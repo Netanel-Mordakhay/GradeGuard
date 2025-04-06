@@ -45,6 +45,7 @@
 - Todo task manager with due dates
 - CSV export for user data
 - Friendly UI with RTL support planned
+- reCAPTCHA
 
 ---
 
