@@ -104,6 +104,14 @@ export const createTodoCommentSchema = z.object({
   todoId: z.number(),
 });
 
+/* Contact Schema */
+export const contactSchema = z.object({
+  name: z.string().min(2, "Name is required"),
+  email: z.string().email("Invalid email"),
+  subject: z.enum(["bug", "other"]),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
 /* TypeScript Type */
 export type CourseForm = z.infer<typeof createCourseSchema>;
 export type Course = z.infer<typeof courseSchema>;
@@ -118,6 +126,8 @@ export type CreateTodoCommentForm = z.infer<typeof createTodoCommentSchema>;
 export type TodoWithCourse = Prisma.TodoGetPayload<{
   include: { course: true };
 }>; // Todo with related course if exists
+
+export type ContactForm = z.infer<typeof contactSchema>;
 
 /* At the beginning only god and I knew why these works - now, only god and GPT do. */
 

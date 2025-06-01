@@ -1,3 +1,4 @@
+import ContactUsForm from "@/app/components/contact-us/ContactUsForm";
 import DefaultCard from "@/app/components/global/DefaultCard";
 import SideBar from "@/app/components/global/SideBar";
 import TwoColumns from "@/app/components/layout/TwoColumns";
@@ -10,18 +11,7 @@ export const metadata = {
 };
 
 const page = () => {
-  return (
-    <TwoColumns>
-      <DefaultCard showCover={true}>
-        <Stack>
-          <Title>Contact Us</Title>
-          <Text mt={-15}>So call me, maybe?</Text>
-          <Divider />
-        </Stack>
-      </DefaultCard>
-      <SideBar />
-    </TwoColumns>
-  );
+  return <ContactUsForm />;
 };
 
 export default page;

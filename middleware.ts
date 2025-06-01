@@ -12,7 +12,9 @@ export async function middleware(req: NextRequest) {
   const isPublic =
     pathname === "/login" ||
     pathname === "/register" ||
-    pathname.startsWith("/api/auth");
+    pathname === "/contact-us" ||
+    pathname.startsWith("/api/auth") ||
+    pathname.startsWith("/api/contact");
 
   // Not logged and tries to access protected page, redirect to login page
   if (!isAuthenticated && !isPublic) {
