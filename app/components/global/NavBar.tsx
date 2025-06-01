@@ -7,6 +7,7 @@ import {
   IconAlignJustified,
   IconUser,
   IconLogout,
+  IconMail,
 } from "@tabler/icons-react";
 import { signOut } from "next-auth/react";
 import classes from "../../styles/NavBar.module.css";
@@ -59,6 +60,12 @@ const NavBar = ({ onLinkClick }: Props) => {
           <IconUser className={classes.linkIcon} stroke={1.5} />
           <span>Account</span>
         </Link>
+
+        <Link className={classes.link} href="/contact-us" onClick={onLinkClick}>
+          <IconMail className={classes.linkIcon} stroke={1.5} />
+          <span>Contact</span>
+        </Link>
+
         <div onClick={() => signOut({ callbackUrl: "/login" })}>
           <a href="#" className={classes.link}>
             <IconLogout className={classes.linkIcon} stroke={1.5} />
