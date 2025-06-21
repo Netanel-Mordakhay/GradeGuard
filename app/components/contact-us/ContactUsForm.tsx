@@ -10,6 +10,8 @@ import {
   Textarea,
   Alert,
   Select,
+  Paper,
+  Text,
 } from "@mantine/core";
 import { Controller, useForm } from "react-hook-form";
 import { contactSchema, type ContactForm } from "@/app/validationSchemas";
@@ -53,65 +55,81 @@ const ContactUsForm = () => {
   };
 
   return (
-    <DefaultCard showCover>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack>
-          <TextInput
-            label="Name"
-            placeholder="Your name"
-            withAsterisk
-            {...register("name")}
-            error={errors.name?.message}
-          />
+    <Stack align="center" w="100%">
+      <Paper
+        withBorder
+        shadow="md"
+        p={30}
+        radius="md"
+        w={{ base: "100%", xs: 400 }}
+      >
+        <Text ta="center" mb="md" size="xl" fw={500}>
+          Contact Us
+        </Text>
 
-          <TextInput
-            label="Email"
-            placeholder="you@example.com"
-            type="email"
-            withAsterisk
-            {...register("email")}
-            error={errors.email?.message}
-          />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Stack>
+            <TextInput
+              label="Name"
+              placeholder="Your name"
+              withAsterisk
+              {...register("name")}
+              error={errors.name?.message}
+            />
 
-          <Controller
-            name="subject"
-            control={control}
-            render={({ field }) => (
-              <Select
-                label="Subject"
-                placeholder="Choose an option"
-                data={[
-                  { label: "Report a bug", value: "bug" },
-                  { label: "Other", value: "other" },
-                ]}
-                withAsterisk
-                {...field}
-                error={errors.subject?.message}
-              />
+            <TextInput
+              label="Email"
+              placeholder="you@example.com"
+              type="email"
+              withAsterisk
+              {...register("email")}
+              error={errors.email?.message}
+            />
+
+            <Controller
+              name="subject"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  label="Subject"
+                  placeholder="Choose an option"
+                  data={[
+                    { label: "Report a bug", value: "bug" },
+                    { label: "Other", value: "other" },
+                  ]}
+                  withAsterisk
+                  {...field}
+                  error={errors.subject?.message}
+                />
+              )}
+            />
+
+            <Textarea
+              label="Message"
+              placeholder="Write your message..."
+              minRows={5}
+              withAsterisk
+              {...register("message")}
+              error={errors.message?.message}
+            />
+
+            {serverMessage && (
+              <Alert color={serverMessage.type === "success" ? "green" : "red"}>
+                {serverMessage.text}
+              </Alert>
             )}
-          />
 
-          <Textarea
-            label="Message"
-            placeholder="Write your message..."
-            minRows={5}
-            withAsterisk
-            {...register("message")}
-            error={errors.message?.message}
-          />
-
-          {serverMessage && (
-            <Alert color={serverMessage.type === "success" ? "green" : "red"}>
-              {serverMessage.text}
-            </Alert>
-          )}
-
-          <Button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? <Loader size="sm" color="white" /> : "Send Message"}
-          </Button>
-        </Stack>
-      </form>
-    </DefaultCard>
+            <Button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <Loader size="sm" color="white" />
+              ) : (
+                "Send Message"
+              )}
+            </Button>
+          </Stack>
+        </form>
+      </Paper>
+    </Stack>
   );
 };
 
