@@ -1,4 +1,5 @@
 import ContactUsForm from "@/app/components/contact-us/ContactUsForm";
+import ContactUsHero from "@/app/components/contact-us/ContactUsHero";
 import DefaultCard from "@/app/components/global/DefaultCard";
 import SideBar from "@/app/components/global/SideBar";
 import AuthenticationLayout from "@/app/components/layout/AuthenticationLayout";
@@ -17,7 +18,8 @@ const page = () => {
     <AuthenticationLayout>
       <ContactUsForm />
       {/* Features */}
-      <Features />
+      {/* <Features /> */}
+      <ContactUsHero />
     </AuthenticationLayout>
   );
 };
