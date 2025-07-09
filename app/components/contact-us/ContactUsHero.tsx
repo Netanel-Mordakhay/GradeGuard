@@ -1,9 +1,12 @@
-import { Container, Text } from "@mantine/core";
+import { Container, Stack, Text } from "@mantine/core";
+import Logo from "../global/Logo";
 
 const ContactUsHero = () => {
   return (
     <div>
-      <Container>
+      <Stack align="center" gap={5}>
+        <Logo large={true} />
+
         <h1>
           Need to{" "}
           <Text
@@ -22,7 +25,7 @@ const ContactUsHero = () => {
           we’re here to help. GradeGuard is built by students, for students —
           and your voice matters.
         </Text>
-      </Container>
+      </Stack>
     </div>
   );
 };
