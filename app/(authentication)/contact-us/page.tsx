@@ -17,8 +17,7 @@ const page = () => {
   return (
     <AuthenticationLayout>
       <ContactUsForm />
-      {/* Features */}
-      {/* <Features /> */}
+      {/* ContactUsHero */}
       <ContactUsHero />
     </AuthenticationLayout>
   );

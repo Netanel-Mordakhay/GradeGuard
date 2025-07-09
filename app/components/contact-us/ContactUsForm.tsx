@@ -61,7 +61,7 @@ const ContactUsForm = () => {
         shadow="md"
         p={30}
         radius="md"
-        w={{ base: "100%", xs: 400 }}
+        w={{ base: "100%", xs: 500 }}
       >
         <Text ta="center" mb="md" size="xl" fw={500}>
           Contact Us
@@ -108,6 +108,8 @@ const ContactUsForm = () => {
               label="Message"
               placeholder="Write your message..."
               minRows={5}
+              autosize
+              resize="vertical"
               withAsterisk
               {...register("message")}
               error={errors.message?.message}
